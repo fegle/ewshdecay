@@ -831,7 +831,7 @@ c ------------------------- The singlet extension ------------------------ c
          ihiggs = 0
          icoupvar = 0
          ifermphob = 0 
-         ionwz = 0 
+c         ionwz = 0 
 
          vcx = 1.D0/dsqrt(dsqrt(2.D0)*gf)
 
@@ -6417,7 +6417,7 @@ C  H ---> W W
      .         * CPW * (HTWW0*(CPW-1)+HTWW)       
        ENDIF
 c MMM changed 26/8/22        
-        if(amh.ge.2.D0*amw) then
+        if(amh.ge.2.D0*amw.and.ielwcxsm.eq.1) then
            HWW=HVV(AMH,AMW**2/AMH**2)*(1.D0+dcxsmww)
         endif
 c end MMM changed 26/8/22       
@@ -6538,7 +6538,7 @@ C  H ---> Z Z
      .      * CPZ * (HTZZ0*(CPZ-1)+HTZZ)
       ENDIF
 c MMM changed 26/8/22        
-        if(amh.ge.2.D0*amz) then
+        if(amh.ge.2.D0*amz.and.ielwcxsm.eq.1) then
            HZZ=HVV(AMH,AMZ**2/AMH**2)/2.D0*(1.D0+dcxsmzz)
         endif
 c end MMM changed 26/8/22          

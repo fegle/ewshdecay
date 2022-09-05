@@ -97,7 +97,7 @@ AL       = 2800.D0
 AU       = 2800.D0
 AD       = 2800.D0
 ON-SHELL = 0
-ON-SH-WZ = 0
+ON-SH-WZ = 1
 IPOLE    = 0
 OFF-SUSY = 0
 INDIDEC  = 0
@@ -149,13 +149,13 @@ vs       = 510.922D0
 *** complex singlet dark matter phase ***
 alph1    = 0.2D0
 m1       = 125.D0
-m2       = 400.D0
+m2       = 5000.D0
 m3       = 40.D0
 vs       = 100.D0
 a1       = 0.D0
 ******************** EW Corrections ********************
 ** Attention: This can only be used for the Dark Matter Phase of the CxSM with a1 = 0 **
-ielwcxsm = 1
+ielwcxsm = 0
 **** ren. scheme: vsscheme = 1 pd, = 2 ZEM, pdprocess = 1 h1->AA, =2 h2->AA, alpha_mix =1 OS, =2 pstar
 vsscheme = 1
 pdprocess= 1
