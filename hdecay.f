@@ -1221,6 +1221,9 @@ c MMM changed 26/8/2022
          ioelw = 0
          call CxSMEWCorrections(ivsscheme,ipdprocess,iralph_mix,DeltaE,
      .        DLambdaIR,iwarn)
+         write(*,*)dh1ll,dh1bb,dh1aa,dh2ll,dh2bb,dh2tt,
+     .     dh2aa,dh2zz,dh2ww,dh2h1h1,ielwcxsm
+     
          if(iwarn.eq.1) then
             print*,'The EW corrections to one or more decay widths 
      .lead to a negative decay width and hence the correction is set 

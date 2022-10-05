@@ -1,5 +1,5 @@
 OBJS = hdecay.o haber.o feynhiggs.o hsqsq.o susylha.o hgaga.o dmb.o \
-       elw.o hgg.o h2hh.o decayCxSM.o CxSMFunctions.o
+       elw.o hgg.o h2hh.o decayCxSM.o CxSMFunctions.o ChangeScheme.o
 
 #OBJS = hdecay.o haber.o hsqsq.o
 

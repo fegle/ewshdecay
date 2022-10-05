@@ -8,7 +8,9 @@
       double precision DeltaE,LambdaIR
       double precision DWh1AA,DWh2AA,DWh1tautau,DWh2tautau,DWh1bb,
      .DWh2bb,DWh2ZZ,DWh2WW,DWh2tt,DWh2h1h1
-      
+      double precision Toalphapstar,TovSh1pdpstar,TovSh2pdOS,
+     .TovSh2pdpstar,TovSh1ZEMOS,TovSh1ZEMpstar,TovSh2ZEMOS,
+     .TovSh2ZEMpstar
 c MMM changed 8/12/15
       DIMENSION RESCAL(3)
 c end MMM changed 8/12/2015 
@@ -41,6 +43,40 @@ c end MMM changed 8/12/2015
       vsscheme=iwhichvs
       pdprocess=iwhichpd
       alphascheme=iwhichalpha
+      
+c------Change Scheme
+      if(vsscheme.ne.1.OR.pdprocess.ne.1.OR.alphascheme.ne.1)then
+      
+      write(*,*)"The chosen Renormalization scheme is not the alpha OS and the vsh1pdOS scheme. Thus, the input parameters have to be converted."
+      
+      if(vsscheme.eq.1.AND.pdprocess.eq.1.AND.alphascheme.eq.2)then
+      DALPHACX1=Toalphapstar()
+      DVSCX=TovSh1pdpstar()
+      elseif(vsscheme.eq.1.AND.pdprocess.eq.2.AND.alphascheme.eq.1)then
+      DVSCX=TovSh2pdOS()
+      elseif(vsscheme.eq.1.AND.pdprocess.eq.2.AND.alphascheme.eq.2)then
+      DALPHACX1=Toalphapstar()
+      DVSCX=TovSh2pdpstar()
+      elseif(vsscheme.eq.2.AND.pdprocess.eq.1.AND.alphascheme.eq.1)then
+      DVSCX=TovSh1ZEMOS()
+      elseif(vsscheme.eq.2.AND.pdprocess.eq.1.AND.alphascheme.eq.2)then
+      DALPHACX1=Toalphapstar()
+      DVSCX=TovSh1ZEMpstar()
+      elseif(vsscheme.eq.2.AND.pdprocess.eq.2.AND.alphascheme.eq.1)then
+      DVSCX=TovSh2ZEMOS()
+      elseif(vsscheme.eq.2.AND.pdprocess.eq.2.AND.alphascheme.eq.2)then
+      DALPHACX1=Toalphapstar()
+      DVSCX=TovSh2ZEMpstar()
+      endif
+      Talpha=DTan(DALPHACX1)
+      vS=DVSCX
+      
+      write(*,*)"New converted input values:"
+      write(*,*)"alpha: ", DALPHACX1
+      write(*,*)"vS: ", vS
+      
+      endif
+c------end change
       
 c       write(*,*)"mW: ", mW
 c       write(*,*)"mZ: ", mZ
