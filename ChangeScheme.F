@@ -143,7 +143,7 @@ c     Check Re, DSqrt, PolyLog and Log
       end
 ccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc
 ccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc
-      double precision function TovSh1pdpstar()
+      double precision function TovSh1toh1pdpstar()
       implicit none
       double precision mW,mZ,mt,mb,mtau
       double precision GF
@@ -157,7 +157,7 @@ c      Complex DB0,A0,B0,C0,
 #include "looptools.h"
 c     Check Re, DSqrt, PolyLog and Log      
       PI = 4*DATAN(1.D0)
-      TovSh1pdpstar = 
+      TovSh1toh1pdpstar = 
      -        vS + (0.0268668360117542D0*GF*mb**2*(4.D0*mb**2 - 1.D0*mh1**2)*
      -     vS*Dreal(B0(mh1**2,mb**2,mb**2)))/
      -   ((mh1 - 1.D0*mh2)*(mh1 + mh2)*(1.D0 + Talpha**2)) + 
@@ -286,7 +286,7 @@ c     Check Re, DSqrt, PolyLog and Log
       end
 ccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc
 ccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc
-      double precision function TovSh1ZEMOS()
+      double precision function TovSh1toh1ZEMOS()
       implicit none
       double precision mW,mZ,mt,mb,mtau
       double precision GF
@@ -300,7 +300,7 @@ c      Complex DB0,A0,B0,C0,
 #include "looptools.h"
 c     Check Re, DSqrt, PolyLog and Log      
       PI = 4*DATAN(1.D0)
-      TovSh1ZEMOS = 
+      TovSh1toh1ZEMOS = 
      -        vS - (0.018997721932938333D0*mh1**2*Talpha*
      -     (Talpha**3 + 1.189207115002721D0*DSqrt(GF)*vS)*
      -     Dreal(B0(0.D0,mh1**2,mh1**2)))/((1.D0 + Talpha**2)**2*vS) - 
@@ -503,7 +503,7 @@ c     Check Re, DSqrt, PolyLog and Log
       end
 ccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc
 ccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc
-      double precision function TovSh1ZEMpstar()
+      double precision function TovSh1toh1ZEMpstar()
       implicit none
       double precision mW,mZ,mt,mb,mtau
       double precision GF
@@ -517,7 +517,7 @@ c      Complex DB0,A0,B0,C0,
 #include "looptools.h"
 c     Check Re, DSqrt, PolyLog and Log      
       PI = 4*DATAN(1.D0)
-      TovSh1ZEMpstar = 
+      TovSh1toh1ZEMpstar = 
      -        vS - (0.018997721932938333D0*mh1**2*Talpha*
      -     (Talpha**3 + 1.189207115002721D0*DSqrt(GF)*vS)*
      -     Dreal(B0(0.D0,mh1**2,mh1**2)))/((1.D0 + Talpha**2)**2*vS) - 
@@ -769,7 +769,7 @@ c     Check Re, DSqrt, PolyLog and Log
       end
 ccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc
 ccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc
-      double precision function TovSh2pdOS()
+      double precision function TovSh1toh2pdOS()
       implicit none
       double precision mW,mZ,mt,mb,mtau
       double precision GF
@@ -783,7 +783,7 @@ c      Complex DB0,A0,B0,C0,
 #include "looptools.h"
 c     Check Re, DSqrt, PolyLog and Log      
       PI = 4*DATAN(1.D0)
-      TovSh2pdOS = 
+      TovSh1toh2pdOS = 
      -        vS + (0.006332573977646111D0*(mh1 - 1.D0*mh2)*(mh1 + mh2)*
      -     Talpha*(mh2**2*(-1.D0*Talpha + 
      -          1.189207115002721D0*DSqrt(GF)*vS) + 
@@ -1028,7 +1028,7 @@ c     Check Re, DSqrt, PolyLog and Log
       end
 ccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc
 ccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc
-      double precision function TovSh2pdpstar()
+      double precision function TovSh1toh2pdpstar()
       implicit none
       double precision mW,mZ,mt,mb,mtau
       double precision GF
@@ -1042,7 +1042,7 @@ c      Complex DB0,A0,B0,C0,
 #include "looptools.h"
 c     Check Re, DSqrt, PolyLog and Log      
       PI = 4*DATAN(1.D0)
-      TovSh2pdpstar = 
+      TovSh1toh2pdpstar = 
      -        vS + (0.006332573977646111D0*(mh1 - 1.D0*mh2)*(mh1 + mh2)*
      -     Talpha*(mh2**2*(-1.D0*Talpha + 
      -          1.189207115002721D0*DSqrt(GF)*vS) + 
@@ -1315,7 +1315,7 @@ c     Check Re, DSqrt, PolyLog and Log
       end
 ccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc
 ccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc
-      double precision function TovSh2ZEMOS()
+      double precision function TovSh1toh2ZEMOS()
       implicit none
       double precision mW,mZ,mt,mb,mtau
       double precision GF
@@ -1329,7 +1329,7 @@ c      Complex DB0,A0,B0,C0,
 #include "looptools.h"
 c     Check Re, DSqrt, PolyLog and Log      
       PI = 4*DATAN(1.D0)
-      TovSh2ZEMOS = 
+      TovSh1toh2ZEMOS = 
      -        vS + (0.006332573977646111D0*(mh1 - 1.D0*mh2)*(mh1 + mh2)*
      -     Talpha*(mh2**2*(-1.D0*Talpha + 
      -          1.189207115002721D0*DSqrt(GF)*vS) + 
@@ -1594,7 +1594,7 @@ c     Check Re, DSqrt, PolyLog and Log
       end
 ccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc
 ccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc
-      double precision function TovSh2ZEMpstar()
+      double precision function TovSh1toh2ZEMpstar()
       implicit none
       double precision mW,mZ,mt,mb,mtau
       double precision GF
@@ -1608,7 +1608,7 @@ c      Complex DB0,A0,B0,C0,
 #include "looptools.h"
 c     Check Re, DSqrt, PolyLog and Log      
       PI = 4*DATAN(1.D0)
-      TovSh2ZEMpstar = 
+      TovSh1toh2ZEMpstar = 
      -        vS + (0.006332573977646111D0*(mh1 - 1.D0*mh2)*(mh1 + mh2)*
      -     Talpha*(mh2**2*(-1.D0*Talpha + 
      -          1.189207115002721D0*DSqrt(GF)*vS) + 
@@ -1911,6 +1911,1806 @@ c     Check Re, DSqrt, PolyLog and Log
      -  (0.0015831434944115277D0*mh2**4*
      -     Dreal(DB0(mh2**2,mX**2,mX**2)))/((1.D0 + Talpha**2)*vS) - 
      -  (0.0022389030009795164D0*GF*
+     -     (mh2**4 - 4.D0*mh2**2*mZ**2 + 12.D0*mZ**4)*Talpha**2*vS*
+     -     Dreal(DB0(mh2**2,mZ**2,mZ**2)))/(1.D0 + Talpha**2) - 
+     -  (0.012665147955292222D0*mh1**4*Talpha**2*
+     -     Dreal(DB0(mX**2,mX**2,mh1**2)))/((1.D0 + Talpha**2)*vS) - 
+     -  (0.012665147955292222D0*mh2**4*
+     -     Dreal(DB0(mX**2,mX**2,mh2**2)))/((1.D0 + Talpha**2)*vS) 
+      
+      return
+      end
+ccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc
+ccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc
+      double precision function TovSh2toh1pdOS()
+      implicit none
+      double precision mW,mZ,mt,mb,mtau
+      double precision GF
+      double precision mh1,mh2,mX,vS,Talpha
+      double precision DeltaE,LambdaIR,PI
+      Complex Polylog
+      Common/SMValues/mW,mZ,mt,mb,mtau,GF
+      Common/CxSMValues/mh1,mh2,mX,vS,Talpha
+      Common/IRValues/DeltaE,LambdaIR 
+c      Complex DB0,A0,B0,C0,
+#include "looptools.h"
+c     Check Re, DSqrt, PolyLog and Log      
+      PI = 4*DATAN(1.D0)
+      TovSh2toh1pdOS = 
+     -        vS - (0.006332573977646111D0*(mh1 - 1.D0*mh2)*(mh1 + mh2)*
+     -     Talpha*(mh2**2*(-1.D0*Talpha + 
+     -          1.189207115002721D0*DSqrt(GF)*vS) + 
+     -       mh1**2*Talpha*
+     -        (1.D0 + 1.189207115002721D0*DSqrt(GF)*Talpha*vS))*
+     -     Dreal(A0(mh1**2)))/
+     -   (mh1**2*mh2**2*(1.D0 + Talpha**2)**2*vS) + 
+     -  (0.006332573977646111D0*(mh1 - 1.D0*mh2)*(mh1 + mh2)*Talpha*
+     -     (mh2**2*(-1.D0*Talpha + 1.189207115002721D0*DSqrt(GF)*vS) + 
+     -       mh1**2*Talpha*
+     -        (1.D0 + 1.189207115002721D0*DSqrt(GF)*Talpha*vS))*
+     -     Dreal(A0(mh2**2)))/
+     -   (mh1**2*mh2**2*(1.D0 + Talpha**2)**2*vS) - 
+     -  (0.0268668360117542D0*GF*mb**2*
+     -     (mh2**2 - 1.D0*mh1**2*Talpha**2 + 
+     -       4.D0*mb**2*(-1.D0 + Talpha**2))*vS*
+     -     Dreal(B0(mh1**2,mb**2,mb**2)))/
+     -   ((mh1 - 1.D0*mh2)*(mh1 + mh2)*(1.D0 + Talpha**2)) - 
+     -  (0.004749430483234583D0*mh1**2*
+     -     (Talpha**3 + 1.189207115002721D0*DSqrt(GF)*vS)*
+     -     (2.D0*mh1**2*(Talpha + 3.D0*Talpha**3 + 
+     -          1.189207115002721D0*DSqrt(GF)*vS - 
+     -          1.189207115002721D0*DSqrt(GF)*Talpha**2*vS) - 
+     -       1.D0*mh2**2*(5.D0*Talpha + 3.D0*Talpha**3 - 
+     -          1.189207115002721D0*DSqrt(GF)*vS + 
+     -          1.189207115002721D0*DSqrt(GF)*Talpha**2*vS))*
+     -     Dreal(B0(mh1**2,mh1**2,mh1**2)))/
+     -   ((mh1 - 1.D0*mh2)*(mh1 + mh2)*(1.D0 + Talpha**2)**3*vS) - 
+     -  (0.0031662869888230555D0*(2.D0*mh1**2 + mh2**2)*Talpha*
+     -     (Talpha - 1.189207115002721D0*DSqrt(GF)*vS)*
+     -     (-2.D0*mh2**4*(1.D0 + Talpha**2) + 
+     -       2.D0*mh1**2*mh2**2*(-1.D0 + Talpha**2)*
+     -        (1.D0 + 1.189207115002721D0*DSqrt(GF)*Talpha*vS) + 
+     -       mh1**4*(1.D0 + 3.D0*Talpha**2 - 
+     -          1.189207115002721D0*DSqrt(GF)*Talpha*vS + 
+     -          1.189207115002721D0*DSqrt(GF)*Talpha**3*vS))*
+     -     Dreal(B0(mh1**2,mh1**2,mh2**2)))/
+     -   (mh1**2*(mh1 - 1.D0*mh2)*(mh1 + mh2)*(1.D0 + Talpha**2)**3*
+     -     vS) + (0.0015831434944115277D0*mh2**2*
+     -     (mh1**2 + 2.D0*mh2**2)*
+     -     (1.D0 + 1.189207115002721D0*DSqrt(GF)*Talpha*vS)*
+     -     (4.D0*mh2**2*(1.D0 + Talpha**2) + 
+     -       mh1**2*(-1.D0 - 7.D0*Talpha**2 - 
+     -          3.5676213450081633D0*DSqrt(GF)*Talpha**3*vS + 
+     -          3.5676213450081633D0*DSqrt(GF)*Talpha**5*vS))*
+     -     Dreal(B0(mh1**2,mh2**2,mh2**2)))/
+     -   (mh1**2*(mh1 - 1.D0*mh2)*(mh1 + mh2)*(1.D0 + Talpha**2)**3*
+     -     vS) - (0.0268668360117542D0*GF*mt**2*
+     -     (mh2**2 - 1.D0*mh1**2*Talpha**2 + 
+     -       4.D0*mt**2*(-1.D0 + Talpha**2))*vS*
+     -     Dreal(B0(mh1**2,mt**2,mt**2)))/
+     -   ((mh1 - 1.D0*mh2)*(mh1 + mh2)*(1.D0 + Talpha**2)) - 
+     -  (0.008955612003918065D0*GF*mtau**2*
+     -     (mh2**2 - 1.D0*mh1**2*Talpha**2 + 
+     -       4.D0*mtau**2*(-1.D0 + Talpha**2))*vS*
+     -     Dreal(B0(mh1**2,mtau**2,mtau**2)))/
+     -   ((mh1 - 1.D0*mh2)*(mh1 + mh2)*(1.D0 + Talpha**2)) + 
+     -  (0.004477806001959033D0*GF*
+     -     (2.D0*mW**2*(6.D0*mW**2*(-1.D0 + Talpha**2) + 
+     -          mh2**2*(3.D0 + Talpha**2)) + 
+     -       mh1**2*(mh2**2*(-1.D0 + Talpha**2) - 
+     -          2.D0*mW**2*(1.D0 + 3.D0*Talpha**2)))*vS*
+     -     Dreal(B0(mh1**2,mW**2,mW**2)))/
+     -   ((mh1 - 1.D0*mh2)*(mh1 + mh2)*(1.D0 + Talpha**2)) + 
+     -  (0.0015831434944115277D0*
+     -     (-4.D0*mh2**4 + 4.D0*mh1**4*Talpha**2 - 
+     -       5.D0*mh1**2*mh2**2*(-1.D0 + Talpha**2))*
+     -     Dreal(B0(mh1**2,mX**2,mX**2)))/
+     -   ((mh1 - 1.D0*mh2)*(mh1 + mh2)*(1.D0 + Talpha**2)*vS) + 
+     -  (0.0022389030009795164D0*GF*
+     -     (2.D0*mZ**2*(6.D0*mZ**2*(-1.D0 + Talpha**2) + 
+     -          mh2**2*(3.D0 + Talpha**2)) + 
+     -       mh1**2*(mh2**2*(-1.D0 + Talpha**2) - 
+     -          2.D0*mZ**2*(1.D0 + 3.D0*Talpha**2)))*vS*
+     -     Dreal(B0(mh1**2,mZ**2,mZ**2)))/
+     -   ((mh1 - 1.D0*mh2)*(mh1 + mh2)*(1.D0 + Talpha**2)) + 
+     -  (0.0268668360117542D0*GF*mb**2*
+     -     (mh2**2 - 1.D0*mh1**2*Talpha**2 + 
+     -       4.D0*mb**2*(-1.D0 + Talpha**2))*vS*
+     -     Dreal(B0(mh2**2,mb**2,mb**2)))/
+     -   ((mh1 - 1.D0*mh2)*(mh1 + mh2)*(1.D0 + Talpha**2)) + 
+     -  (0.0015831434944115277D0*mh1**2*(2.D0*mh1**2 + mh2**2)*
+     -     (Talpha - 1.189207115002721D0*DSqrt(GF)*vS)*
+     -     (4.D0*mh1**2*(Talpha**3 + Talpha**5) - 
+     -       1.D0*mh2**2*(7.D0*Talpha**3 + Talpha**5 + 
+     -          3.5676213450081633D0*DSqrt(GF)*vS - 
+     -          3.5676213450081633D0*DSqrt(GF)*Talpha**2*vS))*
+     -     Dreal(B0(mh2**2,mh1**2,mh1**2)))/
+     -   ((mh1 - 1.D0*mh2)*mh2**2*(mh1 + mh2)*(1.D0 + Talpha**2)**3*
+     -     vS) + (0.0031662869888230555D0*(mh1**2 + 2.D0*mh2**2)*
+     -     Talpha*(1.D0 + 1.189207115002721D0*DSqrt(GF)*Talpha*vS)*
+     -     (2.D0*mh1**4*(Talpha + Talpha**3) + 
+     -       2.D0*mh1**2*mh2**2*(-1.D0 + Talpha**2)*
+     -        (Talpha - 1.189207115002721D0*DSqrt(GF)*vS) - 
+     -       1.D0*mh2**4*(3.D0*Talpha + Talpha**3 - 
+     -          1.189207115002721D0*DSqrt(GF)*vS + 
+     -          1.189207115002721D0*DSqrt(GF)*Talpha**2*vS))*
+     -     Dreal(B0(mh2**2,mh1**2,mh2**2)))/
+     -   ((mh1 - 1.D0*mh2)*mh2**2*(mh1 + mh2)*(1.D0 + Talpha**2)**3*
+     -     vS) - (0.004749430483234583D0*mh2**2*
+     -     (-1.D0 + 1.189207115002721D0*DSqrt(GF)*Talpha**3*vS)*
+     -     (2.D0*mh2**2*(-3.D0 - 1.D0*Talpha**2 - 
+     -          1.189207115002721D0*DSqrt(GF)*Talpha*vS + 
+     -          1.189207115002721D0*DSqrt(GF)*Talpha**3*vS) + 
+     -       mh1**2*(3.D0 + 5.D0*Talpha**2 - 
+     -          1.189207115002721D0*DSqrt(GF)*Talpha*vS + 
+     -          1.189207115002721D0*DSqrt(GF)*Talpha**3*vS))*
+     -     Dreal(B0(mh2**2,mh2**2,mh2**2)))/
+     -   ((mh1 - 1.D0*mh2)*(mh1 + mh2)*(1.D0 + Talpha**2)**3*vS) + 
+     -  (0.0268668360117542D0*GF*mt**2*
+     -     (mh2**2 - 1.D0*mh1**2*Talpha**2 + 
+     -       4.D0*mt**2*(-1.D0 + Talpha**2))*vS*
+     -     Dreal(B0(mh2**2,mt**2,mt**2)))/
+     -   ((mh1 - 1.D0*mh2)*(mh1 + mh2)*(1.D0 + Talpha**2)) + 
+     -  (0.008955612003918065D0*GF*mtau**2*
+     -     (mh2**2 - 1.D0*mh1**2*Talpha**2 + 
+     -       4.D0*mtau**2*(-1.D0 + Talpha**2))*vS*
+     -     Dreal(B0(mh2**2,mtau**2,mtau**2)))/
+     -   ((mh1 - 1.D0*mh2)*(mh1 + mh2)*(1.D0 + Talpha**2)) - 
+     -  (0.004477806001959033D0*GF*
+     -     (2.D0*mW**2*(6.D0*mW**2*(-1.D0 + Talpha**2) + 
+     -          mh2**2*(3.D0 + Talpha**2)) + 
+     -       mh1**2*(mh2**2*(-1.D0 + Talpha**2) - 
+     -          2.D0*mW**2*(1.D0 + 3.D0*Talpha**2)))*vS*
+     -     Dreal(B0(mh2**2,mW**2,mW**2)))/
+     -   ((mh1 - 1.D0*mh2)*(mh1 + mh2)*(1.D0 + Talpha**2)) + 
+     -  (0.0015831434944115277D0*
+     -     (4.D0*mh2**4 - 4.D0*mh1**4*Talpha**2 + 
+     -       5.D0*mh1**2*mh2**2*(-1.D0 + Talpha**2))*
+     -     Dreal(B0(mh2**2,mX**2,mX**2)))/
+     -   ((mh1 - 1.D0*mh2)*(mh1 + mh2)*(1.D0 + Talpha**2)*vS) - 
+     -  (0.0022389030009795164D0*GF*
+     -     (2.D0*mZ**2*(6.D0*mZ**2*(-1.D0 + Talpha**2) + 
+     -          mh2**2*(3.D0 + Talpha**2)) + 
+     -       mh1**2*(mh2**2*(-1.D0 + Talpha**2) - 
+     -          2.D0*mZ**2*(1.D0 + 3.D0*Talpha**2)))*vS*
+     -     Dreal(B0(mh2**2,mZ**2,mZ**2)))/
+     -   ((mh1 - 1.D0*mh2)*(mh1 + mh2)*(1.D0 + Talpha**2)) + 
+     -  (0.012665147955292222D0*(-1.D0*mh1**2 + mh2**2)*Talpha*
+     -     (mh2**2 + mh1**2*Talpha**2)*
+     -     (Talpha - 1.189207115002721D0*DSqrt(GF)*vS)*
+     -     Dreal(B0(mX**2,mX**2,mh1**2)))/
+     -   (mh2**2*(1.D0 + Talpha**2)**2*vS) - 
+     -  (0.012665147955292222D0*(mh1**2 - 1.D0*mh2**2)*
+     -     (mh2**2 + mh1**2*Talpha**2)*
+     -     (1.D0 + 1.189207115002721D0*DSqrt(GF)*Talpha*vS)*
+     -     Dreal(B0(mX**2,mX**2,mh2**2)))/
+     -   (mh1**2*(1.D0 + Talpha**2)**2*vS) + 
+     -  (0.018997721932938333D0*mh1**4*Talpha*
+     -     (Talpha**3 + 1.189207115002721D0*DSqrt(GF)*vS)*
+     -     Dreal(C0(mX**2,mX**2,mh1**2,mh1**2,mX**2,mh1**2)))/
+     -   ((1.D0 + Talpha**2)**2*vS) + 
+     -  (0.012665147955292222D0*mh2**2*(2.D0*mh1**2 + mh2**2)*Talpha*
+     -     (Talpha - 1.189207115002721D0*DSqrt(GF)*vS)*
+     -     Dreal(C0(mX**2,mX**2,mh1**2,mh1**2,mX**2,mh2**2)))/
+     -   ((1.D0 + Talpha**2)**2*vS) + 
+     -  (0.006332573977646111D0*mh2**4*(mh1**2 + 2.D0*mh2**2)*
+     -     (1.D0 + 1.189207115002721D0*DSqrt(GF)*Talpha*vS)*
+     -     Dreal(C0(mX**2,mX**2,mh1**2,mh2**2,mX**2,mh2**2)))/
+     -   (mh1**2*(1.D0 + Talpha**2)**2*vS) + 
+     -  (0.006332573977646111D0*mh1**4*Talpha**2*
+     -     Dreal(C0(mX**2,mX**2,mh1**2,mX**2,mh1**2,mX**2)))/
+     -   ((1.D0 + Talpha**2)*vS) + 
+     -  (0.006332573977646111D0*mh2**4*
+     -     Dreal(C0(mX**2,mX**2,mh1**2,mX**2,mh2**2,mX**2)))/
+     -   ((1.D0 + Talpha**2)*vS) - 
+     -  (0.006332573977646111D0*mh1**4*(2.D0*mh1**2 + mh2**2)*
+     -     Talpha**3*(Talpha - 1.189207115002721D0*DSqrt(GF)*vS)*
+     -     Dreal(C0(mX**2,mX**2,mh2**2,mh1**2,mX**2,mh1**2)))/
+     -   (mh2**2*(1.D0 + Talpha**2)**2*vS) - 
+     -  (0.012665147955292222D0*mh1**2*(mh1**2 + 2.D0*mh2**2)*
+     -     Talpha**2*(1.D0 + 1.189207115002721D0*DSqrt(GF)*Talpha*vS)*
+     -     Dreal(C0(mX**2,mX**2,mh2**2,mh1**2,mX**2,mh2**2)))/
+     -   ((1.D0 + Talpha**2)**2*vS) + 
+     -  (0.018997721932938333D0*mh2**4*
+     -     (-1.D0 + 1.189207115002721D0*DSqrt(GF)*Talpha**3*vS)*
+     -     Dreal(C0(mX**2,mX**2,mh2**2,mh2**2,mX**2,mh2**2)))/
+     -   ((1.D0 + Talpha**2)**2*vS) - 
+     -  (0.006332573977646111D0*mh1**4*Talpha**2*
+     -     Dreal(C0(mX**2,mX**2,mh2**2,mX**2,mh1**2,mX**2)))/
+     -   ((1.D0 + Talpha**2)*vS) - 
+     -  (0.006332573977646111D0*mh2**4*
+     -     Dreal(C0(mX**2,mX**2,mh2**2,mX**2,mh2**2,mX**2)))/
+     -   ((1.D0 + Talpha**2)*vS) - 
+     -  (0.0268668360117542D0*GF*(4.D0*mb**4 - 1.D0*mb**2*mh1**2)*vS*
+     -     Dreal(DB0(mh1**2,mb**2,mb**2)))/(1.D0 + Talpha**2) + 
+     -  (0.01424829144970375D0*mh1**4*
+     -     (Talpha**3 + 1.189207115002721D0*DSqrt(GF)*vS)**2*
+     -     Dreal(DB0(mh1**2,mh1**2,mh1**2)))/
+     -   ((1.D0 + Talpha**2)**3*vS) + 
+     -  (0.0031662869888230555D0*(2.D0*mh1**2 + mh2**2)**2*Talpha**2*
+     -     (Talpha - 1.189207115002721D0*DSqrt(GF)*vS)**2*
+     -     Dreal(DB0(mh1**2,mh1**2,mh2**2)))/
+     -   ((1.D0 + Talpha**2)**3*vS) + 
+     -  (0.0015831434944115277D0*(mh1**2 + 2.D0*mh2**2)**2*Talpha**2*
+     -     (1.D0 + 1.189207115002721D0*DSqrt(GF)*Talpha*vS)**2*
+     -     Dreal(DB0(mh1**2,mh2**2,mh2**2)))/
+     -   ((1.D0 + Talpha**2)**3*vS) + 
+     -  (0.0268668360117542D0*GF*mt**2*(mh1**2 - 4.D0*mt**2)*vS*
+     -     Dreal(DB0(mh1**2,mt**2,mt**2)))/(1.D0 + Talpha**2) + 
+     -  (0.008955612003918065D0*GF*mtau**2*(mh1**2 - 4.D0*mtau**2)*vS*
+     -     Dreal(DB0(mh1**2,mtau**2,mtau**2)))/(1.D0 + Talpha**2) + 
+     -  (0.004477806001959033D0*GF*
+     -     (mh1**4 - 4.D0*mh1**2*mW**2 + 12.D0*mW**4)*vS*
+     -     Dreal(DB0(mh1**2,mW**2,mW**2)))/(1.D0 + Talpha**2) + 
+     -  (0.0015831434944115277D0*mh1**4*Talpha**2*
+     -     Dreal(DB0(mh1**2,mX**2,mX**2)))/((1.D0 + Talpha**2)*vS) + 
+     -  (0.0022389030009795164D0*GF*
+     -     (mh1**4 - 4.D0*mh1**2*mZ**2 + 12.D0*mZ**4)*vS*
+     -     Dreal(DB0(mh1**2,mZ**2,mZ**2)))/(1.D0 + Talpha**2) + 
+     -  (0.0268668360117542D0*GF*(4.D0*mb**4 - 1.D0*mb**2*mh2**2)*
+     -     Talpha**2*vS*Dreal(DB0(mh2**2,mb**2,mb**2)))/
+     -   (1.D0 + Talpha**2) - 
+     -  (0.0015831434944115277D0*(2.D0*mh1**2 + mh2**2)**2*Talpha**2*
+     -     (Talpha - 1.189207115002721D0*DSqrt(GF)*vS)**2*
+     -     Dreal(DB0(mh2**2,mh1**2,mh1**2)))/
+     -   ((1.D0 + Talpha**2)**3*vS) - 
+     -  (0.0031662869888230555D0*(mh1**2 + 2.D0*mh2**2)**2*Talpha**2*
+     -     (1.D0 + 1.189207115002721D0*DSqrt(GF)*Talpha*vS)**2*
+     -     Dreal(DB0(mh2**2,mh1**2,mh2**2)))/
+     -   ((1.D0 + Talpha**2)**3*vS) - 
+     -  (0.01424829144970375D0*mh2**4*
+     -     (-1.D0 + 1.189207115002721D0*DSqrt(GF)*Talpha**3*vS)**2*
+     -     Dreal(DB0(mh2**2,mh2**2,mh2**2)))/
+     -   ((1.D0 + Talpha**2)**3*vS) - 
+     -  (0.0268668360117542D0*GF*mt**2*(mh2**2 - 4.D0*mt**2)*
+     -     Talpha**2*vS*Dreal(DB0(mh2**2,mt**2,mt**2)))/
+     -   (1.D0 + Talpha**2) - 
+     -  (0.008955612003918065D0*GF*mtau**2*(mh2**2 - 4.D0*mtau**2)*
+     -     Talpha**2*vS*Dreal(DB0(mh2**2,mtau**2,mtau**2)))/
+     -   (1.D0 + Talpha**2) - 
+     -  (0.004477806001959033D0*GF*
+     -     (mh2**4 - 4.D0*mh2**2*mW**2 + 12.D0*mW**4)*Talpha**2*vS*
+     -     Dreal(DB0(mh2**2,mW**2,mW**2)))/(1.D0 + Talpha**2) - 
+     -  (0.0015831434944115277D0*mh2**4*
+     -     Dreal(DB0(mh2**2,mX**2,mX**2)))/((1.D0 + Talpha**2)*vS) - 
+     -  (0.0022389030009795164D0*GF*
+     -     (mh2**4 - 4.D0*mh2**2*mZ**2 + 12.D0*mZ**4)*Talpha**2*vS*
+     -     Dreal(DB0(mh2**2,mZ**2,mZ**2)))/(1.D0 + Talpha**2) 
+      
+      return
+      end
+ccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc
+ccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc
+      double precision function TovSh2toh1pdpstar()
+      implicit none
+      double precision mW,mZ,mt,mb,mtau
+      double precision GF
+      double precision mh1,mh2,mX,vS,Talpha
+      double precision DeltaE,LambdaIR,PI
+      Complex Polylog
+      Common/SMValues/mW,mZ,mt,mb,mtau,GF
+      Common/CxSMValues/mh1,mh2,mX,vS,Talpha
+      Common/IRValues/DeltaE,LambdaIR 
+c      Complex DB0,A0,B0,C0,
+#include "looptools.h"
+c     Check Re, DSqrt, PolyLog and Log      
+      PI = 4*DATAN(1.D0)
+      TovSh2toh1pdpstar = 
+     -        vS - (0.006332573977646111D0*(mh1 - 1.D0*mh2)*(mh1 + mh2)*
+     -     Talpha*(mh2**2*(-1.D0*Talpha + 
+     -          1.189207115002721D0*DSqrt(GF)*vS) + 
+     -       mh1**2*Talpha*
+     -        (1.D0 + 1.189207115002721D0*DSqrt(GF)*Talpha*vS))*
+     -     Dreal(A0(mh1**2)))/
+     -   (mh1**2*mh2**2*(1.D0 + Talpha**2)**2*vS) + 
+     -  (0.006332573977646111D0*(mh1 - 1.D0*mh2)*(mh1 + mh2)*Talpha*
+     -     (mh2**2*(-1.D0*Talpha + 1.189207115002721D0*DSqrt(GF)*vS) + 
+     -       mh1**2*Talpha*
+     -        (1.D0 + 1.189207115002721D0*DSqrt(GF)*Talpha*vS))*
+     -     Dreal(A0(mh2**2)))/
+     -   (mh1**2*mh2**2*(1.D0 + Talpha**2)**2*vS) - 
+     -  (0.0268668360117542D0*GF*mb**2*
+     -     (mh2**2 + 4.D0*mb**2*(-2.D0 + Talpha**2) - 
+     -       1.D0*mh1**2*(-1.D0 + Talpha**2))*vS*
+     -     Dreal(B0(mh1**2,mb**2,mb**2)))/
+     -   ((mh1 - 1.D0*mh2)*(mh1 + mh2)*(1.D0 + Talpha**2)) - 
+     -  (0.004749430483234583D0*mh1**2*
+     -     (Talpha**3 + 1.189207115002721D0*DSqrt(GF)*vS)*
+     -     (2.D0*mh1**2*(3.D0*Talpha**3 + 
+     -          2.378414230005442D0*DSqrt(GF)*vS - 
+     -          1.189207115002721D0*DSqrt(GF)*Talpha**2*vS) - 
+     -       1.D0*mh2**2*(6.D0*Talpha + 3.D0*Talpha**3 - 
+     -          2.378414230005442D0*DSqrt(GF)*vS + 
+     -          1.189207115002721D0*DSqrt(GF)*Talpha**2*vS))*
+     -     Dreal(B0(mh1**2,mh1**2,mh1**2)))/
+     -   ((mh1 - 1.D0*mh2)*(mh1 + mh2)*(1.D0 + Talpha**2)**3*vS) - 
+     -  (0.0031662869888230555D0*(2.D0*mh1**2 + mh2**2)*Talpha*
+     -     (Talpha - 1.189207115002721D0*DSqrt(GF)*vS)*
+     -     (-2.D0*mh2**4*(1.D0 + Talpha**2) + 
+     -       2.D0*mh1**2*mh2**2*(-2.D0 + Talpha**2)*
+     -        (1.D0 + 1.189207115002721D0*DSqrt(GF)*Talpha*vS) + 
+     -       mh1**4*Talpha*
+     -        (3.D0*Talpha - 2.378414230005442D0*DSqrt(GF)*vS + 
+     -          1.189207115002721D0*DSqrt(GF)*Talpha**2*vS))*
+     -     Dreal(B0(mh1**2,mh1**2,mh2**2)))/
+     -   (mh1**2*(mh1 - 1.D0*mh2)*(mh1 + mh2)*(1.D0 + Talpha**2)**3*
+     -     vS) + (0.0015831434944115277D0*mh2**2*
+     -     (mh1**2 + 2.D0*mh2**2)*
+     -     (1.D0 + 1.189207115002721D0*DSqrt(GF)*Talpha*vS)*
+     -     (4.D0*mh2**2*(1.D0 + Talpha**2) + 
+     -       mh1**2*(2.D0 - 7.D0*Talpha**2 - 
+     -          7.135242690016327D0*DSqrt(GF)*Talpha**3*vS + 
+     -          3.5676213450081633D0*DSqrt(GF)*Talpha**5*vS))*
+     -     Dreal(B0(mh1**2,mh2**2,mh2**2)))/
+     -   (mh1**2*(mh1 - 1.D0*mh2)*(mh1 + mh2)*(1.D0 + Talpha**2)**3*
+     -     vS) - (0.0268668360117542D0*GF*mt**2*
+     -     (mh2**2 + 4.D0*mt**2*(-2.D0 + Talpha**2) - 
+     -       1.D0*mh1**2*(-1.D0 + Talpha**2))*vS*
+     -     Dreal(B0(mh1**2,mt**2,mt**2)))/
+     -   ((mh1 - 1.D0*mh2)*(mh1 + mh2)*(1.D0 + Talpha**2)) - 
+     -  (0.008955612003918065D0*GF*mtau**2*
+     -     (mh2**2 + 4.D0*mtau**2*(-2.D0 + Talpha**2) - 
+     -       1.D0*mh1**2*(-1.D0 + Talpha**2))*vS*
+     -     Dreal(B0(mh1**2,mtau**2,mtau**2)))/
+     -   ((mh1 - 1.D0*mh2)*(mh1 + mh2)*(1.D0 + Talpha**2)) + 
+     -  (0.004477806001959033D0*GF*
+     -     (mh1**2*mh2**2*(-2.D0 + Talpha**2) + 
+     -       12.D0*mW**4*(-2.D0 + Talpha**2) + 
+     -       mW**2*(mh1**2*(4.D0 - 6.D0*Talpha**2) + 
+     -          2.D0*mh2**2*(2.D0 + Talpha**2)))*vS*
+     -     Dreal(B0(mh1**2,mW**2,mW**2)))/
+     -   ((mh1 - 1.D0*mh2)*(mh1 + mh2)*(1.D0 + Talpha**2)) + 
+     -  (0.0015831434944115277D0*
+     -     (-4.D0*mh2**4 + 4.D0*mh1**4*Talpha**2 + 
+     -       mh1**2*mh2**2*(6.D0 - 5.D0*Talpha**2))*
+     -     Dreal(B0(mh1**2,mX**2,mX**2)))/
+     -   ((mh1 - 1.D0*mh2)*(mh1 + mh2)*(1.D0 + Talpha**2)*vS) + 
+     -  (0.0022389030009795164D0*GF*
+     -     (mh1**2*mh2**2*(-2.D0 + Talpha**2) + 
+     -       12.D0*mZ**4*(-2.D0 + Talpha**2) + 
+     -       mZ**2*(mh1**2*(4.D0 - 6.D0*Talpha**2) + 
+     -          2.D0*mh2**2*(2.D0 + Talpha**2)))*vS*
+     -     Dreal(B0(mh1**2,mZ**2,mZ**2)))/
+     -   ((mh1 - 1.D0*mh2)*(mh1 + mh2)*(1.D0 + Talpha**2)) + 
+     -  (0.0268668360117542D0*GF*mb**2*(4.D0*mb**2 - 1.D0*mh1**2)*
+     -     Talpha**2*vS*Dreal(B0(mh2**2,mb**2,mb**2)))/
+     -   ((mh1 - 1.D0*mh2)*(mh1 + mh2)*(1.D0 + Talpha**2)) + 
+     -  (0.0015831434944115277D0*mh1**2*(2.D0*mh1**2 + mh2**2)*
+     -     Talpha**2*(Talpha - 1.189207115002721D0*DSqrt(GF)*vS)*
+     -     (4.D0*mh1**2*(Talpha + Talpha**3) - 
+     -       1.D0*mh2**2*(4.D0*Talpha + Talpha**3 - 
+     -          3.5676213450081633D0*DSqrt(GF)*vS))*
+     -     Dreal(B0(mh2**2,mh1**2,mh1**2)))/
+     -   ((mh1 - 1.D0*mh2)*mh2**2*(mh1 + mh2)*(1.D0 + Talpha**2)**3*
+     -     vS) + (0.0031662869888230555D0*(mh1**2 + 2.D0*mh2**2)*
+     -     Talpha**2*(1.D0 + 1.189207115002721D0*DSqrt(GF)*Talpha*vS)*
+     -     (2.D0*mh1**4*(1.D0 + Talpha**2) + 
+     -       2.D0*mh1**2*mh2**2*Talpha*
+     -        (Talpha - 1.189207115002721D0*DSqrt(GF)*vS) - 
+     -       1.D0*mh2**4*(2.D0 + Talpha**2 + 
+     -          1.189207115002721D0*DSqrt(GF)*Talpha*vS))*
+     -     Dreal(B0(mh2**2,mh1**2,mh2**2)))/
+     -   ((mh1 - 1.D0*mh2)*mh2**2*(mh1 + mh2)*(1.D0 + Talpha**2)**3*
+     -     vS) - (0.004749430483234583D0*mh2**2*
+     -     (-1.D0 + 1.189207115002721D0*DSqrt(GF)*Talpha**3*vS)*
+     -     (2.D0*mh2**2*(-2.D0 - 1.D0*Talpha**2 + 
+     -          1.189207115002721D0*DSqrt(GF)*Talpha**3*vS) + 
+     -       mh1**2*(4.D0 + 5.D0*Talpha**2 + 
+     -          1.189207115002721D0*DSqrt(GF)*Talpha**3*vS))*
+     -     Dreal(B0(mh2**2,mh2**2,mh2**2)))/
+     -   ((mh1 - 1.D0*mh2)*(mh1 + mh2)*(1.D0 + Talpha**2)**3*vS) - 
+     -  (0.0268668360117542D0*GF*mt**2*(mh1**2 - 4.D0*mt**2)*
+     -     Talpha**2*vS*Dreal(B0(mh2**2,mt**2,mt**2)))/
+     -   ((mh1 - 1.D0*mh2)*(mh1 + mh2)*(1.D0 + Talpha**2)) - 
+     -  (0.008955612003918065D0*GF*mtau**2*(mh1**2 - 4.D0*mtau**2)*
+     -     Talpha**2*vS*Dreal(B0(mh2**2,mtau**2,mtau**2)))/
+     -   ((mh1 - 1.D0*mh2)*(mh1 + mh2)*(1.D0 + Talpha**2)) - 
+     -  (0.004477806001959033D0*GF*
+     -     (mh1**2*(mh2**2 - 6.D0*mW**2) + 
+     -       2.D0*mW**2*(mh2**2 + 6.D0*mW**2))*Talpha**2*vS*
+     -     Dreal(B0(mh2**2,mW**2,mW**2)))/
+     -   ((mh1 - 1.D0*mh2)*(mh1 + mh2)*(1.D0 + Talpha**2)) + 
+     -  (0.0015831434944115277D0*
+     -     (4.D0*mh2**4 - 4.D0*mh1**4*Talpha**2 + 
+     -       mh1**2*mh2**2*(-4.D0 + 5.D0*Talpha**2))*
+     -     Dreal(B0(mh2**2,mX**2,mX**2)))/
+     -   ((mh1 - 1.D0*mh2)*(mh1 + mh2)*(1.D0 + Talpha**2)*vS) - 
+     -  (0.0022389030009795164D0*GF*
+     -     (mh1**2*(mh2**2 - 6.D0*mZ**2) + 
+     -       2.D0*mZ**2*(mh2**2 + 6.D0*mZ**2))*Talpha**2*vS*
+     -     Dreal(B0(mh2**2,mZ**2,mZ**2)))/
+     -   ((mh1 - 1.D0*mh2)*(mh1 + mh2)*(1.D0 + Talpha**2)) - 
+     -  (0.0268668360117542D0*GF*mb**2*
+     -     (8.D0*mb**2 - 1.D0*mh1**2 - 1.D0*mh2**2)*vS*
+     -     Dreal(B0(0.5D0*(mh1**2 + mh2**2),mb**2,mb**2)))/
+     -   ((mh1 - 1.D0*mh2)*(mh1 + mh2)*(1.D0 + Talpha**2)) - 
+     -  (0.009498860966469166D0*mh1**2*(2.D0*mh1**2 + mh2**2)*
+     -     (Talpha**4 + 1.189207115002721D0*DSqrt(GF)*Talpha*vS - 
+     -       1.189207115002721D0*DSqrt(GF)*Talpha**3*vS - 
+     -       1.4142135623730951D0*GF*vS**2)*
+     -     Dreal(B0(0.5D0*(mh1**2 + mh2**2),mh1**2,mh1**2)))/
+     -   ((mh1 - 1.D0*mh2)*(mh1 + mh2)*(1.D0 + Talpha**2)**3*vS) - 
+     -  (0.006332573977646111D0*
+     -     (2.D0*mh1**4 + 5.D0*mh1**2*mh2**2 + 2.D0*mh2**4)*Talpha*
+     -     (Talpha - 1.189207115002721D0*DSqrt(GF)*vS + 
+     -       1.189207115002721D0*DSqrt(GF)*Talpha**2*vS - 
+     -       1.4142135623730951D0*GF*Talpha*vS**2)*
+     -     Dreal(B0(0.5D0*(mh1**2 + mh2**2),mh1**2,mh2**2)))/
+     -   ((mh1 - 1.D0*mh2)*(mh1 + mh2)*(1.D0 + Talpha**2)**3*vS) + 
+     -  (0.009498860966469166D0*mh2**2*(mh1**2 + 2.D0*mh2**2)*
+     -     (-1.D0 + 1.189207115002721D0*DSqrt(GF)*Talpha*
+     -        (-1.D0 + Talpha**2)*vS + 
+     -       1.4142135623730951D0*GF*Talpha**4*vS**2)*
+     -     Dreal(B0(0.5D0*(mh1**2 + mh2**2),mh2**2,mh2**2)))/
+     -   ((mh1 - 1.D0*mh2)*(mh1 + mh2)*(1.D0 + Talpha**2)**3*vS) + 
+     -  (0.0268668360117542D0*GF*mt**2*(mh1**2 + mh2**2 - 8.D0*mt**2)*
+     -     vS*Dreal(B0(0.5D0*(mh1**2 + mh2**2),mt**2,mt**2)))/
+     -   ((mh1 - 1.D0*mh2)*(mh1 + mh2)*(1.D0 + Talpha**2)) + 
+     -  (0.008955612003918065D0*GF*mtau**2*
+     -     (mh1**2 + mh2**2 - 8.D0*mtau**2)*vS*
+     -     Dreal(B0(0.5D0*(mh1**2 + mh2**2),mtau**2,mtau**2)))/
+     -   ((mh1 - 1.D0*mh2)*(mh1 + mh2)*(1.D0 + Talpha**2)) + 
+     -  (0.008955612003918065D0*GF*
+     -     (mh1**2*mh2**2 - 2.D0*(mh1**2 + mh2**2)*mW**2 + 
+     -       12.D0*mW**4)*vS*
+     -     Dreal(B0(0.5D0*(mh1**2 + mh2**2),mW**2,mW**2)))/
+     -   ((mh1 - 1.D0*mh2)*(mh1 + mh2)*(1.D0 + Talpha**2)) - 
+     -  (0.0031662869888230555D0*mh1**2*mh2**2*
+     -     Dreal(B0(0.5D0*(mh1**2 + mh2**2),mX**2,mX**2)))/
+     -   ((mh1 - 1.D0*mh2)*(mh1 + mh2)*(1.D0 + Talpha**2)*vS) + 
+     -  (0.004477806001959033D0*GF*
+     -     (mh1**2*mh2**2 - 2.D0*(mh1**2 + mh2**2)*mZ**2 + 
+     -       12.D0*mZ**4)*vS*
+     -     Dreal(B0(0.5D0*(mh1**2 + mh2**2),mZ**2,mZ**2)))/
+     -   ((mh1 - 1.D0*mh2)*(mh1 + mh2)*(1.D0 + Talpha**2)) + 
+     -  (0.012665147955292222D0*(-1.D0*mh1**2 + mh2**2)*Talpha*
+     -     (mh2**2 + mh1**2*Talpha**2)*
+     -     (Talpha - 1.189207115002721D0*DSqrt(GF)*vS)*
+     -     Dreal(B0(mX**2,mX**2,mh1**2)))/
+     -   (mh2**2*(1.D0 + Talpha**2)**2*vS) - 
+     -  (0.012665147955292222D0*(mh1**2 - 1.D0*mh2**2)*
+     -     (mh2**2 + mh1**2*Talpha**2)*
+     -     (1.D0 + 1.189207115002721D0*DSqrt(GF)*Talpha*vS)*
+     -     Dreal(B0(mX**2,mX**2,mh2**2)))/
+     -   (mh1**2*(1.D0 + Talpha**2)**2*vS) + 
+     -  (0.018997721932938333D0*mh1**4*Talpha*
+     -     (Talpha**3 + 1.189207115002721D0*DSqrt(GF)*vS)*
+     -     Dreal(C0(mX**2,mX**2,mh1**2,mh1**2,mX**2,mh1**2)))/
+     -   ((1.D0 + Talpha**2)**2*vS) + 
+     -  (0.012665147955292222D0*mh2**2*(2.D0*mh1**2 + mh2**2)*Talpha*
+     -     (Talpha - 1.189207115002721D0*DSqrt(GF)*vS)*
+     -     Dreal(C0(mX**2,mX**2,mh1**2,mh1**2,mX**2,mh2**2)))/
+     -   ((1.D0 + Talpha**2)**2*vS) + 
+     -  (0.006332573977646111D0*mh2**4*(mh1**2 + 2.D0*mh2**2)*
+     -     (1.D0 + 1.189207115002721D0*DSqrt(GF)*Talpha*vS)*
+     -     Dreal(C0(mX**2,mX**2,mh1**2,mh2**2,mX**2,mh2**2)))/
+     -   (mh1**2*(1.D0 + Talpha**2)**2*vS) + 
+     -  (0.006332573977646111D0*mh1**4*Talpha**2*
+     -     Dreal(C0(mX**2,mX**2,mh1**2,mX**2,mh1**2,mX**2)))/
+     -   ((1.D0 + Talpha**2)*vS) + 
+     -  (0.006332573977646111D0*mh2**4*
+     -     Dreal(C0(mX**2,mX**2,mh1**2,mX**2,mh2**2,mX**2)))/
+     -   ((1.D0 + Talpha**2)*vS) - 
+     -  (0.006332573977646111D0*mh1**4*(2.D0*mh1**2 + mh2**2)*
+     -     Talpha**3*(Talpha - 1.189207115002721D0*DSqrt(GF)*vS)*
+     -     Dreal(C0(mX**2,mX**2,mh2**2,mh1**2,mX**2,mh1**2)))/
+     -   (mh2**2*(1.D0 + Talpha**2)**2*vS) - 
+     -  (0.012665147955292222D0*mh1**2*(mh1**2 + 2.D0*mh2**2)*
+     -     Talpha**2*(1.D0 + 1.189207115002721D0*DSqrt(GF)*Talpha*vS)*
+     -     Dreal(C0(mX**2,mX**2,mh2**2,mh1**2,mX**2,mh2**2)))/
+     -   ((1.D0 + Talpha**2)**2*vS) + 
+     -  (0.018997721932938333D0*mh2**4*
+     -     (-1.D0 + 1.189207115002721D0*DSqrt(GF)*Talpha**3*vS)*
+     -     Dreal(C0(mX**2,mX**2,mh2**2,mh2**2,mX**2,mh2**2)))/
+     -   ((1.D0 + Talpha**2)**2*vS) - 
+     -  (0.006332573977646111D0*mh1**4*Talpha**2*
+     -     Dreal(C0(mX**2,mX**2,mh2**2,mX**2,mh1**2,mX**2)))/
+     -   ((1.D0 + Talpha**2)*vS) - 
+     -  (0.006332573977646111D0*mh2**4*
+     -     Dreal(C0(mX**2,mX**2,mh2**2,mX**2,mh2**2,mX**2)))/
+     -   ((1.D0 + Talpha**2)*vS) - 
+     -  (0.0268668360117542D0*GF*(4.D0*mb**4 - 1.D0*mb**2*mh1**2)*vS*
+     -     Dreal(DB0(mh1**2,mb**2,mb**2)))/(1.D0 + Talpha**2) + 
+     -  (0.01424829144970375D0*mh1**4*
+     -     (Talpha**3 + 1.189207115002721D0*DSqrt(GF)*vS)**2*
+     -     Dreal(DB0(mh1**2,mh1**2,mh1**2)))/
+     -   ((1.D0 + Talpha**2)**3*vS) + 
+     -  (0.0031662869888230555D0*(2.D0*mh1**2 + mh2**2)**2*Talpha**2*
+     -     (Talpha - 1.189207115002721D0*DSqrt(GF)*vS)**2*
+     -     Dreal(DB0(mh1**2,mh1**2,mh2**2)))/
+     -   ((1.D0 + Talpha**2)**3*vS) + 
+     -  (0.0015831434944115277D0*(mh1**2 + 2.D0*mh2**2)**2*Talpha**2*
+     -     (1.D0 + 1.189207115002721D0*DSqrt(GF)*Talpha*vS)**2*
+     -     Dreal(DB0(mh1**2,mh2**2,mh2**2)))/
+     -   ((1.D0 + Talpha**2)**3*vS) + 
+     -  (0.0268668360117542D0*GF*mt**2*(mh1**2 - 4.D0*mt**2)*vS*
+     -     Dreal(DB0(mh1**2,mt**2,mt**2)))/(1.D0 + Talpha**2) + 
+     -  (0.008955612003918065D0*GF*mtau**2*(mh1**2 - 4.D0*mtau**2)*vS*
+     -     Dreal(DB0(mh1**2,mtau**2,mtau**2)))/(1.D0 + Talpha**2) + 
+     -  (0.004477806001959033D0*GF*
+     -     (mh1**4 - 4.D0*mh1**2*mW**2 + 12.D0*mW**4)*vS*
+     -     Dreal(DB0(mh1**2,mW**2,mW**2)))/(1.D0 + Talpha**2) + 
+     -  (0.0015831434944115277D0*mh1**4*Talpha**2*
+     -     Dreal(DB0(mh1**2,mX**2,mX**2)))/((1.D0 + Talpha**2)*vS) + 
+     -  (0.0022389030009795164D0*GF*
+     -     (mh1**4 - 4.D0*mh1**2*mZ**2 + 12.D0*mZ**4)*vS*
+     -     Dreal(DB0(mh1**2,mZ**2,mZ**2)))/(1.D0 + Talpha**2) + 
+     -  (0.0268668360117542D0*GF*(4.D0*mb**4 - 1.D0*mb**2*mh2**2)*
+     -     Talpha**2*vS*Dreal(DB0(mh2**2,mb**2,mb**2)))/
+     -   (1.D0 + Talpha**2) - 
+     -  (0.0015831434944115277D0*(2.D0*mh1**2 + mh2**2)**2*Talpha**2*
+     -     (Talpha - 1.189207115002721D0*DSqrt(GF)*vS)**2*
+     -     Dreal(DB0(mh2**2,mh1**2,mh1**2)))/
+     -   ((1.D0 + Talpha**2)**3*vS) - 
+     -  (0.0031662869888230555D0*(mh1**2 + 2.D0*mh2**2)**2*Talpha**2*
+     -     (1.D0 + 1.189207115002721D0*DSqrt(GF)*Talpha*vS)**2*
+     -     Dreal(DB0(mh2**2,mh1**2,mh2**2)))/
+     -   ((1.D0 + Talpha**2)**3*vS) - 
+     -  (0.01424829144970375D0*mh2**4*
+     -     (-1.D0 + 1.189207115002721D0*DSqrt(GF)*Talpha**3*vS)**2*
+     -     Dreal(DB0(mh2**2,mh2**2,mh2**2)))/
+     -   ((1.D0 + Talpha**2)**3*vS) - 
+     -  (0.0268668360117542D0*GF*mt**2*(mh2**2 - 4.D0*mt**2)*
+     -     Talpha**2*vS*Dreal(DB0(mh2**2,mt**2,mt**2)))/
+     -   (1.D0 + Talpha**2) - 
+     -  (0.008955612003918065D0*GF*mtau**2*(mh2**2 - 4.D0*mtau**2)*
+     -     Talpha**2*vS*Dreal(DB0(mh2**2,mtau**2,mtau**2)))/
+     -   (1.D0 + Talpha**2) - 
+     -  (0.004477806001959033D0*GF*
+     -     (mh2**4 - 4.D0*mh2**2*mW**2 + 12.D0*mW**4)*Talpha**2*vS*
+     -     Dreal(DB0(mh2**2,mW**2,mW**2)))/(1.D0 + Talpha**2) - 
+     -  (0.0015831434944115277D0*mh2**4*
+     -     Dreal(DB0(mh2**2,mX**2,mX**2)))/((1.D0 + Talpha**2)*vS) - 
+     -  (0.0022389030009795164D0*GF*
+     -     (mh2**4 - 4.D0*mh2**2*mZ**2 + 12.D0*mZ**4)*Talpha**2*vS*
+     -     Dreal(DB0(mh2**2,mZ**2,mZ**2)))/(1.D0 + Talpha**2) 
+      
+      return
+      end
+ccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc
+ccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc
+      double precision function TovSh2toh1ZEMOS()
+      implicit none
+      double precision mW,mZ,mt,mb,mtau
+      double precision GF
+      double precision mh1,mh2,mX,vS,Talpha
+      double precision DeltaE,LambdaIR,PI
+      Complex Polylog
+      Common/SMValues/mW,mZ,mt,mb,mtau,GF
+      Common/CxSMValues/mh1,mh2,mX,vS,Talpha
+      Common/IRValues/DeltaE,LambdaIR 
+c      Complex DB0,A0,B0,C0,
+#include "looptools.h"
+c     Check Re, DSqrt, PolyLog and Log      
+      PI = 4*DATAN(1.D0)
+      TovSh2toh1ZEMOS = 
+     -        vS - (0.006332573977646111D0*(mh1 - 1.D0*mh2)*(mh1 + mh2)*
+     -     Talpha*(mh2**2*(-1.D0*Talpha + 
+     -          1.189207115002721D0*DSqrt(GF)*vS) + 
+     -       mh1**2*Talpha*
+     -        (1.D0 + 1.189207115002721D0*DSqrt(GF)*Talpha*vS))*
+     -     Dreal(A0(mh1**2)))/
+     -   (mh1**2*mh2**2*(1.D0 + Talpha**2)**2*vS) + 
+     -  (0.006332573977646111D0*(mh1 - 1.D0*mh2)*(mh1 + mh2)*Talpha*
+     -     (mh2**2*(-1.D0*Talpha + 1.189207115002721D0*DSqrt(GF)*vS) + 
+     -       mh1**2*Talpha*
+     -        (1.D0 + 1.189207115002721D0*DSqrt(GF)*Talpha*vS))*
+     -     Dreal(A0(mh2**2)))/
+     -   (mh1**2*mh2**2*(1.D0 + Talpha**2)**2*vS) - 
+     -  (0.018997721932938333D0*mh1**2*Talpha*
+     -     (Talpha**3 + 1.189207115002721D0*DSqrt(GF)*vS)*
+     -     Dreal(B0(0.D0,mh1**2,mh1**2)))/((1.D0 + Talpha**2)**2*vS) - 
+     -  (0.006332573977646111D0*
+     -     (2.D0*mh1**4 + 3.D0*mh1**2*mh2**2 + mh2**4)*Talpha*
+     -     (Talpha - 1.189207115002721D0*DSqrt(GF)*vS)*
+     -     Dreal(B0(0.D0,mh1**2,mh2**2)))/
+     -   (mh1**2*(1.D0 + Talpha**2)**2*vS) - 
+     -  (0.006332573977646111D0*mh2**2*(mh1**2 + 2.D0*mh2**2)*
+     -     (1.D0 + 1.189207115002721D0*DSqrt(GF)*Talpha*vS)*
+     -     Dreal(B0(0.D0,mh2**2,mh2**2)))/
+     -   (mh1**2*(1.D0 + Talpha**2)**2*vS) + 
+     -  (0.012665147955292222D0*Talpha*
+     -     (-1.D0*mh1**4*(Talpha + Talpha**3) + 
+     -       mh2**2*mX**2*(Talpha - 
+     -          1.189207115002721D0*DSqrt(GF)*vS) + 
+     -       mh1**2*mX**2*(Talpha**3 + 
+     -          1.189207115002721D0*DSqrt(GF)*vS))*
+     -     Dreal(B0(0.D0,mX**2,mh1**2)))/
+     -   (mX**2*(1.D0 + Talpha**2)**2*vS) - 
+     -  (0.012665147955292222D0*mh2**2*
+     -     (-1.D0*mh2**2*mX**2*
+     -        (1.D0 + 1.189207115002721D0*DSqrt(GF)*Talpha*vS) + 
+     -       mh1**2*(mh2**2*(1.D0 + Talpha**2) + 
+     -          mX**2*Talpha*
+     -           (-1.D0*Talpha + 1.189207115002721D0*DSqrt(GF)*vS)))*
+     -     Dreal(B0(0.D0,mX**2,mh2**2)))/
+     -   (mh1**2*mX**2*(1.D0 + Talpha**2)**2*vS) + 
+     -  (0.006332573977646111D0*(mh2**2 + mh1**2*Talpha**2)*
+     -     Dreal(B0(0.D0,mX**2,mX**2)))/((1.D0 + Talpha**2)*vS) - 
+     -  (0.0268668360117542D0*GF*mb**2*
+     -     (-1.D0*mh2**2 - 1.D0*mh1**2*Talpha**2 + 
+     -       4.D0*mb**2*(1.D0 + Talpha**2))*vS*
+     -     Dreal(B0(mh1**2,mb**2,mb**2)))/
+     -   ((mh1 - 1.D0*mh2)*(mh1 + mh2)*(1.D0 + Talpha**2)) - 
+     -  (0.004749430483234583D0*mh1**2*(2.D0*mh1**2 + mh2**2)*
+     -     (Talpha**4 + 1.189207115002721D0*DSqrt(GF)*Talpha*vS - 
+     -       1.189207115002721D0*DSqrt(GF)*Talpha**3*vS - 
+     -       1.4142135623730951D0*GF*vS**2)*
+     -     Dreal(B0(mh1**2,mh1**2,mh1**2)))/
+     -   ((mh1 - 1.D0*mh2)*(mh1 + mh2)*(1.D0 + Talpha**2)**2*vS) - 
+     -  (0.0031662869888230555D0*
+     -     (2.D0*mh1**4 + 5.D0*mh1**2*mh2**2 + 2.D0*mh2**4)*Talpha*
+     -     (Talpha - 1.189207115002721D0*DSqrt(GF)*vS + 
+     -       1.189207115002721D0*DSqrt(GF)*Talpha**2*vS - 
+     -       1.4142135623730951D0*GF*Talpha*vS**2)*
+     -     Dreal(B0(mh1**2,mh1**2,mh2**2)))/
+     -   ((mh1 - 1.D0*mh2)*(mh1 + mh2)*(1.D0 + Talpha**2)**2*vS) + 
+     -  (0.004749430483234583D0*mh2**2*(mh1**2 + 2.D0*mh2**2)*
+     -     (-1.D0 + 1.189207115002721D0*DSqrt(GF)*Talpha*
+     -        (-1.D0 + Talpha**2)*vS + 
+     -       1.4142135623730951D0*GF*Talpha**4*vS**2)*
+     -     Dreal(B0(mh1**2,mh2**2,mh2**2)))/
+     -   ((mh1 - 1.D0*mh2)*(mh1 + mh2)*(1.D0 + Talpha**2)**2*vS) + 
+     -  (0.0268668360117542D0*GF*mt**2*
+     -     (mh2**2 + mh1**2*Talpha**2 - 
+     -       4.D0*mt**2*(1.D0 + Talpha**2))*vS*
+     -     Dreal(B0(mh1**2,mt**2,mt**2)))/
+     -   ((mh1 - 1.D0*mh2)*(mh1 + mh2)*(1.D0 + Talpha**2)) + 
+     -  (0.008955612003918065D0*GF*mtau**2*
+     -     (mh2**2 + mh1**2*Talpha**2 - 
+     -       4.D0*mtau**2*(1.D0 + Talpha**2))*vS*
+     -     Dreal(B0(mh1**2,mtau**2,mtau**2)))/
+     -   ((mh1 - 1.D0*mh2)*(mh1 + mh2)*(1.D0 + Talpha**2)) + 
+     -  (0.004477806001959033D0*GF*
+     -     (mh1**2*mh2**2*(1.D0 + Talpha**2) + 
+     -       12.D0*mW**4*(1.D0 + Talpha**2) + 
+     -       2.D0*mW**2*(mh1**2*(1.D0 - 3.D0*Talpha**2) + 
+     -          mh2**2*(-3.D0 + Talpha**2)))*vS*
+     -     Dreal(B0(mh1**2,mW**2,mW**2)))/
+     -   ((mh1 - 1.D0*mh2)*(mh1 + mh2)*(1.D0 + Talpha**2)) - 
+     -  (0.0015831434944115277D0*mh1**2*mh2**2*
+     -     Dreal(B0(mh1**2,mX**2,mX**2)))/((mh1**2 - 1.D0*mh2**2)*vS)
+     -    + (0.0022389030009795164D0*GF*
+     -     (mh1**2*mh2**2*(1.D0 + Talpha**2) + 
+     -       12.D0*mZ**4*(1.D0 + Talpha**2) + 
+     -       2.D0*mZ**2*(mh1**2*(1.D0 - 3.D0*Talpha**2) + 
+     -          mh2**2*(-3.D0 + Talpha**2)))*vS*
+     -     Dreal(B0(mh1**2,mZ**2,mZ**2)))/
+     -   ((mh1 - 1.D0*mh2)*(mh1 + mh2)*(1.D0 + Talpha**2)) - 
+     -  (0.0268668360117542D0*GF*mb**2*
+     -     (mh2**2 + mh1**2*Talpha**2 - 
+     -       4.D0*mb**2*(1.D0 + Talpha**2))*vS*
+     -     Dreal(B0(mh2**2,mb**2,mb**2)))/
+     -   ((mh1 - 1.D0*mh2)*(mh1 + mh2)*(1.D0 + Talpha**2)) + 
+     -  (0.0015831434944115277D0*mh1**2*(2.D0*mh1**2 + mh2**2)*
+     -     (Talpha - 1.189207115002721D0*DSqrt(GF)*vS)*
+     -     (4.D0*mh1**2*Talpha**3 - 
+     -       1.D0*mh2**2*(Talpha**3 - 
+     -          3.5676213450081633D0*DSqrt(GF)*vS))*
+     -     Dreal(B0(mh2**2,mh1**2,mh1**2)))/
+     -   ((mh1 - 1.D0*mh2)*mh2**2*(mh1 + mh2)*(1.D0 + Talpha**2)**2*
+     -     vS) + (0.0031662869888230555D0*(mh1**2 + 2.D0*mh2**2)*
+     -     Talpha*(1.D0 + 1.189207115002721D0*DSqrt(GF)*Talpha*vS)*
+     -     (2.D0*mh1**4*Talpha + 
+     -       2.D0*mh1**2*mh2**2*
+     -        (Talpha - 1.189207115002721D0*DSqrt(GF)*vS) - 
+     -       1.D0*mh2**4*(Talpha + 1.189207115002721D0*DSqrt(GF)*vS))*
+     -     Dreal(B0(mh2**2,mh1**2,mh2**2)))/
+     -   ((mh1 - 1.D0*mh2)*mh2**2*(mh1 + mh2)*(1.D0 + Talpha**2)**2*
+     -     vS) - (0.004749430483234583D0*mh2**2*
+     -     (-1.D0 + 1.189207115002721D0*DSqrt(GF)*Talpha**3*vS)*
+     -     (2.D0*mh2**2*(-1.D0 + 
+     -          1.189207115002721D0*DSqrt(GF)*Talpha*vS) + 
+     -       mh1**2*(5.D0 + 1.189207115002721D0*DSqrt(GF)*Talpha*vS))*
+     -     Dreal(B0(mh2**2,mh2**2,mh2**2)))/
+     -   ((mh1 - 1.D0*mh2)*(mh1 + mh2)*(1.D0 + Talpha**2)**2*vS) - 
+     -  (0.0268668360117542D0*GF*mt**2*
+     -     (mh2**2 + mh1**2*Talpha**2 - 
+     -       4.D0*mt**2*(1.D0 + Talpha**2))*vS*
+     -     Dreal(B0(mh2**2,mt**2,mt**2)))/
+     -   ((mh1 - 1.D0*mh2)*(mh1 + mh2)*(1.D0 + Talpha**2)) - 
+     -  (0.008955612003918065D0*GF*mtau**2*
+     -     (mh2**2 + mh1**2*Talpha**2 - 
+     -       4.D0*mtau**2*(1.D0 + Talpha**2))*vS*
+     -     Dreal(B0(mh2**2,mtau**2,mtau**2)))/
+     -   ((mh1 - 1.D0*mh2)*(mh1 + mh2)*(1.D0 + Talpha**2)) - 
+     -  (0.004477806001959033D0*GF*
+     -     (mh1**2*mh2**2*(1.D0 + Talpha**2) + 
+     -       12.D0*mW**4*(1.D0 + Talpha**2) + 
+     -       2.D0*mW**2*(mh1**2*(1.D0 - 3.D0*Talpha**2) + 
+     -          mh2**2*(-3.D0 + Talpha**2)))*vS*
+     -     Dreal(B0(mh2**2,mW**2,mW**2)))/
+     -   ((mh1 - 1.D0*mh2)*(mh1 + mh2)*(1.D0 + Talpha**2)) + 
+     -  (0.0015831434944115277D0*
+     -     (4.D0*mh2**4 - 4.D0*mh1**4*Talpha**2 + 
+     -       mh1**2*mh2**2*(-3.D0 + 5.D0*Talpha**2))*
+     -     Dreal(B0(mh2**2,mX**2,mX**2)))/
+     -   ((mh1 - 1.D0*mh2)*(mh1 + mh2)*(1.D0 + Talpha**2)*vS) - 
+     -  (0.0022389030009795164D0*GF*
+     -     (mh1**2*mh2**2*(1.D0 + Talpha**2) + 
+     -       12.D0*mZ**4*(1.D0 + Talpha**2) + 
+     -       2.D0*mZ**2*(mh1**2*(1.D0 - 3.D0*Talpha**2) + 
+     -          mh2**2*(-3.D0 + Talpha**2)))*vS*
+     -     Dreal(B0(mh2**2,mZ**2,mZ**2)))/
+     -   ((mh1 - 1.D0*mh2)*(mh1 + mh2)*(1.D0 + Talpha**2)) + 
+     -  (0.012665147955292222D0*mh1**2*Talpha**2*
+     -     (-1.D0*mh2**2*mX**2*
+     -        (1.D0 + 1.189207115002721D0*DSqrt(GF)*Talpha*vS) + 
+     -       mh1**2*(mh2**2*(1.D0 + Talpha**2) + 
+     -          mX**2*Talpha*
+     -           (-1.D0*Talpha + 1.189207115002721D0*DSqrt(GF)*vS)))*
+     -     Dreal(B0(mX**2,mX**2,mh1**2)))/
+     -   (mh2**2*mX**2*(1.D0 + Talpha**2)**2*vS) + 
+     -  (0.012665147955292222D0*
+     -     (mh2**4*(1.D0 + Talpha**2) - 
+     -       1.D0*mh1**2*mX**2*Talpha**2*
+     -        (1.D0 + 1.189207115002721D0*DSqrt(GF)*Talpha*vS) + 
+     -       mh2**2*mX**2*(-1.D0 + 
+     -          1.189207115002721D0*DSqrt(GF)*Talpha**3*vS))*
+     -     Dreal(B0(mX**2,mX**2,mh2**2)))/
+     -   (mX**2*(1.D0 + Talpha**2)**2*vS) + 
+     -  (0.018997721932938333D0*mh1**4*Talpha*
+     -     (Talpha**3 + 1.189207115002721D0*DSqrt(GF)*vS)*
+     -     Dreal(C0(0.D0,0.D0,0.D0,mX**2,mh1**2,mh1**2)))/
+     -   ((1.D0 + Talpha**2)**2*vS) + 
+     -  (0.012665147955292222D0*mh2**2*(2.D0*mh1**2 + mh2**2)*Talpha*
+     -     (Talpha - 1.189207115002721D0*DSqrt(GF)*vS)*
+     -     Dreal(C0(0.D0,0.D0,0.D0,mX**2,mh1**2,mh2**2)))/
+     -   ((1.D0 + Talpha**2)**2*vS) + 
+     -  (0.006332573977646111D0*mh2**4*(mh1**2 + 2.D0*mh2**2)*
+     -     (1.D0 + 1.189207115002721D0*DSqrt(GF)*Talpha*vS)*
+     -     Dreal(C0(0.D0,0.D0,0.D0,mX**2,mh2**2,mh2**2)))/
+     -   (mh1**2*(1.D0 + Talpha**2)**2*vS) + 
+     -  (0.006332573977646111D0*mh1**4*Talpha**2*
+     -     Dreal(C0(0.D0,0.D0,0.D0,mX**2,mX**2,mh1**2)))/
+     -   ((1.D0 + Talpha**2)*vS) + 
+     -  (0.006332573977646111D0*mh2**4*
+     -     Dreal(C0(0.D0,0.D0,0.D0,mX**2,mX**2,mh2**2)))/
+     -   ((1.D0 + Talpha**2)*vS) - 
+     -  (0.006332573977646111D0*mh1**4*(2.D0*mh1**2 + mh2**2)*
+     -     Talpha**3*(Talpha - 1.189207115002721D0*DSqrt(GF)*vS)*
+     -     Dreal(C0(mX**2,mX**2,mh2**2,mh1**2,mX**2,mh1**2)))/
+     -   (mh2**2*(1.D0 + Talpha**2)**2*vS) - 
+     -  (0.012665147955292222D0*mh1**2*(mh1**2 + 2.D0*mh2**2)*
+     -     Talpha**2*(1.D0 + 1.189207115002721D0*DSqrt(GF)*Talpha*vS)*
+     -     Dreal(C0(mX**2,mX**2,mh2**2,mh1**2,mX**2,mh2**2)))/
+     -   ((1.D0 + Talpha**2)**2*vS) + 
+     -  (0.018997721932938333D0*mh2**4*
+     -     (-1.D0 + 1.189207115002721D0*DSqrt(GF)*Talpha**3*vS)*
+     -     Dreal(C0(mX**2,mX**2,mh2**2,mh2**2,mX**2,mh2**2)))/
+     -   ((1.D0 + Talpha**2)**2*vS) - 
+     -  (0.006332573977646111D0*mh1**4*Talpha**2*
+     -     Dreal(C0(mX**2,mX**2,mh2**2,mX**2,mh1**2,mX**2)))/
+     -   ((1.D0 + Talpha**2)*vS) - 
+     -  (0.006332573977646111D0*mh2**4*
+     -     Dreal(C0(mX**2,mX**2,mh2**2,mX**2,mh2**2,mX**2)))/
+     -   ((1.D0 + Talpha**2)*vS) + 
+     -  (0.0268668360117542D0*GF*(4.D0*mb**4 - 1.D0*mb**2*mh1**2)*vS*
+     -     Dreal(DB0(mh1**2,mb**2,mb**2)))/(1.D0 + Talpha**2) - 
+     -  (0.01424829144970375D0*mh1**4*
+     -     (Talpha**3 + 1.189207115002721D0*DSqrt(GF)*vS)**2*
+     -     Dreal(DB0(mh1**2,mh1**2,mh1**2)))/
+     -   ((1.D0 + Talpha**2)**3*vS) - 
+     -  (0.0031662869888230555D0*(2.D0*mh1**2 + mh2**2)**2*Talpha**2*
+     -     (Talpha - 1.189207115002721D0*DSqrt(GF)*vS)**2*
+     -     Dreal(DB0(mh1**2,mh1**2,mh2**2)))/
+     -   ((1.D0 + Talpha**2)**3*vS) - 
+     -  (0.0015831434944115277D0*(mh1**2 + 2.D0*mh2**2)**2*Talpha**2*
+     -     (1.D0 + 1.189207115002721D0*DSqrt(GF)*Talpha*vS)**2*
+     -     Dreal(DB0(mh1**2,mh2**2,mh2**2)))/
+     -   ((1.D0 + Talpha**2)**3*vS) - 
+     -  (0.0268668360117542D0*GF*mt**2*(mh1**2 - 4.D0*mt**2)*vS*
+     -     Dreal(DB0(mh1**2,mt**2,mt**2)))/(1.D0 + Talpha**2) - 
+     -  (0.008955612003918065D0*GF*mtau**2*(mh1**2 - 4.D0*mtau**2)*vS*
+     -     Dreal(DB0(mh1**2,mtau**2,mtau**2)))/(1.D0 + Talpha**2) - 
+     -  (0.004477806001959033D0*GF*
+     -     (mh1**4 - 4.D0*mh1**2*mW**2 + 12.D0*mW**4)*vS*
+     -     Dreal(DB0(mh1**2,mW**2,mW**2)))/(1.D0 + Talpha**2) - 
+     -  (0.0015831434944115277D0*mh1**4*Talpha**2*
+     -     Dreal(DB0(mh1**2,mX**2,mX**2)))/((1.D0 + Talpha**2)*vS) - 
+     -  (0.0022389030009795164D0*GF*
+     -     (mh1**4 - 4.D0*mh1**2*mZ**2 + 12.D0*mZ**4)*vS*
+     -     Dreal(DB0(mh1**2,mZ**2,mZ**2)))/(1.D0 + Talpha**2) + 
+     -  (0.0268668360117542D0*GF*(4.D0*mb**4 - 1.D0*mb**2*mh2**2)*
+     -     Talpha**2*vS*Dreal(DB0(mh2**2,mb**2,mb**2)))/
+     -   (1.D0 + Talpha**2) - 
+     -  (0.0015831434944115277D0*(2.D0*mh1**2 + mh2**2)**2*Talpha**2*
+     -     (Talpha - 1.189207115002721D0*DSqrt(GF)*vS)**2*
+     -     Dreal(DB0(mh2**2,mh1**2,mh1**2)))/
+     -   ((1.D0 + Talpha**2)**3*vS) - 
+     -  (0.0031662869888230555D0*(mh1**2 + 2.D0*mh2**2)**2*Talpha**2*
+     -     (1.D0 + 1.189207115002721D0*DSqrt(GF)*Talpha*vS)**2*
+     -     Dreal(DB0(mh2**2,mh1**2,mh2**2)))/
+     -   ((1.D0 + Talpha**2)**3*vS) - 
+     -  (0.01424829144970375D0*mh2**4*
+     -     (-1.D0 + 1.189207115002721D0*DSqrt(GF)*Talpha**3*vS)**2*
+     -     Dreal(DB0(mh2**2,mh2**2,mh2**2)))/
+     -   ((1.D0 + Talpha**2)**3*vS) - 
+     -  (0.0268668360117542D0*GF*mt**2*(mh2**2 - 4.D0*mt**2)*
+     -     Talpha**2*vS*Dreal(DB0(mh2**2,mt**2,mt**2)))/
+     -   (1.D0 + Talpha**2) - 
+     -  (0.008955612003918065D0*GF*mtau**2*(mh2**2 - 4.D0*mtau**2)*
+     -     Talpha**2*vS*Dreal(DB0(mh2**2,mtau**2,mtau**2)))/
+     -   (1.D0 + Talpha**2) - 
+     -  (0.004477806001959033D0*GF*
+     -     (mh2**4 - 4.D0*mh2**2*mW**2 + 12.D0*mW**4)*Talpha**2*vS*
+     -     Dreal(DB0(mh2**2,mW**2,mW**2)))/(1.D0 + Talpha**2) - 
+     -  (0.0015831434944115277D0*mh2**4*
+     -     Dreal(DB0(mh2**2,mX**2,mX**2)))/((1.D0 + Talpha**2)*vS) - 
+     -  (0.0022389030009795164D0*GF*
+     -     (mh2**4 - 4.D0*mh2**2*mZ**2 + 12.D0*mZ**4)*Talpha**2*vS*
+     -     Dreal(DB0(mh2**2,mZ**2,mZ**2)))/(1.D0 + Talpha**2) - 
+     -  (0.012665147955292222D0*mh1**4*Talpha**2*
+     -     Dreal(DB0(mX**2,mX**2,mh1**2)))/((1.D0 + Talpha**2)*vS) - 
+     -  (0.012665147955292222D0*mh2**4*
+     -     Dreal(DB0(mX**2,mX**2,mh2**2)))/((1.D0 + Talpha**2)*vS) 
+      
+      return
+      end
+ccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc
+ccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc
+      double precision function TovSh2toh1ZEMpstar()
+      implicit none
+      double precision mW,mZ,mt,mb,mtau
+      double precision GF
+      double precision mh1,mh2,mX,vS,Talpha
+      double precision DeltaE,LambdaIR,PI
+      Complex Polylog
+      Common/SMValues/mW,mZ,mt,mb,mtau,GF
+      Common/CxSMValues/mh1,mh2,mX,vS,Talpha
+      Common/IRValues/DeltaE,LambdaIR 
+c      Complex DB0,A0,B0,C0,
+#include "looptools.h"
+c     Check Re, DSqrt, PolyLog and Log      
+      PI = 4*DATAN(1.D0)
+      TovSh2toh1ZEMpstar = 
+     -        vS - (0.006332573977646111D0*(mh1 - 1.D0*mh2)*(mh1 + mh2)*
+     -     Talpha*(mh2**2*(-1.D0*Talpha + 
+     -          1.189207115002721D0*DSqrt(GF)*vS) + 
+     -       mh1**2*Talpha*
+     -        (1.D0 + 1.189207115002721D0*DSqrt(GF)*Talpha*vS))*
+     -     Dreal(A0(mh1**2)))/
+     -   (mh1**2*mh2**2*(1.D0 + Talpha**2)**2*vS) + 
+     -  (0.006332573977646111D0*(mh1 - 1.D0*mh2)*(mh1 + mh2)*Talpha*
+     -     (mh2**2*(-1.D0*Talpha + 1.189207115002721D0*DSqrt(GF)*vS) + 
+     -       mh1**2*Talpha*
+     -        (1.D0 + 1.189207115002721D0*DSqrt(GF)*Talpha*vS))*
+     -     Dreal(A0(mh2**2)))/
+     -   (mh1**2*mh2**2*(1.D0 + Talpha**2)**2*vS) - 
+     -  (0.018997721932938333D0*mh1**2*Talpha*
+     -     (Talpha**3 + 1.189207115002721D0*DSqrt(GF)*vS)*
+     -     Dreal(B0(0.D0,mh1**2,mh1**2)))/((1.D0 + Talpha**2)**2*vS) - 
+     -  (0.006332573977646111D0*
+     -     (2.D0*mh1**4 + 3.D0*mh1**2*mh2**2 + mh2**4)*Talpha*
+     -     (Talpha - 1.189207115002721D0*DSqrt(GF)*vS)*
+     -     Dreal(B0(0.D0,mh1**2,mh2**2)))/
+     -   (mh1**2*(1.D0 + Talpha**2)**2*vS) - 
+     -  (0.006332573977646111D0*mh2**2*(mh1**2 + 2.D0*mh2**2)*
+     -     (1.D0 + 1.189207115002721D0*DSqrt(GF)*Talpha*vS)*
+     -     Dreal(B0(0.D0,mh2**2,mh2**2)))/
+     -   (mh1**2*(1.D0 + Talpha**2)**2*vS) + 
+     -  (0.012665147955292222D0*Talpha*
+     -     (-1.D0*mh1**4*(Talpha + Talpha**3) + 
+     -       mh2**2*mX**2*(Talpha - 
+     -          1.189207115002721D0*DSqrt(GF)*vS) + 
+     -       mh1**2*mX**2*(Talpha**3 + 
+     -          1.189207115002721D0*DSqrt(GF)*vS))*
+     -     Dreal(B0(0.D0,mX**2,mh1**2)))/
+     -   (mX**2*(1.D0 + Talpha**2)**2*vS) - 
+     -  (0.012665147955292222D0*mh2**2*
+     -     (-1.D0*mh2**2*mX**2*
+     -        (1.D0 + 1.189207115002721D0*DSqrt(GF)*Talpha*vS) + 
+     -       mh1**2*(mh2**2*(1.D0 + Talpha**2) + 
+     -          mX**2*Talpha*
+     -           (-1.D0*Talpha + 1.189207115002721D0*DSqrt(GF)*vS)))*
+     -     Dreal(B0(0.D0,mX**2,mh2**2)))/
+     -   (mh1**2*mX**2*(1.D0 + Talpha**2)**2*vS) + 
+     -  (0.006332573977646111D0*(mh2**2 + mh1**2*Talpha**2)*
+     -     Dreal(B0(0.D0,mX**2,mX**2)))/((1.D0 + Talpha**2)*vS) - 
+     -  (0.0268668360117542D0*GF*mb**2*
+     -     (mh1**2 - 1.D0*mh2**2 + 
+     -       (4.D0*mb**2 - 1.D0*mh1**2)*Talpha**2)*vS*
+     -     Dreal(B0(mh1**2,mb**2,mb**2)))/
+     -   ((mh1 - 1.D0*mh2)*(mh1 + mh2)*(1.D0 + Talpha**2)) - 
+     -  (0.004749430483234583D0*mh1**2*(2.D0*mh1**2 + mh2**2)*
+     -     Talpha**2*(Talpha**4 + 
+     -       1.189207115002721D0*DSqrt(GF)*Talpha*vS - 
+     -       1.189207115002721D0*DSqrt(GF)*Talpha**3*vS - 
+     -       1.4142135623730951D0*GF*vS**2)*
+     -     Dreal(B0(mh1**2,mh1**2,mh1**2)))/
+     -   ((mh1 - 1.D0*mh2)*(mh1 + mh2)*(1.D0 + Talpha**2)**3*vS) - 
+     -  (0.0031662869888230555D0*
+     -     (2.D0*mh1**4 + 5.D0*mh1**2*mh2**2 + 2.D0*mh2**4)*Talpha**3*
+     -     (Talpha - 1.189207115002721D0*DSqrt(GF)*vS + 
+     -       1.189207115002721D0*DSqrt(GF)*Talpha**2*vS - 
+     -       1.4142135623730951D0*GF*Talpha*vS**2)*
+     -     Dreal(B0(mh1**2,mh1**2,mh2**2)))/
+     -   ((mh1 - 1.D0*mh2)*(mh1 + mh2)*(1.D0 + Talpha**2)**3*vS) + 
+     -  (0.004749430483234583D0*mh2**2*(mh1**2 + 2.D0*mh2**2)*
+     -     Talpha**2*(-1.D0 + 
+     -       1.189207115002721D0*DSqrt(GF)*Talpha*(-1.D0 + Talpha**2)*
+     -        vS + 1.4142135623730951D0*GF*Talpha**4*vS**2)*
+     -     Dreal(B0(mh1**2,mh2**2,mh2**2)))/
+     -   ((mh1 - 1.D0*mh2)*(mh1 + mh2)*(1.D0 + Talpha**2)**3*vS) + 
+     -  (0.0268668360117542D0*GF*mt**2*
+     -     (mh2**2 - 4.D0*mt**2*Talpha**2 + 
+     -       mh1**2*(-1.D0 + Talpha**2))*vS*
+     -     Dreal(B0(mh1**2,mt**2,mt**2)))/
+     -   ((mh1 - 1.D0*mh2)*(mh1 + mh2)*(1.D0 + Talpha**2)) + 
+     -  (0.008955612003918065D0*GF*mtau**2*
+     -     (mh2**2 - 4.D0*mtau**2*Talpha**2 + 
+     -       mh1**2*(-1.D0 + Talpha**2))*vS*
+     -     Dreal(B0(mh1**2,mtau**2,mtau**2)))/
+     -   ((mh1 - 1.D0*mh2)*(mh1 + mh2)*(1.D0 + Talpha**2)) + 
+     -  (0.004477806001959033D0*GF*
+     -     (mh1**2*mh2**2*Talpha**2 + 12.D0*mW**4*Talpha**2 + 
+     -       mW**2*(mh1**2*(8.D0 - 6.D0*Talpha**2) + 
+     -          2.D0*mh2**2*(-4.D0 + Talpha**2)))*vS*
+     -     Dreal(B0(mh1**2,mW**2,mW**2)))/
+     -   ((mh1 - 1.D0*mh2)*(mh1 + mh2)*(1.D0 + Talpha**2)) - 
+     -  (0.0015831434944115277D0*mh1**2*mh2**2*Talpha**2*
+     -     Dreal(B0(mh1**2,mX**2,mX**2)))/
+     -   ((mh1 - 1.D0*mh2)*(mh1 + mh2)*(1.D0 + Talpha**2)*vS) + 
+     -  (0.0022389030009795164D0*GF*
+     -     (mh1**2*mh2**2*Talpha**2 + 12.D0*mZ**4*Talpha**2 + 
+     -       mZ**2*(mh1**2*(8.D0 - 6.D0*Talpha**2) + 
+     -          2.D0*mh2**2*(-4.D0 + Talpha**2)))*vS*
+     -     Dreal(B0(mh1**2,mZ**2,mZ**2)))/
+     -   ((mh1 - 1.D0*mh2)*(mh1 + mh2)*(1.D0 + Talpha**2)) + 
+     -  (0.0268668360117542D0*GF*mb**2*
+     -     (-2.D0*mh2**2 - 1.D0*mh1**2*Talpha**2 + 
+     -       4.D0*mb**2*(2.D0 + Talpha**2))*vS*
+     -     Dreal(B0(mh2**2,mb**2,mb**2)))/
+     -   ((mh1 - 1.D0*mh2)*(mh1 + mh2)*(1.D0 + Talpha**2)) + 
+     -  (0.0015831434944115277D0*mh1**2*(2.D0*mh1**2 + mh2**2)*
+     -     (Talpha - 1.189207115002721D0*DSqrt(GF)*vS)*
+     -     (4.D0*mh1**2*(Talpha**3 + Talpha**5) + 
+     -       mh2**2*(2.D0*Talpha**3 - 1.D0*Talpha**5 + 
+     -          7.135242690016327D0*DSqrt(GF)*vS + 
+     -          3.5676213450081633D0*DSqrt(GF)*Talpha**2*vS))*
+     -     Dreal(B0(mh2**2,mh1**2,mh1**2)))/
+     -   ((mh1 - 1.D0*mh2)*mh2**2*(mh1 + mh2)*(1.D0 + Talpha**2)**3*
+     -     vS) + (0.0031662869888230555D0*(mh1**2 + 2.D0*mh2**2)*
+     -     Talpha*(1.D0 + 1.189207115002721D0*DSqrt(GF)*Talpha*vS)*
+     -     (2.D0*mh1**4*(Talpha + Talpha**3) + 
+     -       2.D0*mh1**2*mh2**2*(2.D0 + Talpha**2)*
+     -        (Talpha - 1.189207115002721D0*DSqrt(GF)*vS) - 
+     -       1.D0*mh2**4*(Talpha**3 + 
+     -          2.378414230005442D0*DSqrt(GF)*vS + 
+     -          1.189207115002721D0*DSqrt(GF)*Talpha**2*vS))*
+     -     Dreal(B0(mh2**2,mh1**2,mh2**2)))/
+     -   ((mh1 - 1.D0*mh2)*mh2**2*(mh1 + mh2)*(1.D0 + Talpha**2)**3*
+     -     vS) - (0.004749430483234583D0*mh2**2*
+     -     (-1.D0 + 1.189207115002721D0*DSqrt(GF)*Talpha**3*vS)*
+     -     (2.D0*mh2**2*Talpha*
+     -        (-1.D0*Talpha + 2.378414230005442D0*DSqrt(GF)*vS + 
+     -          1.189207115002721D0*DSqrt(GF)*Talpha**2*vS) + 
+     -       mh1**2*(6.D0 + 5.D0*Talpha**2 + 
+     -          2.378414230005442D0*DSqrt(GF)*Talpha*vS + 
+     -          1.189207115002721D0*DSqrt(GF)*Talpha**3*vS))*
+     -     Dreal(B0(mh2**2,mh2**2,mh2**2)))/
+     -   ((mh1 - 1.D0*mh2)*(mh1 + mh2)*(1.D0 + Talpha**2)**3*vS) + 
+     -  (0.0268668360117542D0*GF*mt**2*
+     -     (-2.D0*mh2**2 - 1.D0*mh1**2*Talpha**2 + 
+     -       4.D0*mt**2*(2.D0 + Talpha**2))*vS*
+     -     Dreal(B0(mh2**2,mt**2,mt**2)))/
+     -   ((mh1 - 1.D0*mh2)*(mh1 + mh2)*(1.D0 + Talpha**2)) + 
+     -  (0.008955612003918065D0*GF*mtau**2*
+     -     (-2.D0*mh2**2 - 1.D0*mh1**2*Talpha**2 + 
+     -       4.D0*mtau**2*(2.D0 + Talpha**2))*vS*
+     -     Dreal(B0(mh2**2,mtau**2,mtau**2)))/
+     -   ((mh1 - 1.D0*mh2)*(mh1 + mh2)*(1.D0 + Talpha**2)) - 
+     -  (0.004477806001959033D0*GF*
+     -     (mh1**2*mh2**2*(2.D0 + Talpha**2) + 
+     -       12.D0*mW**4*(2.D0 + Talpha**2) + 
+     -       mW**2*(mh1**2*(4.D0 - 6.D0*Talpha**2) + 
+     -          2.D0*mh2**2*(-6.D0 + Talpha**2)))*vS*
+     -     Dreal(B0(mh2**2,mW**2,mW**2)))/
+     -   ((mh1 - 1.D0*mh2)*(mh1 + mh2)*(1.D0 + Talpha**2)) + 
+     -  (0.0015831434944115277D0*
+     -     (4.D0*mh2**4 - 4.D0*mh1**4*Talpha**2 + 
+     -       mh1**2*mh2**2*(-2.D0 + 5.D0*Talpha**2))*
+     -     Dreal(B0(mh2**2,mX**2,mX**2)))/
+     -   ((mh1 - 1.D0*mh2)*(mh1 + mh2)*(1.D0 + Talpha**2)*vS) - 
+     -  (0.0022389030009795164D0*GF*
+     -     (mh1**2*mh2**2*(2.D0 + Talpha**2) + 
+     -       12.D0*mZ**4*(2.D0 + Talpha**2) + 
+     -       mZ**2*(mh1**2*(4.D0 - 6.D0*Talpha**2) + 
+     -          2.D0*mh2**2*(-6.D0 + Talpha**2)))*vS*
+     -     Dreal(B0(mh2**2,mZ**2,mZ**2)))/
+     -   ((mh1 - 1.D0*mh2)*(mh1 + mh2)*(1.D0 + Talpha**2)) - 
+     -  (0.0268668360117542D0*GF*mb**2*
+     -     (8.D0*mb**2 - 1.D0*mh1**2 - 1.D0*mh2**2)*vS*
+     -     Dreal(B0(0.5D0*(mh1**2 + mh2**2),mb**2,mb**2)))/
+     -   ((mh1 - 1.D0*mh2)*(mh1 + mh2)*(1.D0 + Talpha**2)) - 
+     -  (0.009498860966469166D0*mh1**2*(2.D0*mh1**2 + mh2**2)*
+     -     (Talpha**4 + 1.189207115002721D0*DSqrt(GF)*Talpha*vS - 
+     -       1.189207115002721D0*DSqrt(GF)*Talpha**3*vS - 
+     -       1.4142135623730951D0*GF*vS**2)*
+     -     Dreal(B0(0.5D0*(mh1**2 + mh2**2),mh1**2,mh1**2)))/
+     -   ((mh1 - 1.D0*mh2)*(mh1 + mh2)*(1.D0 + Talpha**2)**3*vS) - 
+     -  (0.006332573977646111D0*
+     -     (2.D0*mh1**4 + 5.D0*mh1**2*mh2**2 + 2.D0*mh2**4)*Talpha*
+     -     (Talpha - 1.189207115002721D0*DSqrt(GF)*vS + 
+     -       1.189207115002721D0*DSqrt(GF)*Talpha**2*vS - 
+     -       1.4142135623730951D0*GF*Talpha*vS**2)*
+     -     Dreal(B0(0.5D0*(mh1**2 + mh2**2),mh1**2,mh2**2)))/
+     -   ((mh1 - 1.D0*mh2)*(mh1 + mh2)*(1.D0 + Talpha**2)**3*vS) + 
+     -  (0.009498860966469166D0*mh2**2*(mh1**2 + 2.D0*mh2**2)*
+     -     (-1.D0 + 1.189207115002721D0*DSqrt(GF)*Talpha*
+     -        (-1.D0 + Talpha**2)*vS + 
+     -       1.4142135623730951D0*GF*Talpha**4*vS**2)*
+     -     Dreal(B0(0.5D0*(mh1**2 + mh2**2),mh2**2,mh2**2)))/
+     -   ((mh1 - 1.D0*mh2)*(mh1 + mh2)*(1.D0 + Talpha**2)**3*vS) + 
+     -  (0.0268668360117542D0*GF*mt**2*(mh1**2 + mh2**2 - 8.D0*mt**2)*
+     -     vS*Dreal(B0(0.5D0*(mh1**2 + mh2**2),mt**2,mt**2)))/
+     -   ((mh1 - 1.D0*mh2)*(mh1 + mh2)*(1.D0 + Talpha**2)) + 
+     -  (0.008955612003918065D0*GF*mtau**2*
+     -     (mh1**2 + mh2**2 - 8.D0*mtau**2)*vS*
+     -     Dreal(B0(0.5D0*(mh1**2 + mh2**2),mtau**2,mtau**2)))/
+     -   ((mh1 - 1.D0*mh2)*(mh1 + mh2)*(1.D0 + Talpha**2)) + 
+     -  (0.008955612003918065D0*GF*
+     -     (mh1**2*mh2**2 - 2.D0*(mh1**2 + mh2**2)*mW**2 + 
+     -       12.D0*mW**4)*vS*
+     -     Dreal(B0(0.5D0*(mh1**2 + mh2**2),mW**2,mW**2)))/
+     -   ((mh1 - 1.D0*mh2)*(mh1 + mh2)*(1.D0 + Talpha**2)) - 
+     -  (0.0031662869888230555D0*mh1**2*mh2**2*
+     -     Dreal(B0(0.5D0*(mh1**2 + mh2**2),mX**2,mX**2)))/
+     -   ((mh1 - 1.D0*mh2)*(mh1 + mh2)*(1.D0 + Talpha**2)*vS) + 
+     -  (0.004477806001959033D0*GF*
+     -     (mh1**2*mh2**2 - 2.D0*(mh1**2 + mh2**2)*mZ**2 + 
+     -       12.D0*mZ**4)*vS*
+     -     Dreal(B0(0.5D0*(mh1**2 + mh2**2),mZ**2,mZ**2)))/
+     -   ((mh1 - 1.D0*mh2)*(mh1 + mh2)*(1.D0 + Talpha**2)) + 
+     -  (0.012665147955292222D0*mh1**2*Talpha**2*
+     -     (-1.D0*mh2**2*mX**2*
+     -        (1.D0 + 1.189207115002721D0*DSqrt(GF)*Talpha*vS) + 
+     -       mh1**2*(mh2**2*(1.D0 + Talpha**2) + 
+     -          mX**2*Talpha*
+     -           (-1.D0*Talpha + 1.189207115002721D0*DSqrt(GF)*vS)))*
+     -     Dreal(B0(mX**2,mX**2,mh1**2)))/
+     -   (mh2**2*mX**2*(1.D0 + Talpha**2)**2*vS) + 
+     -  (0.012665147955292222D0*
+     -     (mh2**4*(1.D0 + Talpha**2) - 
+     -       1.D0*mh1**2*mX**2*Talpha**2*
+     -        (1.D0 + 1.189207115002721D0*DSqrt(GF)*Talpha*vS) + 
+     -       mh2**2*mX**2*(-1.D0 + 
+     -          1.189207115002721D0*DSqrt(GF)*Talpha**3*vS))*
+     -     Dreal(B0(mX**2,mX**2,mh2**2)))/
+     -   (mX**2*(1.D0 + Talpha**2)**2*vS) + 
+     -  (0.018997721932938333D0*mh1**4*Talpha*
+     -     (Talpha**3 + 1.189207115002721D0*DSqrt(GF)*vS)*
+     -     Dreal(C0(0.D0,0.D0,0.D0,mX**2,mh1**2,mh1**2)))/
+     -   ((1.D0 + Talpha**2)**2*vS) + 
+     -  (0.012665147955292222D0*mh2**2*(2.D0*mh1**2 + mh2**2)*Talpha*
+     -     (Talpha - 1.189207115002721D0*DSqrt(GF)*vS)*
+     -     Dreal(C0(0.D0,0.D0,0.D0,mX**2,mh1**2,mh2**2)))/
+     -   ((1.D0 + Talpha**2)**2*vS) + 
+     -  (0.006332573977646111D0*mh2**4*(mh1**2 + 2.D0*mh2**2)*
+     -     (1.D0 + 1.189207115002721D0*DSqrt(GF)*Talpha*vS)*
+     -     Dreal(C0(0.D0,0.D0,0.D0,mX**2,mh2**2,mh2**2)))/
+     -   (mh1**2*(1.D0 + Talpha**2)**2*vS) + 
+     -  (0.006332573977646111D0*mh1**4*Talpha**2*
+     -     Dreal(C0(0.D0,0.D0,0.D0,mX**2,mX**2,mh1**2)))/
+     -   ((1.D0 + Talpha**2)*vS) + 
+     -  (0.006332573977646111D0*mh2**4*
+     -     Dreal(C0(0.D0,0.D0,0.D0,mX**2,mX**2,mh2**2)))/
+     -   ((1.D0 + Talpha**2)*vS) - 
+     -  (0.006332573977646111D0*mh1**4*(2.D0*mh1**2 + mh2**2)*
+     -     Talpha**3*(Talpha - 1.189207115002721D0*DSqrt(GF)*vS)*
+     -     Dreal(C0(mX**2,mX**2,mh2**2,mh1**2,mX**2,mh1**2)))/
+     -   (mh2**2*(1.D0 + Talpha**2)**2*vS) - 
+     -  (0.012665147955292222D0*mh1**2*(mh1**2 + 2.D0*mh2**2)*
+     -     Talpha**2*(1.D0 + 1.189207115002721D0*DSqrt(GF)*Talpha*vS)*
+     -     Dreal(C0(mX**2,mX**2,mh2**2,mh1**2,mX**2,mh2**2)))/
+     -   ((1.D0 + Talpha**2)**2*vS) + 
+     -  (0.018997721932938333D0*mh2**4*
+     -     (-1.D0 + 1.189207115002721D0*DSqrt(GF)*Talpha**3*vS)*
+     -     Dreal(C0(mX**2,mX**2,mh2**2,mh2**2,mX**2,mh2**2)))/
+     -   ((1.D0 + Talpha**2)**2*vS) - 
+     -  (0.006332573977646111D0*mh1**4*Talpha**2*
+     -     Dreal(C0(mX**2,mX**2,mh2**2,mX**2,mh1**2,mX**2)))/
+     -   ((1.D0 + Talpha**2)*vS) - 
+     -  (0.006332573977646111D0*mh2**4*
+     -     Dreal(C0(mX**2,mX**2,mh2**2,mX**2,mh2**2,mX**2)))/
+     -   ((1.D0 + Talpha**2)*vS) + 
+     -  (0.0268668360117542D0*GF*(4.D0*mb**4 - 1.D0*mb**2*mh1**2)*vS*
+     -     Dreal(DB0(mh1**2,mb**2,mb**2)))/(1.D0 + Talpha**2) - 
+     -  (0.01424829144970375D0*mh1**4*
+     -     (Talpha**3 + 1.189207115002721D0*DSqrt(GF)*vS)**2*
+     -     Dreal(DB0(mh1**2,mh1**2,mh1**2)))/
+     -   ((1.D0 + Talpha**2)**3*vS) - 
+     -  (0.0031662869888230555D0*(2.D0*mh1**2 + mh2**2)**2*Talpha**2*
+     -     (Talpha - 1.189207115002721D0*DSqrt(GF)*vS)**2*
+     -     Dreal(DB0(mh1**2,mh1**2,mh2**2)))/
+     -   ((1.D0 + Talpha**2)**3*vS) - 
+     -  (0.0015831434944115277D0*(mh1**2 + 2.D0*mh2**2)**2*Talpha**2*
+     -     (1.D0 + 1.189207115002721D0*DSqrt(GF)*Talpha*vS)**2*
+     -     Dreal(DB0(mh1**2,mh2**2,mh2**2)))/
+     -   ((1.D0 + Talpha**2)**3*vS) - 
+     -  (0.0268668360117542D0*GF*mt**2*(mh1**2 - 4.D0*mt**2)*vS*
+     -     Dreal(DB0(mh1**2,mt**2,mt**2)))/(1.D0 + Talpha**2) - 
+     -  (0.008955612003918065D0*GF*mtau**2*(mh1**2 - 4.D0*mtau**2)*vS*
+     -     Dreal(DB0(mh1**2,mtau**2,mtau**2)))/(1.D0 + Talpha**2) - 
+     -  (0.004477806001959033D0*GF*
+     -     (mh1**4 - 4.D0*mh1**2*mW**2 + 12.D0*mW**4)*vS*
+     -     Dreal(DB0(mh1**2,mW**2,mW**2)))/(1.D0 + Talpha**2) - 
+     -  (0.0015831434944115277D0*mh1**4*Talpha**2*
+     -     Dreal(DB0(mh1**2,mX**2,mX**2)))/((1.D0 + Talpha**2)*vS) - 
+     -  (0.0022389030009795164D0*GF*
+     -     (mh1**4 - 4.D0*mh1**2*mZ**2 + 12.D0*mZ**4)*vS*
+     -     Dreal(DB0(mh1**2,mZ**2,mZ**2)))/(1.D0 + Talpha**2) + 
+     -  (0.0268668360117542D0*GF*(4.D0*mb**4 - 1.D0*mb**2*mh2**2)*
+     -     Talpha**2*vS*Dreal(DB0(mh2**2,mb**2,mb**2)))/
+     -   (1.D0 + Talpha**2) - 
+     -  (0.0015831434944115277D0*(2.D0*mh1**2 + mh2**2)**2*Talpha**2*
+     -     (Talpha - 1.189207115002721D0*DSqrt(GF)*vS)**2*
+     -     Dreal(DB0(mh2**2,mh1**2,mh1**2)))/
+     -   ((1.D0 + Talpha**2)**3*vS) - 
+     -  (0.0031662869888230555D0*(mh1**2 + 2.D0*mh2**2)**2*Talpha**2*
+     -     (1.D0 + 1.189207115002721D0*DSqrt(GF)*Talpha*vS)**2*
+     -     Dreal(DB0(mh2**2,mh1**2,mh2**2)))/
+     -   ((1.D0 + Talpha**2)**3*vS) - 
+     -  (0.01424829144970375D0*mh2**4*
+     -     (-1.D0 + 1.189207115002721D0*DSqrt(GF)*Talpha**3*vS)**2*
+     -     Dreal(DB0(mh2**2,mh2**2,mh2**2)))/
+     -   ((1.D0 + Talpha**2)**3*vS) - 
+     -  (0.0268668360117542D0*GF*mt**2*(mh2**2 - 4.D0*mt**2)*
+     -     Talpha**2*vS*Dreal(DB0(mh2**2,mt**2,mt**2)))/
+     -   (1.D0 + Talpha**2) - 
+     -  (0.008955612003918065D0*GF*mtau**2*(mh2**2 - 4.D0*mtau**2)*
+     -     Talpha**2*vS*Dreal(DB0(mh2**2,mtau**2,mtau**2)))/
+     -   (1.D0 + Talpha**2) - 
+     -  (0.004477806001959033D0*GF*
+     -     (mh2**4 - 4.D0*mh2**2*mW**2 + 12.D0*mW**4)*Talpha**2*vS*
+     -     Dreal(DB0(mh2**2,mW**2,mW**2)))/(1.D0 + Talpha**2) - 
+     -  (0.0015831434944115277D0*mh2**4*
+     -     Dreal(DB0(mh2**2,mX**2,mX**2)))/((1.D0 + Talpha**2)*vS) - 
+     -  (0.0022389030009795164D0*GF*
+     -     (mh2**4 - 4.D0*mh2**2*mZ**2 + 12.D0*mZ**4)*Talpha**2*vS*
+     -     Dreal(DB0(mh2**2,mZ**2,mZ**2)))/(1.D0 + Talpha**2) - 
+     -  (0.012665147955292222D0*mh1**4*Talpha**2*
+     -     Dreal(DB0(mX**2,mX**2,mh1**2)))/((1.D0 + Talpha**2)*vS) - 
+     -  (0.012665147955292222D0*mh2**4*
+     -     Dreal(DB0(mX**2,mX**2,mh2**2)))/((1.D0 + Talpha**2)*vS) 
+      
+      return
+      end
+ccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc
+ccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc
+      double precision function TovSh2toh2pdpstar()
+      implicit none
+      double precision mW,mZ,mt,mb,mtau
+      double precision GF
+      double precision mh1,mh2,mX,vS,Talpha
+      double precision DeltaE,LambdaIR,PI
+      Complex Polylog
+      Common/SMValues/mW,mZ,mt,mb,mtau,GF
+      Common/CxSMValues/mh1,mh2,mX,vS,Talpha
+      Common/IRValues/DeltaE,LambdaIR 
+c      Complex DB0,A0,B0,C0,
+#include "looptools.h"
+c     Check Re, DSqrt, PolyLog and Log      
+      PI = 4*DATAN(1.D0)
+      TovSh2toh2pdpstar = 
+     -        vS - (0.0268668360117542D0*GF*mb**2*(4.D0*mb**2 - 1.D0*mh1**2)*
+     -     Talpha**2*vS*Dreal(B0(mh1**2,mb**2,mb**2)))/
+     -   ((mh1 - 1.D0*mh2)*(mh1 + mh2)*(1.D0 + Talpha**2)) - 
+     -  (0.004749430483234583D0*mh1**2*(2.D0*mh1**2 + mh2**2)*
+     -     Talpha**2*(Talpha**4 + 
+     -       1.189207115002721D0*DSqrt(GF)*Talpha*vS - 
+     -       1.189207115002721D0*DSqrt(GF)*Talpha**3*vS - 
+     -       1.4142135623730951D0*GF*vS**2)*
+     -     Dreal(B0(mh1**2,mh1**2,mh1**2)))/
+     -   ((mh1 - 1.D0*mh2)*(mh1 + mh2)*(1.D0 + Talpha**2)**3*vS) - 
+     -  (0.0031662869888230555D0*
+     -     (2.D0*mh1**4 + 5.D0*mh1**2*mh2**2 + 2.D0*mh2**4)*Talpha**3*
+     -     (Talpha - 1.189207115002721D0*DSqrt(GF)*vS + 
+     -       1.189207115002721D0*DSqrt(GF)*Talpha**2*vS - 
+     -       1.4142135623730951D0*GF*Talpha*vS**2)*
+     -     Dreal(B0(mh1**2,mh1**2,mh2**2)))/
+     -   ((mh1 - 1.D0*mh2)*(mh1 + mh2)*(1.D0 + Talpha**2)**3*vS) + 
+     -  (0.004749430483234583D0*mh2**2*(mh1**2 + 2.D0*mh2**2)*
+     -     Talpha**2*(-1.D0 + 
+     -       1.189207115002721D0*DSqrt(GF)*Talpha*(-1.D0 + Talpha**2)*
+     -        vS + 1.4142135623730951D0*GF*Talpha**4*vS**2)*
+     -     Dreal(B0(mh1**2,mh2**2,mh2**2)))/
+     -   ((mh1 - 1.D0*mh2)*(mh1 + mh2)*(1.D0 + Talpha**2)**3*vS) + 
+     -  (0.0268668360117542D0*GF*mt**2*(mh1**2 - 4.D0*mt**2)*
+     -     Talpha**2*vS*Dreal(B0(mh1**2,mt**2,mt**2)))/
+     -   ((mh1 - 1.D0*mh2)*(mh1 + mh2)*(1.D0 + Talpha**2)) + 
+     -  (0.008955612003918065D0*GF*mtau**2*(mh1**2 - 4.D0*mtau**2)*
+     -     Talpha**2*vS*Dreal(B0(mh1**2,mtau**2,mtau**2)))/
+     -   ((mh1 - 1.D0*mh2)*(mh1 + mh2)*(1.D0 + Talpha**2)) + 
+     -  (0.004477806001959033D0*GF*
+     -     (mh1**2*(mh2**2 - 6.D0*mW**2) + 
+     -       2.D0*mW**2*(mh2**2 + 6.D0*mW**2))*Talpha**2*vS*
+     -     Dreal(B0(mh1**2,mW**2,mW**2)))/
+     -   ((mh1 - 1.D0*mh2)*(mh1 + mh2)*(1.D0 + Talpha**2)) - 
+     -  (0.0015831434944115277D0*mh1**2*mh2**2*Talpha**2*
+     -     Dreal(B0(mh1**2,mX**2,mX**2)))/
+     -   ((mh1 - 1.D0*mh2)*(mh1 + mh2)*(1.D0 + Talpha**2)*vS) + 
+     -  (0.0022389030009795164D0*GF*
+     -     (mh1**2*(mh2**2 - 6.D0*mZ**2) + 
+     -       2.D0*mZ**2*(mh2**2 + 6.D0*mZ**2))*Talpha**2*vS*
+     -     Dreal(B0(mh1**2,mZ**2,mZ**2)))/
+     -   ((mh1 - 1.D0*mh2)*(mh1 + mh2)*(1.D0 + Talpha**2)) - 
+     -  (0.0268668360117542D0*GF*mb**2*(4.D0*mb**2 - 1.D0*mh2**2)*
+     -     Talpha**2*vS*Dreal(B0(mh2**2,mb**2,mb**2)))/
+     -   ((mh1 - 1.D0*mh2)*(mh1 + mh2)*(1.D0 + Talpha**2)) - 
+     -  (0.004749430483234583D0*mh1**2*(2.D0*mh1**2 + mh2**2)*
+     -     Talpha**2*(Talpha**4 + 
+     -       1.189207115002721D0*DSqrt(GF)*Talpha*vS - 
+     -       1.189207115002721D0*DSqrt(GF)*Talpha**3*vS - 
+     -       1.4142135623730951D0*GF*vS**2)*
+     -     Dreal(B0(mh2**2,mh1**2,mh1**2)))/
+     -   ((mh1 - 1.D0*mh2)*(mh1 + mh2)*(1.D0 + Talpha**2)**3*vS) - 
+     -  (0.0031662869888230555D0*(2.D0*mh1**2 + mh2**2)*
+     -     (mh1**2 + 2.D0*mh2**2)*Talpha**3*
+     -     (Talpha - 1.189207115002721D0*DSqrt(GF)*vS + 
+     -       1.189207115002721D0*DSqrt(GF)*Talpha**2*vS - 
+     -       1.4142135623730951D0*GF*Talpha*vS**2)*
+     -     Dreal(B0(mh2**2,mh1**2,mh2**2)))/
+     -   ((mh1 - 1.D0*mh2)*(mh1 + mh2)*(1.D0 + Talpha**2)**3*vS) + 
+     -  (0.004749430483234583D0*mh2**2*(mh1**2 + 2.D0*mh2**2)*
+     -     Talpha**2*(-1.D0 + 
+     -       1.189207115002721D0*DSqrt(GF)*Talpha*(-1.D0 + Talpha**2)*
+     -        vS + 1.4142135623730951D0*GF*Talpha**4*vS**2)*
+     -     Dreal(B0(mh2**2,mh2**2,mh2**2)))/
+     -   ((mh1 - 1.D0*mh2)*(mh1 + mh2)*(1.D0 + Talpha**2)**3*vS) + 
+     -  (0.0268668360117542D0*GF*mt**2*(mh2**2 - 4.D0*mt**2)*
+     -     Talpha**2*vS*Dreal(B0(mh2**2,mt**2,mt**2)))/
+     -   ((mh1 - 1.D0*mh2)*(mh1 + mh2)*(1.D0 + Talpha**2)) + 
+     -  (0.008955612003918065D0*GF*mtau**2*(mh2**2 - 4.D0*mtau**2)*
+     -     Talpha**2*vS*Dreal(B0(mh2**2,mtau**2,mtau**2)))/
+     -   ((mh1 - 1.D0*mh2)*(mh1 + mh2)*(1.D0 + Talpha**2)) + 
+     -  (0.004477806001959033D0*GF*
+     -     (mh1**2*mh2**2 + 2.D0*(mh1**2 - 3.D0*mh2**2)*mW**2 + 
+     -       12.D0*mW**4)*Talpha**2*vS*Dreal(B0(mh2**2,mW**2,mW**2)))
+     -    /((mh1 - 1.D0*mh2)*(mh1 + mh2)*(1.D0 + Talpha**2)) - 
+     -  (0.0015831434944115277D0*mh1**2*mh2**2*Talpha**2*
+     -     Dreal(B0(mh2**2,mX**2,mX**2)))/
+     -   ((mh1 - 1.D0*mh2)*(mh1 + mh2)*(1.D0 + Talpha**2)*vS) + 
+     -  (0.0022389030009795164D0*GF*
+     -     (mh1**2*mh2**2 + 2.D0*(mh1**2 - 3.D0*mh2**2)*mZ**2 + 
+     -       12.D0*mZ**4)*Talpha**2*vS*Dreal(B0(mh2**2,mZ**2,mZ**2)))
+     -    /((mh1 - 1.D0*mh2)*(mh1 + mh2)*(1.D0 + Talpha**2)) + 
+     -  (0.0268668360117542D0*GF*mb**2*
+     -     (8.D0*mb**2 - 1.D0*mh1**2 - 1.D0*mh2**2)*Talpha**2*vS*
+     -     Dreal(B0(0.5D0*(mh1**2 + mh2**2),mb**2,mb**2)))/
+     -   ((mh1 - 1.D0*mh2)*(mh1 + mh2)*(1.D0 + Talpha**2)) + 
+     -  (0.009498860966469166D0*mh1**2*(2.D0*mh1**2 + mh2**2)*
+     -     Talpha**2*(Talpha**4 + 
+     -       1.189207115002721D0*DSqrt(GF)*Talpha*vS - 
+     -       1.189207115002721D0*DSqrt(GF)*Talpha**3*vS - 
+     -       1.4142135623730951D0*GF*vS**2)*
+     -     Dreal(B0(0.5D0*(mh1**2 + mh2**2),mh1**2,mh1**2)))/
+     -   ((mh1 - 1.D0*mh2)*(mh1 + mh2)*(1.D0 + Talpha**2)**3*vS) + 
+     -  (0.006332573977646111D0*
+     -     (2.D0*mh1**4 + 5.D0*mh1**2*mh2**2 + 2.D0*mh2**4)*Talpha**3*
+     -     (Talpha - 1.189207115002721D0*DSqrt(GF)*vS + 
+     -       1.189207115002721D0*DSqrt(GF)*Talpha**2*vS - 
+     -       1.4142135623730951D0*GF*Talpha*vS**2)*
+     -     Dreal(B0(0.5D0*(mh1**2 + mh2**2),mh1**2,mh2**2)))/
+     -   ((mh1 - 1.D0*mh2)*(mh1 + mh2)*(1.D0 + Talpha**2)**3*vS) - 
+     -  (0.009498860966469166D0*mh2**2*(mh1**2 + 2.D0*mh2**2)*
+     -     Talpha**2*(-1.D0 + 
+     -       1.189207115002721D0*DSqrt(GF)*Talpha*(-1.D0 + Talpha**2)*
+     -        vS + 1.4142135623730951D0*GF*Talpha**4*vS**2)*
+     -     Dreal(B0(0.5D0*(mh1**2 + mh2**2),mh2**2,mh2**2)))/
+     -   ((mh1 - 1.D0*mh2)*(mh1 + mh2)*(1.D0 + Talpha**2)**3*vS) - 
+     -  (0.0268668360117542D0*GF*mt**2*(mh1**2 + mh2**2 - 8.D0*mt**2)*
+     -     Talpha**2*vS*Dreal(B0(0.5D0*(mh1**2 + mh2**2),mt**2,
+     -       mt**2)))/
+     -   ((mh1 - 1.D0*mh2)*(mh1 + mh2)*(1.D0 + Talpha**2)) - 
+     -  (0.008955612003918065D0*GF*mtau**2*
+     -     (mh1**2 + mh2**2 - 8.D0*mtau**2)*Talpha**2*vS*
+     -     Dreal(B0(0.5D0*(mh1**2 + mh2**2),mtau**2,mtau**2)))/
+     -   ((mh1 - 1.D0*mh2)*(mh1 + mh2)*(1.D0 + Talpha**2)) - 
+     -  (0.008955612003918065D0*GF*
+     -     (mh1**2*mh2**2 - 2.D0*(mh1**2 + mh2**2)*mW**2 + 
+     -       12.D0*mW**4)*Talpha**2*vS*
+     -     Dreal(B0(0.5D0*(mh1**2 + mh2**2),mW**2,mW**2)))/
+     -   ((mh1 - 1.D0*mh2)*(mh1 + mh2)*(1.D0 + Talpha**2)) + 
+     -  (0.0031662869888230555D0*mh1**2*mh2**2*Talpha**2*
+     -     Dreal(B0(0.5D0*(mh1**2 + mh2**2),mX**2,mX**2)))/
+     -   ((mh1 - 1.D0*mh2)*(mh1 + mh2)*(1.D0 + Talpha**2)*vS) - 
+     -  (0.004477806001959033D0*GF*
+     -     (mh1**2*mh2**2 - 2.D0*(mh1**2 + mh2**2)*mZ**2 + 
+     -       12.D0*mZ**4)*Talpha**2*vS*
+     -     Dreal(B0(0.5D0*(mh1**2 + mh2**2),mZ**2,mZ**2)))/
+     -   ((mh1 - 1.D0*mh2)*(mh1 + mh2)*(1.D0 + Talpha**2)) 
+      
+      return
+      end
+ccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc
+ccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc
+      double precision function TovSh2toh2ZEMOS()
+      implicit none
+      double precision mW,mZ,mt,mb,mtau
+      double precision GF
+      double precision mh1,mh2,mX,vS,Talpha
+      double precision DeltaE,LambdaIR,PI
+      Complex Polylog
+      Common/SMValues/mW,mZ,mt,mb,mtau,GF
+      Common/CxSMValues/mh1,mh2,mX,vS,Talpha
+      Common/IRValues/DeltaE,LambdaIR 
+c      Complex DB0,A0,B0,C0,
+#include "looptools.h"
+c     Check Re, DSqrt, PolyLog and Log      
+      PI = 4*DATAN(1.D0)
+      TovSh2toh2ZEMOS = 
+     -        vS - (0.006332573977646111D0*mh1**2*(2.D0*mh1**2 + mh2**2)*
+     -     Talpha**3*(Talpha - 1.189207115002721D0*DSqrt(GF)*vS)*
+     -     Dreal(B0(0.D0,mh1**2,mh1**2)))/
+     -   (mh2**2*(1.D0 + Talpha**2)**2*vS) - 
+     -  (0.006332573977646111D0*
+     -     (mh1**4 + 3.D0*mh1**2*mh2**2 + 2.D0*mh2**4)*Talpha**2*
+     -     (1.D0 + 1.189207115002721D0*DSqrt(GF)*Talpha*vS)*
+     -     Dreal(B0(0.D0,mh1**2,mh2**2)))/
+     -   (mh2**2*(1.D0 + Talpha**2)**2*vS) + 
+     -  (0.018997721932938333D0*mh2**2*
+     -     (-1.D0 + 1.189207115002721D0*DSqrt(GF)*Talpha**3*vS)*
+     -     Dreal(B0(0.D0,mh2**2,mh2**2)))/((1.D0 + Talpha**2)**2*vS) - 
+     -  (0.012665147955292222D0*mh1**2*Talpha**2*
+     -     (-1.D0*mh2**2*mX**2*
+     -        (1.D0 + 1.189207115002721D0*DSqrt(GF)*Talpha*vS) + 
+     -       mh1**2*(mh2**2*(1.D0 + Talpha**2) + 
+     -          mX**2*Talpha*
+     -           (-1.D0*Talpha + 1.189207115002721D0*DSqrt(GF)*vS)))*
+     -     Dreal(B0(0.D0,mX**2,mh1**2)))/
+     -   (mh2**2*mX**2*(1.D0 + Talpha**2)**2*vS) + 
+     -  (0.012665147955292222D0*
+     -     (-1.D0*mh2**4*(1.D0 + Talpha**2) + 
+     -       mh1**2*mX**2*Talpha**2*
+     -        (1.D0 + 1.189207115002721D0*DSqrt(GF)*Talpha*vS) + 
+     -       mh2**2*mX**2*(1.D0 - 
+     -          1.189207115002721D0*DSqrt(GF)*Talpha**3*vS))*
+     -     Dreal(B0(0.D0,mX**2,mh2**2)))/
+     -   (mX**2*(1.D0 + Talpha**2)**2*vS) + 
+     -  (0.006332573977646111D0*(mh2**2 + mh1**2*Talpha**2)*
+     -     Dreal(B0(0.D0,mX**2,mX**2)))/((1.D0 + Talpha**2)*vS) - 
+     -  (0.0537336720235084D0*GF*(4.D0*mb**4 - 1.D0*mb**2*mh1**2)*
+     -     Talpha**2*vS*Dreal(B0(mh1**2,mb**2,mb**2)))/
+     -   ((mh1 - 1.D0*mh2)*(mh1 + mh2)*(1.D0 + Talpha**2)) - 
+     -  (0.009498860966469166D0*mh1**2*(2.D0*mh1**2 + mh2**2)*
+     -     Talpha**2*(Talpha**4 + 
+     -       1.189207115002721D0*DSqrt(GF)*Talpha*vS - 
+     -       1.189207115002721D0*DSqrt(GF)*Talpha**3*vS - 
+     -       1.4142135623730951D0*GF*vS**2)*
+     -     Dreal(B0(mh1**2,mh1**2,mh1**2)))/
+     -   ((mh1 - 1.D0*mh2)*(mh1 + mh2)*(1.D0 + Talpha**2)**3*vS) - 
+     -  (0.006332573977646111D0*
+     -     (2.D0*mh1**4 + 5.D0*mh1**2*mh2**2 + 2.D0*mh2**4)*Talpha**3*
+     -     (Talpha - 1.189207115002721D0*DSqrt(GF)*vS + 
+     -       1.189207115002721D0*DSqrt(GF)*Talpha**2*vS - 
+     -       1.4142135623730951D0*GF*Talpha*vS**2)*
+     -     Dreal(B0(mh1**2,mh1**2,mh2**2)))/
+     -   ((mh1 - 1.D0*mh2)*(mh1 + mh2)*(1.D0 + Talpha**2)**3*vS) + 
+     -  (0.009498860966469166D0*mh2**2*(mh1**2 + 2.D0*mh2**2)*
+     -     Talpha**2*(-1.D0 + 
+     -       1.189207115002721D0*DSqrt(GF)*Talpha*(-1.D0 + Talpha**2)*
+     -        vS + 1.4142135623730951D0*GF*Talpha**4*vS**2)*
+     -     Dreal(B0(mh1**2,mh2**2,mh2**2)))/
+     -   ((mh1 - 1.D0*mh2)*(mh1 + mh2)*(1.D0 + Talpha**2)**3*vS) + 
+     -  (0.0537336720235084D0*GF*mt**2*(mh1**2 - 4.D0*mt**2)*
+     -     Talpha**2*vS*Dreal(B0(mh1**2,mt**2,mt**2)))/
+     -   ((mh1 - 1.D0*mh2)*(mh1 + mh2)*(1.D0 + Talpha**2)) + 
+     -  (0.01791122400783613D0*GF*mtau**2*(mh1**2 - 4.D0*mtau**2)*
+     -     Talpha**2*vS*Dreal(B0(mh1**2,mtau**2,mtau**2)))/
+     -   ((mh1 - 1.D0*mh2)*(mh1 + mh2)*(1.D0 + Talpha**2)) + 
+     -  (0.008955612003918065D0*GF*
+     -     (mh1**2*(mh2**2 - 6.D0*mW**2) + 
+     -       2.D0*mW**2*(mh2**2 + 6.D0*mW**2))*Talpha**2*vS*
+     -     Dreal(B0(mh1**2,mW**2,mW**2)))/
+     -   ((mh1 - 1.D0*mh2)*(mh1 + mh2)*(1.D0 + Talpha**2)) - 
+     -  (0.0031662869888230555D0*mh1**2*mh2**2*Talpha**2*
+     -     Dreal(B0(mh1**2,mX**2,mX**2)))/
+     -   ((mh1 - 1.D0*mh2)*(mh1 + mh2)*(1.D0 + Talpha**2)*vS) + 
+     -  (0.004477806001959033D0*GF*
+     -     (mh1**2*(mh2**2 - 6.D0*mZ**2) + 
+     -       2.D0*mZ**2*(mh2**2 + 6.D0*mZ**2))*Talpha**2*vS*
+     -     Dreal(B0(mh1**2,mZ**2,mZ**2)))/
+     -   ((mh1 - 1.D0*mh2)*(mh1 + mh2)*(1.D0 + Talpha**2)) + 
+     -  (0.0537336720235084D0*GF*mb**2*(4.D0*mb**2 - 1.D0*mh1**2)*
+     -     Talpha**2*vS*Dreal(B0(mh2**2,mb**2,mb**2)))/
+     -   ((mh1 - 1.D0*mh2)*(mh1 + mh2)*(1.D0 + Talpha**2)) + 
+     -  (0.0031662869888230555D0*mh1**2*(2.D0*mh1**2 + mh2**2)*
+     -     Talpha**2*(Talpha - 1.189207115002721D0*DSqrt(GF)*vS)*
+     -     (2.D0*mh1**2*(Talpha + Talpha**3) + 
+     -       mh2**2*(-2.D0*Talpha + Talpha**3 + 
+     -          3.5676213450081633D0*DSqrt(GF)*vS))*
+     -     Dreal(B0(mh2**2,mh1**2,mh1**2)))/
+     -   ((mh1 - 1.D0*mh2)*mh2**2*(mh1 + mh2)*(1.D0 + Talpha**2)**3*
+     -     vS) + (0.006332573977646111D0*(mh1**2 + 2.D0*mh2**2)*
+     -     Talpha**2*(1.D0 + 1.189207115002721D0*DSqrt(GF)*Talpha*vS)*
+     -     (mh1**4*(1.D0 + Talpha**2) + 
+     -       2.D0*mh1**2*mh2**2*Talpha*
+     -        (Talpha - 1.189207115002721D0*DSqrt(GF)*vS) - 
+     -       1.D0*mh2**4*(1.D0 + 1.189207115002721D0*DSqrt(GF)*Talpha*vS)
+     -       )*Dreal(B0(mh2**2,mh1**2,mh2**2)))/
+     -   ((mh1 - 1.D0*mh2)*mh2**2*(mh1 + mh2)*(1.D0 + Talpha**2)**3*
+     -     vS) - (0.009498860966469166D0*mh2**2*
+     -     (-1.D0 + 1.189207115002721D0*DSqrt(GF)*Talpha**3*vS)*
+     -     (2.D0*mh2**2*(-1.D0 + 
+     -          1.189207115002721D0*DSqrt(GF)*Talpha**3*vS) + 
+     -       mh1**2*(2.D0 + 3.D0*Talpha**2 + 
+     -          1.189207115002721D0*DSqrt(GF)*Talpha**3*vS))*
+     -     Dreal(B0(mh2**2,mh2**2,mh2**2)))/
+     -   ((mh1 - 1.D0*mh2)*(mh1 + mh2)*(1.D0 + Talpha**2)**3*vS) - 
+     -  (0.0537336720235084D0*GF*mt**2*(mh1**2 - 4.D0*mt**2)*
+     -     Talpha**2*vS*Dreal(B0(mh2**2,mt**2,mt**2)))/
+     -   ((mh1 - 1.D0*mh2)*(mh1 + mh2)*(1.D0 + Talpha**2)) - 
+     -  (0.01791122400783613D0*GF*mtau**2*(mh1**2 - 4.D0*mtau**2)*
+     -     Talpha**2*vS*Dreal(B0(mh2**2,mtau**2,mtau**2)))/
+     -   ((mh1 - 1.D0*mh2)*(mh1 + mh2)*(1.D0 + Talpha**2)) - 
+     -  (0.008955612003918065D0*GF*
+     -     (mh1**2*(mh2**2 - 6.D0*mW**2) + 
+     -       2.D0*mW**2*(mh2**2 + 6.D0*mW**2))*Talpha**2*vS*
+     -     Dreal(B0(mh2**2,mW**2,mW**2)))/
+     -   ((mh1 - 1.D0*mh2)*(mh1 + mh2)*(1.D0 + Talpha**2)) + 
+     -  (0.0031662869888230555D0*
+     -     (2.D0*mh2**4 - 2.D0*mh1**4*Talpha**2 + 
+     -       mh1**2*mh2**2*(-2.D0 + 3.D0*Talpha**2))*
+     -     Dreal(B0(mh2**2,mX**2,mX**2)))/
+     -   ((mh1 - 1.D0*mh2)*(mh1 + mh2)*(1.D0 + Talpha**2)*vS) - 
+     -  (0.004477806001959033D0*GF*
+     -     (mh1**2*(mh2**2 - 6.D0*mZ**2) + 
+     -       2.D0*mZ**2*(mh2**2 + 6.D0*mZ**2))*Talpha**2*vS*
+     -     Dreal(B0(mh2**2,mZ**2,mZ**2)))/
+     -   ((mh1 - 1.D0*mh2)*(mh1 + mh2)*(1.D0 + Talpha**2)) + 
+     -  (0.012665147955292222D0*mh1**2*Talpha**2*
+     -     (-1.D0*mh2**2*mX**2*
+     -        (1.D0 + 1.189207115002721D0*DSqrt(GF)*Talpha*vS) + 
+     -       mh1**2*(mh2**2*(1.D0 + Talpha**2) + 
+     -          mX**2*Talpha*
+     -           (-1.D0*Talpha + 1.189207115002721D0*DSqrt(GF)*vS)))*
+     -     Dreal(B0(mX**2,mX**2,mh1**2)))/
+     -   (mh2**2*mX**2*(1.D0 + Talpha**2)**2*vS) + 
+     -  (0.012665147955292222D0*
+     -     (mh2**4*(1.D0 + Talpha**2) - 
+     -       1.D0*mh1**2*mX**2*Talpha**2*
+     -        (1.D0 + 1.189207115002721D0*DSqrt(GF)*Talpha*vS) + 
+     -       mh2**2*mX**2*(-1.D0 + 
+     -          1.189207115002721D0*DSqrt(GF)*Talpha**3*vS))*
+     -     Dreal(B0(mX**2,mX**2,mh2**2)))/
+     -   (mX**2*(1.D0 + Talpha**2)**2*vS) + 
+     -  (0.006332573977646111D0*mh1**4*(2.D0*mh1**2 + mh2**2)*
+     -     Talpha**3*(Talpha - 1.189207115002721D0*DSqrt(GF)*vS)*
+     -     Dreal(C0(0.D0,0.D0,0.D0,mX**2,mh1**2,mh1**2)))/
+     -   (mh2**2*(1.D0 + Talpha**2)**2*vS) + 
+     -  (0.012665147955292222D0*mh1**2*(mh1**2 + 2.D0*mh2**2)*
+     -     Talpha**2*(1.D0 + 1.189207115002721D0*DSqrt(GF)*Talpha*vS)*
+     -     Dreal(C0(0.D0,0.D0,0.D0,mX**2,mh1**2,mh2**2)))/
+     -   ((1.D0 + Talpha**2)**2*vS) - 
+     -  (0.018997721932938333D0*mh2**4*
+     -     (-1.D0 + 1.189207115002721D0*DSqrt(GF)*Talpha**3*vS)*
+     -     Dreal(C0(0.D0,0.D0,0.D0,mX**2,mh2**2,mh2**2)))/
+     -   ((1.D0 + Talpha**2)**2*vS) + 
+     -  (0.006332573977646111D0*mh1**4*Talpha**2*
+     -     Dreal(C0(0.D0,0.D0,0.D0,mX**2,mX**2,mh1**2)))/
+     -   ((1.D0 + Talpha**2)*vS) + 
+     -  (0.006332573977646111D0*mh2**4*
+     -     Dreal(C0(0.D0,0.D0,0.D0,mX**2,mX**2,mh2**2)))/
+     -   ((1.D0 + Talpha**2)*vS) - 
+     -  (0.006332573977646111D0*mh1**4*(2.D0*mh1**2 + mh2**2)*
+     -     Talpha**3*(Talpha - 1.189207115002721D0*DSqrt(GF)*vS)*
+     -     Dreal(C0(mX**2,mX**2,mh2**2,mh1**2,mX**2,mh1**2)))/
+     -   (mh2**2*(1.D0 + Talpha**2)**2*vS) - 
+     -  (0.012665147955292222D0*mh1**2*(mh1**2 + 2.D0*mh2**2)*
+     -     Talpha**2*(1.D0 + 1.189207115002721D0*DSqrt(GF)*Talpha*vS)*
+     -     Dreal(C0(mX**2,mX**2,mh2**2,mh1**2,mX**2,mh2**2)))/
+     -   ((1.D0 + Talpha**2)**2*vS) + 
+     -  (0.018997721932938333D0*mh2**4*
+     -     (-1.D0 + 1.189207115002721D0*DSqrt(GF)*Talpha**3*vS)*
+     -     Dreal(C0(mX**2,mX**2,mh2**2,mh2**2,mX**2,mh2**2)))/
+     -   ((1.D0 + Talpha**2)**2*vS) - 
+     -  (0.006332573977646111D0*mh1**4*Talpha**2*
+     -     Dreal(C0(mX**2,mX**2,mh2**2,mX**2,mh1**2,mX**2)))/
+     -   ((1.D0 + Talpha**2)*vS) - 
+     -  (0.006332573977646111D0*mh2**4*
+     -     Dreal(C0(mX**2,mX**2,mh2**2,mX**2,mh2**2,mX**2)))/
+     -   ((1.D0 + Talpha**2)*vS) + 
+     -  (0.0537336720235084D0*GF*(4.D0*mb**4 - 1.D0*mb**2*mh2**2)*
+     -     Talpha**2*vS*Dreal(DB0(mh2**2,mb**2,mb**2)))/
+     -   (1.D0 + Talpha**2) - 
+     -  (0.0031662869888230555D0*(2.D0*mh1**2 + mh2**2)**2*Talpha**2*
+     -     (Talpha - 1.189207115002721D0*DSqrt(GF)*vS)**2*
+     -     Dreal(DB0(mh2**2,mh1**2,mh1**2)))/
+     -   ((1.D0 + Talpha**2)**3*vS) - 
+     -  (0.006332573977646111D0*(mh1**2 + 2.D0*mh2**2)**2*Talpha**2*
+     -     (1.D0 + 1.189207115002721D0*DSqrt(GF)*Talpha*vS)**2*
+     -     Dreal(DB0(mh2**2,mh1**2,mh2**2)))/
+     -   ((1.D0 + Talpha**2)**3*vS) - 
+     -  (0.0284965828994075D0*mh2**4*
+     -     (-1.D0 + 1.189207115002721D0*DSqrt(GF)*Talpha**3*vS)**2*
+     -     Dreal(DB0(mh2**2,mh2**2,mh2**2)))/
+     -   ((1.D0 + Talpha**2)**3*vS) - 
+     -  (0.0537336720235084D0*GF*mt**2*(mh2**2 - 4.D0*mt**2)*
+     -     Talpha**2*vS*Dreal(DB0(mh2**2,mt**2,mt**2)))/
+     -   (1.D0 + Talpha**2) - 
+     -  (0.01791122400783613D0*GF*mtau**2*(mh2**2 - 4.D0*mtau**2)*
+     -     Talpha**2*vS*Dreal(DB0(mh2**2,mtau**2,mtau**2)))/
+     -   (1.D0 + Talpha**2) - 
+     -  (0.008955612003918065D0*GF*
+     -     (mh2**4 - 4.D0*mh2**2*mW**2 + 12.D0*mW**4)*Talpha**2*vS*
+     -     Dreal(DB0(mh2**2,mW**2,mW**2)))/(1.D0 + Talpha**2) - 
+     -  (0.0031662869888230555D0*mh2**4*
+     -     Dreal(DB0(mh2**2,mX**2,mX**2)))/((1.D0 + Talpha**2)*vS) - 
+     -  (0.004477806001959033D0*GF*
+     -     (mh2**4 - 4.D0*mh2**2*mZ**2 + 12.D0*mZ**4)*Talpha**2*vS*
+     -     Dreal(DB0(mh2**2,mZ**2,mZ**2)))/(1.D0 + Talpha**2) - 
+     -  (0.012665147955292222D0*mh1**4*Talpha**2*
+     -     Dreal(DB0(mX**2,mX**2,mh1**2)))/((1.D0 + Talpha**2)*vS) - 
+     -  (0.012665147955292222D0*mh2**4*
+     -     Dreal(DB0(mX**2,mX**2,mh2**2)))/((1.D0 + Talpha**2)*vS) 
+      
+      return
+      end
+ccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc
+ccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc
+      double precision function TovSh2toh2ZEMpstar()
+      implicit none
+      double precision mW,mZ,mt,mb,mtau
+      double precision GF
+      double precision mh1,mh2,mX,vS,Talpha
+      double precision DeltaE,LambdaIR,PI
+      Complex Polylog
+      Common/SMValues/mW,mZ,mt,mb,mtau,GF
+      Common/CxSMValues/mh1,mh2,mX,vS,Talpha
+      Common/IRValues/DeltaE,LambdaIR 
+c      Complex DB0,A0,B0,C0,
+#include "looptools.h"
+c     Check Re, DSqrt, PolyLog and Log      
+      PI = 4*DATAN(1.D0)
+      TovSh2toh2ZEMpstar = 
+     -        vS - (0.006332573977646111D0*mh1**2*(2.D0*mh1**2 + mh2**2)*
+     -     Talpha**3*(Talpha - 1.189207115002721D0*DSqrt(GF)*vS)*
+     -     Dreal(B0(0.D0,mh1**2,mh1**2)))/
+     -   (mh2**2*(1.D0 + Talpha**2)**2*vS) - 
+     -  (0.006332573977646111D0*
+     -     (mh1**4 + 3.D0*mh1**2*mh2**2 + 2.D0*mh2**4)*Talpha**2*
+     -     (1.D0 + 1.189207115002721D0*DSqrt(GF)*Talpha*vS)*
+     -     Dreal(B0(0.D0,mh1**2,mh2**2)))/
+     -   (mh2**2*(1.D0 + Talpha**2)**2*vS) + 
+     -  (0.018997721932938333D0*mh2**2*
+     -     (-1.D0 + 1.189207115002721D0*DSqrt(GF)*Talpha**3*vS)*
+     -     Dreal(B0(0.D0,mh2**2,mh2**2)))/((1.D0 + Talpha**2)**2*vS) - 
+     -  (0.012665147955292222D0*mh1**2*Talpha**2*
+     -     (-1.D0*mh2**2*mX**2*
+     -        (1.D0 + 1.189207115002721D0*DSqrt(GF)*Talpha*vS) + 
+     -       mh1**2*(mh2**2*(1.D0 + Talpha**2) + 
+     -          mX**2*Talpha*
+     -           (-1.D0*Talpha + 1.189207115002721D0*DSqrt(GF)*vS)))*
+     -     Dreal(B0(0.D0,mX**2,mh1**2)))/
+     -   (mh2**2*mX**2*(1.D0 + Talpha**2)**2*vS) + 
+     -  (0.012665147955292222D0*
+     -     (-1.D0*mh2**4*(1.D0 + Talpha**2) + 
+     -       mh1**2*mX**2*Talpha**2*
+     -        (1.D0 + 1.189207115002721D0*DSqrt(GF)*Talpha*vS) + 
+     -       mh2**2*mX**2*(1.D0 - 
+     -          1.189207115002721D0*DSqrt(GF)*Talpha**3*vS))*
+     -     Dreal(B0(0.D0,mX**2,mh2**2)))/
+     -   (mX**2*(1.D0 + Talpha**2)**2*vS) + 
+     -  (0.006332573977646111D0*(mh2**2 + mh1**2*Talpha**2)*
+     -     Dreal(B0(0.D0,mX**2,mX**2)))/((1.D0 + Talpha**2)*vS) - 
+     -  (0.0806005080352626D0*GF*(4.D0*mb**4 - 1.D0*mb**2*mh1**2)*
+     -     Talpha**2*vS*Dreal(B0(mh1**2,mb**2,mb**2)))/
+     -   ((mh1 - 1.D0*mh2)*(mh1 + mh2)*(1.D0 + Talpha**2)) - 
+     -  (0.01424829144970375D0*mh1**2*(2.D0*mh1**2 + mh2**2)*
+     -     Talpha**2*(Talpha**4 + 
+     -       1.189207115002721D0*DSqrt(GF)*Talpha*vS - 
+     -       1.189207115002721D0*DSqrt(GF)*Talpha**3*vS - 
+     -       1.4142135623730951D0*GF*vS**2)*
+     -     Dreal(B0(mh1**2,mh1**2,mh1**2)))/
+     -   ((mh1 - 1.D0*mh2)*(mh1 + mh2)*(1.D0 + Talpha**2)**3*vS) - 
+     -  (0.009498860966469166D0*
+     -     (2.D0*mh1**4 + 5.D0*mh1**2*mh2**2 + 2.D0*mh2**4)*Talpha**3*
+     -     (Talpha - 1.189207115002721D0*DSqrt(GF)*vS + 
+     -       1.189207115002721D0*DSqrt(GF)*Talpha**2*vS - 
+     -       1.4142135623730951D0*GF*Talpha*vS**2)*
+     -     Dreal(B0(mh1**2,mh1**2,mh2**2)))/
+     -   ((mh1 - 1.D0*mh2)*(mh1 + mh2)*(1.D0 + Talpha**2)**3*vS) + 
+     -  (0.01424829144970375D0*mh2**2*(mh1**2 + 2.D0*mh2**2)*
+     -     Talpha**2*(-1.D0 + 
+     -       1.189207115002721D0*DSqrt(GF)*Talpha*(-1.D0 + Talpha**2)*
+     -        vS + 1.4142135623730951D0*GF*Talpha**4*vS**2)*
+     -     Dreal(B0(mh1**2,mh2**2,mh2**2)))/
+     -   ((mh1 - 1.D0*mh2)*(mh1 + mh2)*(1.D0 + Talpha**2)**3*vS) + 
+     -  (0.0806005080352626D0*GF*mt**2*(mh1**2 - 4.D0*mt**2)*
+     -     Talpha**2*vS*Dreal(B0(mh1**2,mt**2,mt**2)))/
+     -   ((mh1 - 1.D0*mh2)*(mh1 + mh2)*(1.D0 + Talpha**2)) + 
+     -  (0.0268668360117542D0*GF*mtau**2*(mh1**2 - 4.D0*mtau**2)*
+     -     Talpha**2*vS*Dreal(B0(mh1**2,mtau**2,mtau**2)))/
+     -   ((mh1 - 1.D0*mh2)*(mh1 + mh2)*(1.D0 + Talpha**2)) + 
+     -  (0.0134334180058771D0*GF*
+     -     (mh1**2*(mh2**2 - 6.D0*mW**2) + 
+     -       2.D0*mW**2*(mh2**2 + 6.D0*mW**2))*Talpha**2*vS*
+     -     Dreal(B0(mh1**2,mW**2,mW**2)))/
+     -   ((mh1 - 1.D0*mh2)*(mh1 + mh2)*(1.D0 + Talpha**2)) - 
+     -  (0.004749430483234583D0*mh1**2*mh2**2*Talpha**2*
+     -     Dreal(B0(mh1**2,mX**2,mX**2)))/
+     -   ((mh1 - 1.D0*mh2)*(mh1 + mh2)*(1.D0 + Talpha**2)*vS) + 
+     -  (0.00671670900293855D0*GF*
+     -     (mh1**2*(mh2**2 - 6.D0*mZ**2) + 
+     -       2.D0*mZ**2*(mh2**2 + 6.D0*mZ**2))*Talpha**2*vS*
+     -     Dreal(B0(mh1**2,mZ**2,mZ**2)))/
+     -   ((mh1 - 1.D0*mh2)*(mh1 + mh2)*(1.D0 + Talpha**2)) + 
+     -  (0.0268668360117542D0*GF*mb**2*
+     -     (4.D0*mb**2 - 2.D0*mh1**2 + mh2**2)*Talpha**2*vS*
+     -     Dreal(B0(mh2**2,mb**2,mb**2)))/
+     -   ((mh1 - 1.D0*mh2)*(mh1 + mh2)*(1.D0 + Talpha**2)) + 
+     -  (0.0015831434944115277D0*mh1**2*(2.D0*mh1**2 + mh2**2)*
+     -     Talpha**2*(Talpha - 1.189207115002721D0*DSqrt(GF)*vS)*
+     -     (4.D0*mh1**2*(Talpha + Talpha**3) - 
+     -       1.D0*mh2**2*(4.D0*Talpha + Talpha**3 - 
+     -          3.5676213450081633D0*DSqrt(GF)*vS))*
+     -     Dreal(B0(mh2**2,mh1**2,mh1**2)))/
+     -   ((mh1 - 1.D0*mh2)*mh2**2*(mh1 + mh2)*(1.D0 + Talpha**2)**3*
+     -     vS) + (0.0031662869888230555D0*(mh1**2 + 2.D0*mh2**2)*
+     -     Talpha**2*(1.D0 + 1.189207115002721D0*DSqrt(GF)*Talpha*vS)*
+     -     (2.D0*mh1**4*(1.D0 + Talpha**2) + 
+     -       2.D0*mh1**2*mh2**2*Talpha*
+     -        (Talpha - 1.189207115002721D0*DSqrt(GF)*vS) - 
+     -       1.D0*mh2**4*(2.D0 + Talpha**2 + 
+     -          1.189207115002721D0*DSqrt(GF)*Talpha*vS))*
+     -     Dreal(B0(mh2**2,mh1**2,mh2**2)))/
+     -   ((mh1 - 1.D0*mh2)*mh2**2*(mh1 + mh2)*(1.D0 + Talpha**2)**3*
+     -     vS) - (0.004749430483234583D0*mh2**2*
+     -     (-1.D0 + 1.189207115002721D0*DSqrt(GF)*Talpha**3*vS)*
+     -     (2.D0*mh2**2*(-2.D0 - 1.D0*Talpha**2 + 
+     -          1.189207115002721D0*DSqrt(GF)*Talpha**3*vS) + 
+     -       mh1**2*(4.D0 + 5.D0*Talpha**2 + 
+     -          1.189207115002721D0*DSqrt(GF)*Talpha**3*vS))*
+     -     Dreal(B0(mh2**2,mh2**2,mh2**2)))/
+     -   ((mh1 - 1.D0*mh2)*(mh1 + mh2)*(1.D0 + Talpha**2)**3*vS) + 
+     -  (0.0268668360117542D0*GF*mt**2*
+     -     (-2.D0*mh1**2 + mh2**2 + 4.D0*mt**2)*Talpha**2*vS*
+     -     Dreal(B0(mh2**2,mt**2,mt**2)))/
+     -   ((mh1 - 1.D0*mh2)*(mh1 + mh2)*(1.D0 + Talpha**2)) + 
+     -  (0.008955612003918065D0*GF*mtau**2*
+     -     (-2.D0*mh1**2 + mh2**2 + 4.D0*mtau**2)*Talpha**2*vS*
+     -     Dreal(B0(mh2**2,mtau**2,mtau**2)))/
+     -   ((mh1 - 1.D0*mh2)*(mh1 + mh2)*(1.D0 + Talpha**2)) - 
+     -  (0.004477806001959033D0*GF*
+     -     (mh1**2*(mh2**2 - 14.D0*mW**2) + 
+     -       2.D0*mW**2*(5.D0*mh2**2 + 6.D0*mW**2))*Talpha**2*vS*
+     -     Dreal(B0(mh2**2,mW**2,mW**2)))/
+     -   ((mh1 - 1.D0*mh2)*(mh1 + mh2)*(1.D0 + Talpha**2)) + 
+     -  (0.0015831434944115277D0*
+     -     (4.D0*mh2**4 - 4.D0*mh1**4*Talpha**2 + 
+     -       mh1**2*mh2**2*(-4.D0 + 5.D0*Talpha**2))*
+     -     Dreal(B0(mh2**2,mX**2,mX**2)))/
+     -   ((mh1 - 1.D0*mh2)*(mh1 + mh2)*(1.D0 + Talpha**2)*vS) - 
+     -  (0.0022389030009795164D0*GF*
+     -     (mh1**2*(mh2**2 - 14.D0*mZ**2) + 
+     -       2.D0*mZ**2*(5.D0*mh2**2 + 6.D0*mZ**2))*Talpha**2*vS*
+     -     Dreal(B0(mh2**2,mZ**2,mZ**2)))/
+     -   ((mh1 - 1.D0*mh2)*(mh1 + mh2)*(1.D0 + Talpha**2)) + 
+     -  (0.0268668360117542D0*GF*mb**2*
+     -     (8.D0*mb**2 - 1.D0*mh1**2 - 1.D0*mh2**2)*Talpha**2*vS*
+     -     Dreal(B0(0.5D0*(mh1**2 + mh2**2),mb**2,mb**2)))/
+     -   ((mh1 - 1.D0*mh2)*(mh1 + mh2)*(1.D0 + Talpha**2)) + 
+     -  (0.009498860966469166D0*mh1**2*(2.D0*mh1**2 + mh2**2)*
+     -     Talpha**2*(Talpha**4 + 
+     -       1.189207115002721D0*DSqrt(GF)*Talpha*vS - 
+     -       1.189207115002721D0*DSqrt(GF)*Talpha**3*vS - 
+     -       1.4142135623730951D0*GF*vS**2)*
+     -     Dreal(B0(0.5D0*(mh1**2 + mh2**2),mh1**2,mh1**2)))/
+     -   ((mh1 - 1.D0*mh2)*(mh1 + mh2)*(1.D0 + Talpha**2)**3*vS) + 
+     -  (0.006332573977646111D0*
+     -     (2.D0*mh1**4 + 5.D0*mh1**2*mh2**2 + 2.D0*mh2**4)*Talpha**3*
+     -     (Talpha - 1.189207115002721D0*DSqrt(GF)*vS + 
+     -       1.189207115002721D0*DSqrt(GF)*Talpha**2*vS - 
+     -       1.4142135623730951D0*GF*Talpha*vS**2)*
+     -     Dreal(B0(0.5D0*(mh1**2 + mh2**2),mh1**2,mh2**2)))/
+     -   ((mh1 - 1.D0*mh2)*(mh1 + mh2)*(1.D0 + Talpha**2)**3*vS) - 
+     -  (0.009498860966469166D0*mh2**2*(mh1**2 + 2.D0*mh2**2)*
+     -     Talpha**2*(-1.D0 + 
+     -       1.189207115002721D0*DSqrt(GF)*Talpha*(-1.D0 + Talpha**2)*
+     -        vS + 1.4142135623730951D0*GF*Talpha**4*vS**2)*
+     -     Dreal(B0(0.5D0*(mh1**2 + mh2**2),mh2**2,mh2**2)))/
+     -   ((mh1 - 1.D0*mh2)*(mh1 + mh2)*(1.D0 + Talpha**2)**3*vS) - 
+     -  (0.0268668360117542D0*GF*mt**2*(mh1**2 + mh2**2 - 8.D0*mt**2)*
+     -     Talpha**2*vS*Dreal(B0(0.5D0*(mh1**2 + mh2**2),mt**2,
+     -       mt**2)))/
+     -   ((mh1 - 1.D0*mh2)*(mh1 + mh2)*(1.D0 + Talpha**2)) - 
+     -  (0.008955612003918065D0*GF*mtau**2*
+     -     (mh1**2 + mh2**2 - 8.D0*mtau**2)*Talpha**2*vS*
+     -     Dreal(B0(0.5D0*(mh1**2 + mh2**2),mtau**2,mtau**2)))/
+     -   ((mh1 - 1.D0*mh2)*(mh1 + mh2)*(1.D0 + Talpha**2)) - 
+     -  (0.008955612003918065D0*GF*
+     -     (mh1**2*mh2**2 - 2.D0*(mh1**2 + mh2**2)*mW**2 + 
+     -       12.D0*mW**4)*Talpha**2*vS*
+     -     Dreal(B0(0.5D0*(mh1**2 + mh2**2),mW**2,mW**2)))/
+     -   ((mh1 - 1.D0*mh2)*(mh1 + mh2)*(1.D0 + Talpha**2)) + 
+     -  (0.0031662869888230555D0*mh1**2*mh2**2*Talpha**2*
+     -     Dreal(B0(0.5D0*(mh1**2 + mh2**2),mX**2,mX**2)))/
+     -   ((mh1 - 1.D0*mh2)*(mh1 + mh2)*(1.D0 + Talpha**2)*vS) - 
+     -  (0.004477806001959033D0*GF*
+     -     (mh1**2*mh2**2 - 2.D0*(mh1**2 + mh2**2)*mZ**2 + 
+     -       12.D0*mZ**4)*Talpha**2*vS*
+     -     Dreal(B0(0.5D0*(mh1**2 + mh2**2),mZ**2,mZ**2)))/
+     -   ((mh1 - 1.D0*mh2)*(mh1 + mh2)*(1.D0 + Talpha**2)) + 
+     -  (0.012665147955292222D0*mh1**2*Talpha**2*
+     -     (-1.D0*mh2**2*mX**2*
+     -        (1.D0 + 1.189207115002721D0*DSqrt(GF)*Talpha*vS) + 
+     -       mh1**2*(mh2**2*(1.D0 + Talpha**2) + 
+     -          mX**2*Talpha*
+     -           (-1.D0*Talpha + 1.189207115002721D0*DSqrt(GF)*vS)))*
+     -     Dreal(B0(mX**2,mX**2,mh1**2)))/
+     -   (mh2**2*mX**2*(1.D0 + Talpha**2)**2*vS) + 
+     -  (0.012665147955292222D0*
+     -     (mh2**4*(1.D0 + Talpha**2) - 
+     -       1.D0*mh1**2*mX**2*Talpha**2*
+     -        (1.D0 + 1.189207115002721D0*DSqrt(GF)*Talpha*vS) + 
+     -       mh2**2*mX**2*(-1.D0 + 
+     -          1.189207115002721D0*DSqrt(GF)*Talpha**3*vS))*
+     -     Dreal(B0(mX**2,mX**2,mh2**2)))/
+     -   (mX**2*(1.D0 + Talpha**2)**2*vS) + 
+     -  (0.006332573977646111D0*mh1**4*(2.D0*mh1**2 + mh2**2)*
+     -     Talpha**3*(Talpha - 1.189207115002721D0*DSqrt(GF)*vS)*
+     -     Dreal(C0(0.D0,0.D0,0.D0,mX**2,mh1**2,mh1**2)))/
+     -   (mh2**2*(1.D0 + Talpha**2)**2*vS) + 
+     -  (0.012665147955292222D0*mh1**2*(mh1**2 + 2.D0*mh2**2)*
+     -     Talpha**2*(1.D0 + 1.189207115002721D0*DSqrt(GF)*Talpha*vS)*
+     -     Dreal(C0(0.D0,0.D0,0.D0,mX**2,mh1**2,mh2**2)))/
+     -   ((1.D0 + Talpha**2)**2*vS) - 
+     -  (0.018997721932938333D0*mh2**4*
+     -     (-1.D0 + 1.189207115002721D0*DSqrt(GF)*Talpha**3*vS)*
+     -     Dreal(C0(0.D0,0.D0,0.D0,mX**2,mh2**2,mh2**2)))/
+     -   ((1.D0 + Talpha**2)**2*vS) + 
+     -  (0.006332573977646111D0*mh1**4*Talpha**2*
+     -     Dreal(C0(0.D0,0.D0,0.D0,mX**2,mX**2,mh1**2)))/
+     -   ((1.D0 + Talpha**2)*vS) + 
+     -  (0.006332573977646111D0*mh2**4*
+     -     Dreal(C0(0.D0,0.D0,0.D0,mX**2,mX**2,mh2**2)))/
+     -   ((1.D0 + Talpha**2)*vS) - 
+     -  (0.006332573977646111D0*mh1**4*(2.D0*mh1**2 + mh2**2)*
+     -     Talpha**3*(Talpha - 1.189207115002721D0*DSqrt(GF)*vS)*
+     -     Dreal(C0(mX**2,mX**2,mh2**2,mh1**2,mX**2,mh1**2)))/
+     -   (mh2**2*(1.D0 + Talpha**2)**2*vS) - 
+     -  (0.012665147955292222D0*mh1**2*(mh1**2 + 2.D0*mh2**2)*
+     -     Talpha**2*(1.D0 + 1.189207115002721D0*DSqrt(GF)*Talpha*vS)*
+     -     Dreal(C0(mX**2,mX**2,mh2**2,mh1**2,mX**2,mh2**2)))/
+     -   ((1.D0 + Talpha**2)**2*vS) + 
+     -  (0.018997721932938333D0*mh2**4*
+     -     (-1.D0 + 1.189207115002721D0*DSqrt(GF)*Talpha**3*vS)*
+     -     Dreal(C0(mX**2,mX**2,mh2**2,mh2**2,mX**2,mh2**2)))/
+     -   ((1.D0 + Talpha**2)**2*vS) - 
+     -  (0.006332573977646111D0*mh1**4*Talpha**2*
+     -     Dreal(C0(mX**2,mX**2,mh2**2,mX**2,mh1**2,mX**2)))/
+     -   ((1.D0 + Talpha**2)*vS) - 
+     -  (0.006332573977646111D0*mh2**4*
+     -     Dreal(C0(mX**2,mX**2,mh2**2,mX**2,mh2**2,mX**2)))/
+     -   ((1.D0 + Talpha**2)*vS) + 
+     -  (0.0537336720235084D0*GF*(4.D0*mb**4 - 1.D0*mb**2*mh2**2)*
+     -     Talpha**2*vS*Dreal(DB0(mh2**2,mb**2,mb**2)))/
+     -   (1.D0 + Talpha**2) - 
+     -  (0.0031662869888230555D0*(2.D0*mh1**2 + mh2**2)**2*Talpha**2*
+     -     (Talpha - 1.189207115002721D0*DSqrt(GF)*vS)**2*
+     -     Dreal(DB0(mh2**2,mh1**2,mh1**2)))/
+     -   ((1.D0 + Talpha**2)**3*vS) - 
+     -  (0.006332573977646111D0*(mh1**2 + 2.D0*mh2**2)**2*Talpha**2*
+     -     (1.D0 + 1.189207115002721D0*DSqrt(GF)*Talpha*vS)**2*
+     -     Dreal(DB0(mh2**2,mh1**2,mh2**2)))/
+     -   ((1.D0 + Talpha**2)**3*vS) - 
+     -  (0.0284965828994075D0*mh2**4*
+     -     (-1.D0 + 1.189207115002721D0*DSqrt(GF)*Talpha**3*vS)**2*
+     -     Dreal(DB0(mh2**2,mh2**2,mh2**2)))/
+     -   ((1.D0 + Talpha**2)**3*vS) - 
+     -  (0.0537336720235084D0*GF*mt**2*(mh2**2 - 4.D0*mt**2)*
+     -     Talpha**2*vS*Dreal(DB0(mh2**2,mt**2,mt**2)))/
+     -   (1.D0 + Talpha**2) - 
+     -  (0.01791122400783613D0*GF*mtau**2*(mh2**2 - 4.D0*mtau**2)*
+     -     Talpha**2*vS*Dreal(DB0(mh2**2,mtau**2,mtau**2)))/
+     -   (1.D0 + Talpha**2) - 
+     -  (0.008955612003918065D0*GF*
+     -     (mh2**4 - 4.D0*mh2**2*mW**2 + 12.D0*mW**4)*Talpha**2*vS*
+     -     Dreal(DB0(mh2**2,mW**2,mW**2)))/(1.D0 + Talpha**2) - 
+     -  (0.0031662869888230555D0*mh2**4*
+     -     Dreal(DB0(mh2**2,mX**2,mX**2)))/((1.D0 + Talpha**2)*vS) - 
+     -  (0.004477806001959033D0*GF*
      -     (mh2**4 - 4.D0*mh2**2*mZ**2 + 12.D0*mZ**4)*Talpha**2*vS*
      -     Dreal(DB0(mh2**2,mZ**2,mZ**2)))/(1.D0 + Talpha**2) - 
      -  (0.012665147955292222D0*mh1**4*Talpha**2*

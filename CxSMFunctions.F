@@ -1,19 +1,22 @@
       SUBROUTINE CxSMEWCorrections(iwhichvs,iwhichpd,iwhichalpha,DE,
      .DLIR,iwarn)
       IMPLICIT DOUBLE PRECISION (A-H,O-Z)
-      integer vsscheme,pdprocess,alphascheme,ielwcxsm
+      integer vsscheme,pdprocess,alphascheme,ielwcxsm,stdscheme
       double precision mW,mZ,mt,mb,mtau
       double precision myGF
       double precision mh1,mh2,mX,vS,Talpha
       double precision DeltaE,LambdaIR
       double precision DWh1AA,DWh2AA,DWh1tautau,DWh2tautau,DWh1bb,
      .DWh2bb,DWh2ZZ,DWh2WW,DWh2tt,DWh2h1h1
-      double precision Toalphapstar,TovSh1pdpstar,TovSh2pdOS,
-     .TovSh2pdpstar,TovSh1ZEMOS,TovSh1ZEMpstar,TovSh2ZEMOS,
-     .TovSh2ZEMpstar
+      double precision Toalphapstar,TovSh1toh1pdpstar,TovSh1toh2pdOS,
+     .TovSh1toh2pdpstar,TovSh1toh1ZEMOS,TovSh1toh1ZEMpstar,
+     .TovSh1toh2ZEMOS,TovSh1toh2ZEMpstar,TovSh2toh1pdpstar,
+     .TovSh2toh1pdOS,TovSh2toh2pdpstar,TovSh2toh1ZEMOS,
+     .TovSh2toh1ZEMpstar,TovSh2toh2ZEMOS,TovSh2toh2ZEMpstar
 c MMM changed 8/12/15
       DIMENSION RESCAL(3)
-c end MMM changed 8/12/2015 
+c end MMM changed 8/12/2015
+      logical :: ChangeScheme
       
       COMMON/MODCXSM/ISINGLET,ICXSM,rescal,am1cx,am2cx,am3cx
       common/SINGLETPARS/DALPHACX1,DVSCX
@@ -44,39 +47,6 @@ c end MMM changed 8/12/2015
       pdprocess=iwhichpd
       alphascheme=iwhichalpha
       
-c------Change Scheme
-      if(vsscheme.ne.1.OR.pdprocess.ne.1.OR.alphascheme.ne.1)then
-      
-      write(*,*)"The chosen Renormalization scheme is not the alpha OS and the vsh1pdOS scheme. Thus, the input parameters have to be converted."
-      
-      if(vsscheme.eq.1.AND.pdprocess.eq.1.AND.alphascheme.eq.2)then
-      DALPHACX1=Toalphapstar()
-      DVSCX=TovSh1pdpstar()
-      elseif(vsscheme.eq.1.AND.pdprocess.eq.2.AND.alphascheme.eq.1)then
-      DVSCX=TovSh2pdOS()
-      elseif(vsscheme.eq.1.AND.pdprocess.eq.2.AND.alphascheme.eq.2)then
-      DALPHACX1=Toalphapstar()
-      DVSCX=TovSh2pdpstar()
-      elseif(vsscheme.eq.2.AND.pdprocess.eq.1.AND.alphascheme.eq.1)then
-      DVSCX=TovSh1ZEMOS()
-      elseif(vsscheme.eq.2.AND.pdprocess.eq.1.AND.alphascheme.eq.2)then
-      DALPHACX1=Toalphapstar()
-      DVSCX=TovSh1ZEMpstar()
-      elseif(vsscheme.eq.2.AND.pdprocess.eq.2.AND.alphascheme.eq.1)then
-      DVSCX=TovSh2ZEMOS()
-      elseif(vsscheme.eq.2.AND.pdprocess.eq.2.AND.alphascheme.eq.2)then
-      DALPHACX1=Toalphapstar()
-      DVSCX=TovSh2ZEMpstar()
-      endif
-      Talpha=DTan(DALPHACX1)
-      vS=DVSCX
-      
-      write(*,*)"New converted input values:"
-      write(*,*)"alpha: ", DALPHACX1
-      write(*,*)"vS: ", vS
-      
-      endif
-c------end change
       
 c       write(*,*)"mW: ", mW
 c       write(*,*)"mZ: ", mZ
@@ -93,8 +63,75 @@ c       write(*,*)"vsscheme: ", vsscheme
 c       write(*,*)"alphascheme: ", alphascheme
 c       write(*,*)"LambdaIR: ", LambdaIR
 c       write(*,*)"DeltaE: ", DeltaE
-c       write(*,*)"DWh1tautau(1): ",DWh1tautau(1)
-c       write(*,*)"DWh1tautau(2): ",DWh1tautau(2)
+
+c------Change Scheme
+      ChangeScheme=.FALSE.
+      if(ChangeScheme.eqv..TRUE.)then
+      if(DAbs(mh1-125.09).lt.0.1)then
+      stdscheme=1
+      else
+      stdscheme=2
+      endif
+      
+      if(vsscheme.ne.1.OR.pdprocess.ne.stdscheme.OR.alphascheme.ne.1)then
+      
+      write(*,*)"The chosen Renormalization scheme is not the alpha OS and the vsh125pdOS scheme. Thus, the input parameters have to be converted."
+      if(stdscheme.eq.1)then
+      if(vsscheme.eq.1.AND.pdprocess.eq.1.AND.alphascheme.eq.2)then
+      DALPHACX1=Toalphapstar()
+      DVSCX=TovSh1toh1pdpstar()
+      elseif(vsscheme.eq.1.AND.pdprocess.eq.2.AND.alphascheme.eq.1)then
+      DVSCX=TovSh1toh2pdOS()
+      elseif(vsscheme.eq.1.AND.pdprocess.eq.2.AND.alphascheme.eq.2)then
+      DALPHACX1=Toalphapstar()
+      DVSCX=TovSh1toh2pdpstar()
+      elseif(vsscheme.eq.2.AND.pdprocess.eq.1.AND.alphascheme.eq.1)then
+      DVSCX=TovSh1toh1ZEMOS()
+      elseif(vsscheme.eq.2.AND.pdprocess.eq.1.AND.alphascheme.eq.2)then
+      DALPHACX1=Toalphapstar()
+      DVSCX=TovSh1toh1ZEMpstar()
+      elseif(vsscheme.eq.2.AND.pdprocess.eq.2.AND.alphascheme.eq.1)then
+      DVSCX=TovSh1toh2ZEMOS()
+      elseif(vsscheme.eq.2.AND.pdprocess.eq.2.AND.alphascheme.eq.2)then
+      DALPHACX1=Toalphapstar()
+      DVSCX=TovSh1toh2ZEMpstar()
+      endif
+      elseif(stdscheme.eq.2)then
+      if(vsscheme.eq.1.AND.pdprocess.eq.1.AND.alphascheme.eq.2)then
+      DALPHACX1=Toalphapstar()
+      DVSCX=TovSh2toh1pdpstar()
+      elseif(vsscheme.eq.1.AND.pdprocess.eq.1.AND.alphascheme.eq.1)then
+      DVSCX=TovSh2toh1pdOS()
+      elseif(vsscheme.eq.1.AND.pdprocess.eq.2.AND.alphascheme.eq.2)then
+      DALPHACX1=Toalphapstar()
+      DVSCX=TovSh2toh2pdpstar()
+      elseif(vsscheme.eq.2.AND.pdprocess.eq.1.AND.alphascheme.eq.1)then
+      DVSCX=TovSh2toh1ZEMOS()
+      elseif(vsscheme.eq.2.AND.pdprocess.eq.1.AND.alphascheme.eq.2)then
+      DALPHACX1=Toalphapstar()
+      DVSCX=TovSh2toh1ZEMpstar()
+      elseif(vsscheme.eq.2.AND.pdprocess.eq.2.AND.alphascheme.eq.1)then
+      DVSCX=TovSh2toh2ZEMOS()
+      elseif(vsscheme.eq.2.AND.pdprocess.eq.2.AND.alphascheme.eq.2)then
+      DALPHACX1=Toalphapstar()
+      DVSCX=TovSh2toh2ZEMpstar()
+      endif
+      
+      endif
+      Talpha=DTan(DALPHACX1)
+      vS=DVSCX
+      
+      write(*,*)"New converted input values:"
+      write(*,*)"alpha: ", DALPHACX1
+      write(*,*)"vS: ", vS
+      
+      endif
+      endif
+c------end change
+
+
+
+
       dh1ll=0
       dh1bb=0
       dh1aa=0
@@ -105,11 +142,14 @@ c       write(*,*)"DWh1tautau(2): ",DWh1tautau(2)
       dh2zz=0
       dh2ww=0
       dh2h1h1=0
+      if(ielwcxsm.eq.1)then
       if(vsscheme.eq.1.and.pdprocess.eq.1.and.mh1/2.D0.le.mX)then
       write(*,*) "h1 cannot decay into DM DM, kinematically not possible! Cannot use process dependent Scheme! Set EW corrections to zero."
       elseif(vsscheme.eq.1.and.pdprocess.eq.2.and.mh2/2.D0.le.mX)then
       write(*,*) "h2 cannot decay into DM DM, kinematically not possible! Cannot use process dependent Scheme! Set EW corrections to zero."
       else
+      
+      
       write(*,*) "If decay is kinematically not allowed, EW correction will be set to zero."
       
       if(mh1/2.D0.gt.mtau) then
@@ -124,7 +164,6 @@ c       write(*,*)"DWh1tautau(2): ",DWh1tautau(2)
       
       if(mh1/2.D0.gt.mb) then
       dh1bb=DWh1bb(2)/DWh1bb(1) -1
-      
       if(dh1bb.le.-1)then
       dh1bb=0
       iwarn=1
@@ -134,7 +173,6 @@ c       write(*,*)"DWh1tautau(2): ",DWh1tautau(2)
       
       if(mh1/2.D0.gt.mX) then
       dh1aa=DWh1AA(2)/DWh1AA(1) -1
-      
       if(dh1aa.le.-1)then
       dh1aa=0
       iwarn=1
@@ -174,7 +212,6 @@ c       write(*,*)"DWh1tautau(2): ",DWh1tautau(2)
       
       if(mh2/2.D0.gt.mX) then
       dh2aa=DWh2AA(2)/DWh2AA(1) -1
-      
       if(dh2aa.le.-1)then
       dh2aa=0
       iwarn=1
@@ -225,9 +262,17 @@ c       write(*,*)"dh2zz : ", dh2zz
 c       write(*,*)"dh2ww : ", dh2ww
 c       write(*,*)"dh2h1h1 : ", dh2h1h1
       
+      if(dh1ll.gt.1.or.dh1bb.gt.1.or.dh1aa.gt.1.or.dh2ll.gt.1.or.
+     .dh2bb.gt.1.or.dh2tt.gt.1.or.dh2aa.gt.1.or.dh2zz.gt.1.or.
+     .dh2ww.gt.1.or.dh2h1h1.gt.1)then
+      write(*,*)"Attention! 1 one of the ELW correction is bigger than 100%!"
+      endif
+      endif
+      
       call ltexi
       RETURN
       END
+
 
 ccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc
       double precision function DWh1AA(order)

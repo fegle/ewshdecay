@@ -820,419 +820,6 @@ c--hMSSM?
          iofsusy = 1
       endif
 
-c MMM changed 28/4/15
-c ------------------------- The singlet extension ------------------------ c
-      if(ISINGLET.eq.1) then
-
-         do i=1,3,1
-            rescal(i)=0.D0
-         end do
-         ism4 = 0
-         ihiggs = 0
-         icoupvar = 0
-         ifermphob = 0 
-c         ionwz = 0 
-
-         vcx = 1.D0/dsqrt(dsqrt(2.D0)*gf)
-
-c real broken phase
-         if(ICXSM.eq.1) then
-            alphacx1 = sbalphacx1
-            am1cx = sbamh1
-            am2cx = sbamh2
-            vscx = sbvs
-
-            dc1 = dcos(alphacx1)
-            ds1 = dsin(alphacx1)
-
-            R1h = dc1
-            R1s = ds1
-            R2h = -ds1
-            R2s = dc1
-
-c            print*,'R1h,R1s,R2h,R2s',R1h,R1s,R2h,R2s
-
-            alambda = (2.D0*(am1cx**2 - am1cx**2*ds1**2 + am2cx**2*
-     .           ds1**2))/vcx**2
-            am2S=(-(am1cx**2*ds1*(dc1*vcx + ds1*vscx)) + am2cx**2*
-     .           (dc1*ds1*vcx + (-1.D0 + ds1**2)*vscx))/(2.D0*vscx)
-            alambdas = (3.D0*(am2cx**2 + (am1cx**2-am2cx**2)*ds1**2))
-     .           /vscx**2
-            amass2=(-3.D0*alambda*vcx**4 + 12.D0*am2S*vscx**2 + 
-     .           2.D0*alambdas*vscx**4)/(6.D0*vcx**2)
-            alambdahs=-(6.D0*am2S + alambdas*vscx**2)/(3.D0*vcx**2)
-
-            gg111=(3.D0*alambda*R1h**3*vcx)/2.D0 + 3.D0*alambdahs*
-     .           R1h*R1s**2*vcx + 3.D0*alambdahs*R1h**2*R1s*vscx + 
-     .           alambdas*R1s**3*vscx
-
-            gg112=2.D0*alambdahs*R1h*R1s*(R2s*vcx + R2h*vscx) + 
-     .           R1h**2*((3.D0*alambda*R2h*vcx)/2.D0+alambdahs*R2s*vscx) 
-     .           + R1s**2*(alambdahs*R2h*vcx + alambdas*R2s*vscx)
-
-            gg122=R1h*((3.D0*alambda*R2h**2*vcx)/2.D0
-     .           +alambdahs*R2s**2*vcx + 2.D0*alambdahs*R2h*R2s*vscx) 
-     .           + R1s*(2.D0*alambdahs*R2h*R2s*vcx + alambdahs*R2h**2*
-     .           vscx + alambdas*R2s**2*vscx)
-
-            gg222=(3.D0*alambda*R2h**3*vcx)/2.D0 + 3.D0*alambdahs*R2h*
-     .           R2s**2*vcx + 3.D0*alambdahs*R2h**2*R2s*vscx 
-     .           + alambdas*R2s**3*vscx
-
-
-            XNORMVAL = AMZ**2/VCX
-
-c            print*,'gg111,112',gg111,gg112
-c            print*,'gg122,222',gg122,gg222
-
-            gg111=gg111/XNORMVAL
-            gg112=gg112/XNORMVAL
-            gg122=gg122/XNORMVAL
-            gg222=gg222/XNORMVAL
-
-c            print*,'lambda,lambdaHs',alambda,alambdahs
-c            print*,'m2,m2S,lambdaS',amass2,am2S,alambdas
-c            print*,'gg111,112',gg111,gg112
-c            print*,'gg122,222',gg122,gg222
-c            print*,''
-
-c real dark phase
-         elseif(ICXSM.eq.2) then
-            am1cx = SDAMH1
-            amd = SDAMHD
-            am2cx = amd
-            am2s = SDAMH2S
-
-            amass2=-am1cx**2
-            alambda=(2.D0*am1cx**2)/vcx**2
-            alambdahs=(-2.D0*(am2s - amd**2))/vcx**2
-
-            gg111=(3.D0*alambda*vcx)/2.D0
-            gg112=0.D0
-            gg122=alambdahs*vcx
-            gg222=0.D0
-
-c            print*,'mH1,mD',am1cx,amd
-c            print*,'lambdaS,m2Sin',SDLAMBDAS,am2s
-c            print*,''
-c            print*,'lambda,lambdaHS,m2',alambda,alambdahs,amass2
-c            print*,''
-c            print*,'gg111/112',gg111,gg112
-c            print*,'gg122/222',gg122,gg222
-
-            XNORMVAL = AMZ**2/VCX
-
-            gg111=gg111/XNORMVAL
-            gg112=gg112/XNORMVAL
-            gg122=gg122/XNORMVAL
-            gg222=gg222/XNORMVAL
-
-c complex broken phase 
-         elseif(ICXSM.eq.3) then
-            ALPHACX1 = BALPHACX1
-            ALPHACX2 = BALPHACX2
-            ALPHACX3 = BALPHACX3
-            AM1CX = BAM1CX
-            AM3CX = BAM3CX
-            VSCX = BVSCX
-
-            dc1 = dcos(alphacx1)
-            ds1 = dsin(alphacx1)
-            dc2 = dcos(alphacx2)
-            ds2 = dsin(alphacx2)
-            dc3 = dcos(alphacx3)
-            ds3 = dsin(alphacx3)
-
-c            print*,'broken',alphacx1,alphacx2,alphacx3
-c            print*,'broken',am1cx,am3cx,vscx
-
-c Higg mixing matrix elements
-            R1h=dc1*dc2
-            R1s=dc2*ds1
-            R1a=ds2
-            R2h=-(dc3*ds1) - dc1*ds2*ds3
-            R2s=dc1*dc3 - ds1*ds2*ds3
-            R2a=dc2*ds3
-            R3h=-(dc1*dc3*ds2) + ds1*ds3
-            R3s=-(dc3*ds1*ds2) - dc1*ds3
-            R3a=dc2*dc3
-
-c            print*,'R1h,R1s,R1a',R1h,R1s,R1a
-c            print*,'R2h,R2s,R2a',R2h,R2s,R2a
-c            print*,'R3h,R3s,R3a',R3h,R3s,R3a
-
-c mass AM2CX
-            AM2CX=dsqrt(-((am1cx**2*am3cx**2*R2h*R2s)
-     .           /(am3cx**2*R1h*R1s + am1cx**2*R3h*R3s)))
-
-c some definitions
-            va=((dc3*ds1*(am3cx**2 + (am1cx**2 - am3cx**2)*ds2**2) 
-     .           + dc1*am1cx**2*ds2*ds3)*vscx)/(dc2*(am1cx**2 
-     .           - am3cx**2)*ds1*(dc3*ds1*ds2 + dc1*ds3))
-
-            alambda=(-2.D0*am3cx**2*(dc1*ds1*(-1.D0 + 2.D0*ds3**2)*
-     .           ((1.D0-2.D0*ds2**2)*va*vscx + dc2*ds1*ds2*(va - vscx)*
-     .           (va + vscx)) + dc3*ds3*(ds2*(ds1**2 + ds2**2 - 3.D0*
-     .           ds1**2*ds2**2)*va*vscx + dc2*ds1*(-1.D0 + ds1**2*
-     .           (1.D0 + ds2**2))*(va - vscx)*(va + vscx))))/((dc3*
-     .           ds1*ds2 + dc1*ds3)*vcx**2*(dc2*ds1*va - ds2*vscx)*
-     .           (dc1*dc3*va - ds3*(ds1*ds2*va + dc2*vscx)))
-
-            b2=(am3cx**2*vscx*((dc3*ds2*(-ds1**2 + (-1.D0 + 3.D0*
-     .           ds1**2)*ds2**2)*ds3 + dc1*ds1*(-1.D0 + 2.D0*ds2**2)*
-     .           (-1.D0+ 2.D0*ds3**2))*va**2 - 2.D0*dc3*ds2*(-1.D0 + 
-     .           ds2**2)*ds3*vscx**2 + dc2*va*((ds1*(-1.D0 + ds1**2)*ds2
-     .           + dc1*dc3*(ds1**2 + (-1.D0 + ds1**2)*ds2**2)*ds3 
-     .           - 2.D0*ds1*(-1.D0 + ds1**2)*ds2*ds3**2)*vcx + (dc3*
-     .           ds1*(-2.D0 +ds1**2 + (3.D0 + ds1**2)*ds2**2)*ds3 + 
-     .           dc1*(1.D0+ ds1**2)*ds2*(-1.D0 + 2.D0*ds3**2))*vscx)))
-     .           /((dc3*ds1*ds2 + dc1*ds3)*va*(dc2*ds1*va - ds2*vscx)*
-     .           (dc1*dc3*va- ds3*(ds1*ds2*va + dc2*vscx)))
-
-            d2=(-2.D0*am3cx**2*(dc2*ds1*(dc3*(-1.D0 + ds1**2*(1.D0 
-     .           + ds2**2))*ds3 + dc1*ds1*ds2*(-1.D0 + 2.D0*ds3**2))*va 
-     .           - dc3*ds2*(-1.D0 + ds2**2)*ds3*vscx))/((dc3*ds1*ds2 
-     .           + dc1*ds3)*va*(dc2*ds1*va - ds2*vscx)*(dc1*dc3*va 
-     .           - ds3*(ds1*ds2*va + dc2*vscx)))
-
-            a1=-((am3cx**2*vscx*(dc3*ds1*ds2*va + dc1*ds3*va + 
-     .           dc2*dc3*vscx))/(dsqrt(2.D0)*(dc3*ds1*ds2 + dc1*ds3)
-     .           *va))
-
-            amass2=(-(alambda*vcx**4*vscx) + (va**2 + vscx**2)*
-     .           (2.D0*b2*vscx + d2*vscx*(va**2 + vscx**2) + 2.D0*a1*
-     .           dsqrt(2.D0)))/(2.D0*vcx**2*vscx)
-
-            delta2=-((2.D0*b2*vscx + d2*vscx*(va**2 + vscx**2) + 
-     .           2.D0*a1*dsqrt(2.D0))/(vcx**2*vscx))
-
-            b1=-((a1*dsqrt(2.D0))/vscx)
-
-c            print*,'va,b2,d2',va,b2,d2
-c            print*,'b1,a1,m2',b1,a1,amass2
-c            print*,'delta2,lambda,mH2',delta2,alambda,am2cx
-c            print*,''
-
-c trilinear Higgs self-couplings
-            gg111=(3.D0*(alambda*R1h**3*vcx + delta2*R1h*(R1a**2 
-     .           + R1s**2)*vcx + delta2*R1h**2*(R1a*va + R1s*vscx) 
-     .           + d2*(R1a**2 + R1s**2)*(R1a*va + R1s*vscx)))/2.D0
-
-            gg112=(2.D0*d2*R1a*R1s*(R2s*va + R2a*vscx) + 2.D0*delta2*
-     .           R1h*(R1a*R2a*vcx + R1s*R2s*vcx + R1a*R2h*va + R1s*R2h*
-     .           vscx) + R1a**2*(delta2*R2h*vcx + 3.D0*d2*R2a*va + 
-     .           d2*R2s*vscx) + R1s**2*(delta2*R2h*vcx + d2*R2a*va 
-     .           + 3*d2*R2s*vscx) + R1h**2*(3.D0*alambda*R2h*vcx + 
-     .           delta2*(R2a*va + R2s*vscx)))/2.D0
-
-            gg113=(2.D0*d2*R1a*R1s*(R3s*va + R3a*vscx) + 2.D0*delta2*
-     .           R1h*(R1a*R3a*vcx + R1s*R3s*vcx + R1a*R3h*va + R1s*R3h*
-     .           vscx) + R1a**2*(delta2*R3h*vcx + 3.D0*d2*R3a*va + d2*
-     .           R3s*vscx) + R1s**2*(delta2*R3h*vcx + d2*R3a*va + 3.D0*
-     .           d2*R3s*vscx) + R1h**2*(3*alambda*R3h*vcx + delta2*(R3a*
-     .           va + R3s*vscx)))/2.D0
-
-            gg122=(R1a*(2.D0*delta2*R2a*R2h*vcx + 3.D0*d2*R2a**2*va + 
-     .           delta2*R2h**2*va + d2*R2s**2*va + 2.D0*d2*R2a*R2s*vscx) 
-     .           + R1h*(3.D0*alambda*R2h**2*vcx + delta2*(R2a**2 + 
-     .           R2s**2)*vcx + 2.D0*delta2*R2h*(R2a*va + R2s*vscx)) + 
-     .           R1s*(2.D0*delta2*R2h*R2s*vcx + delta2*R2h**2*vscx + 
-     .           d2*(2.D0*R2a*R2s*va + R2a**2*vscx + 3.D0*R2s**2*vscx)))
-     .           /2.D0
-
-            gg123=(R1a*(delta2*R2h*(R3a*vcx + R3h*va) + d2*R2s*(R3s*va 
-     .           + R3a*vscx) + R2a*(delta2*R3h*vcx + 3.D0*d2*R3a*va + 
-     .           d2*R3s*vscx)) + R1h*(delta2*(R2a*R3a*vcx + R2s*R3s*vcx 
-     .           + R2a*R3h*va + R2s*R3h*vscx) + R2h*(3.D0*alambda*R3h*
-     .           vcx + delta2*(R3a*va + R3s*vscx))) + R1s*(d2*R2a*(R3s*
-     .           va + R3a*vscx) + delta2*R2h*(R3s*vcx + R3h*vscx) + 
-     .           R2s*(delta2*R3h*vcx + d2*(R3a*va + 3.D0*R3s*vscx))))
-     .           /2.D0
-
-            gg133=(R1a*(2.D0*delta2*R3a*R3h*vcx + 3.D0*d2*R3a**2*va 
-     .           + delta2*R3h**2*va + d2*R3s**2*va + 2.D0*d2*R3a*R3s*
-     .           vscx) + R1h*(3.D0*alambda*R3h**2*vcx + delta2*(R3a**2 
-     .           + R3s**2)*vcx + 2.D0*delta2*R3h*(R3a*va + R3s*vscx)) 
-     .           + R1s*(2.D0*delta2*R3h*R3s*vcx + delta2*R3h**2*vscx + 
-     .           d2*(2.D0*R3a*R3s*va + R3a**2*vscx + 3.D0*R3s**2*vscx))
-     .           )/2.D0
-
-            gg222=(3.D0*(alambda*R2h**3*vcx + delta2*R2h*(R2a**2 
-     .           + R2s**2)*vcx + delta2*R2h**2*(R2a*va + R2s*vscx) 
-     .           + d2*(R2a**2 + R2s**2)*(R2a*va + R2s*vscx)))/2.D0
-
-            gg223=(2.D0*d2*R2a*R2s*(R3s*va + R3a*vscx) + 2.D0*delta2*
-     .           R2h*(R2a*R3a*vcx + R2s*R3s*vcx + R2a*R3h*va + R2s*R3h*
-     .           vscx) + R2a**2*(delta2*R3h*vcx + 3.D0*d2*R3a*va + 
-     .           d2*R3s*vscx) + R2s**2*(delta2*R3h*vcx + d2*R3a*va 
-     .           + 3*d2*R3s*vscx) + R2h**2*(3.D0*alambda*R3h*vcx + 
-     .           delta2*(R3a*va + R3s*vscx)))/2.D0
-
-            gg233=(R2a*(2.D0*delta2*R3a*R3h*vcx + 3.D0*d2*R3a**2*va + 
-     .           delta2*R3h**2*va + d2*R3s**2*va + 2.D0*d2*R3a*R3s*vscx) 
-     .           + R2h*(3.D0*alambda*R3h**2*vcx + delta2*(R3a**2 + 
-     .           R3s**2)*vcx + 2.D0*delta2*R3h*(R3a*va + R3s*vscx)) + 
-     .           R2s*(2.D0*delta2*R3h*R3s*vcx + delta2*R3h**2*vscx + 
-     .           d2*(2.D0*R3a*R3s*va + R3a**2*vscx + 3.D0*R3s**2*vscx)))
-     .           /2.D0
-
-            gg333=(3.D0*(alambda*R3h**3*vcx + delta2*R3h*(R3a**2 
-     .           + R3s**2)*vcx + delta2*R3h**2*(R3a*va + R3s*vscx) 
-     .           + d2*(R3a**2 + R3s**2)*(R3a*va + R3s*vscx)))/2.D0
-
-c            print*,'Trilinear couplings'
-c            print*,'111,112,113',gg111,gg112,gg113
-c            print*,'122,123,133',gg122,gg123,gg133
-c            print*,'222,223,233',gg222,gg223,gg233
-c            print*,'333',gg333
-c            print*,''
-
-            XNORMVAL = AMZ**2/VCX
-
-            gg111=gg111/XNORMVAL
-            gg112=gg112/XNORMVAL
-            gg113=gg113/XNORMVAL
-            gg122=gg122/XNORMVAL
-            gg123=gg123/XNORMVAL
-            gg133=gg133/XNORMVAL
-            gg222=gg222/XNORMVAL
-            gg223=gg223/XNORMVAL
-            gg233=gg233/XNORMVAL
-            gg333=gg333/XNORMVAL
-
-c complex dark phase
-         elseif(ICXSM.eq.4) then
-            ALPHACX1 = DALPHACX1
-            ALPHACX2 = 0.D0
-            ALPHACX3 = 0.D0
-            AM1CX = DAM1CX
-            AM2CX = DAM2CX
-            AM3CX = DAM3CX
-            VSCX = DVSCX
-            A1CX = DA1CX
-            dc1 = dcos(alphacx1)
-            ds1 = dsin(alphacx1)
-
-c some definitions
-c            amass2=(-(am2cx**2**2*ds1**2*vcx) + am1cx**2*(-1.D0 
-c     .           + ds1**2)*vcx + dc1*(-am1cx**2 + am2cx**2)*ds1*vscx)
-c     .           /vcx
-
-            amass2=(-(am2cx**2*ds1**2*vcx) + am1cx**2*(-1.D0 + ds1**2)
-     .           *vcx + dc1*(-am1cx**2 + am2cx**2)*ds1*vscx)/vcx
-
-            delta2=(2.D0*dc1*(am1cx**2 - am2cx**2)*ds1)/(vcx*vscx)
-
-            alambda=(2.D0*(am1cx**2 - am1cx**2*ds1**2+am2cx**2*ds1**2)
-     .           )/vcx**2
-
-            b2=(dc1*(-am1cx**2 + am2cx**2)*ds1*vcx+(am3cx**2-am2cx**2 
-     .           + (-am1cx**2 + am2cx**2)*ds1**2)*vscx - 2.D0*a1cx*
-     .           dsqrt(2.D0))/vscx
-            
-            d2=(2.D0*((am2cx**2 + (am1cx**2 - am2cx**2)*ds1**2)*vscx 
-     .           + a1cx*dsqrt(2.D0)))/vscx**3
-
-            b1=-((am3cx**2*vscx + a1cx*dsqrt(2.D0))/vscx)
-
-c            print*,'m2,delta2,lambda',amass2,delta2,alambda
-c            print*,'b2,d2,b1',b2,d2,b1
-
-c trilinear Higgs self-couplings
-            gg111=(3.D0*(dc1**3*alambda*vcx + dc1*delta2*ds1**2*vcx + 
-     .           dc1**2*delta2*ds1*vscx + d2*ds1**3*vscx))/2.D0
-
-            gg112=((dc1**2*(2.D0*delta2 - 3.D0*alambda)*ds1*vcx) 
-     .           - delta2*ds1**3*vcx + dc1**3*delta2*vscx + dc1*
-     .           (3.D0*d2 - 2.D0*delta2)*ds1**2*vscx)/2.D0
-
-            gg113=0.D0
-
-            gg122=(dc1**3*delta2*vcx + dc1*(-2.D0*delta2+3.D0*alambda)*
-     .           ds1**2*vcx + dc1**2*(3.D0*d2 - 2.D0*delta2)*ds1*vscx 
-     .           + delta2*ds1**3*vscx)/2.D0
-
-            gg123=0.D0
-
-            gg133=(dc1*delta2*vcx + d2*ds1*vscx)/2.D0
-
-            gg222=(3.D0*(-(dc1**2*delta2*ds1*vcx) - alambda*ds1**3*vcx 
-     .           + dc1**3*d2*vscx + dc1*delta2*ds1**2*vscx))/2.D0
-
-            gg223=0.D0
-
-            gg233=(-(delta2*ds1*vcx) + dc1*d2*vscx)/2.D0
-
-            gg333=0.D0
-            
-c            print*,'Trilinear couplings'
-c            print*,'111,112,113',gg111,gg112,gg113
-c            print*,'122,123,133',gg122,gg123,gg133
-c            print*,'222,223,233',gg222,gg223,gg233
-c            print*,'333',gg333
-c            print*,''
-
-            XNORMVAL = AMZ**2/VCX
-
-            gg111=gg111/XNORMVAL
-            gg112=gg112/XNORMVAL
-            gg113=gg113/XNORMVAL
-            gg122=gg122/XNORMVAL
-            gg123=gg123/XNORMVAL
-            gg133=gg133/XNORMVAL
-            gg222=gg222/XNORMVAL
-            gg223=gg223/XNORMVAL
-            gg233=gg233/XNORMVAL
-            gg333=gg333/XNORMVAL
-
-         endif
-
-         if(ICXSM.eq.1) then
-            rescal(1) = dcos(ALPHACX1)
-            rescal(2) = -dsin(ALPHACX1)
-         elseif(ICXSM.eq.2) then
-            rescal(1) = 1.D0
-         elseif(ICXSM.eq.3) then
-            rescal(1) = dcos(ALPHACX1)*dcos(ALPHACX2)
-            rescal(2) = -(dcos(ALPHACX1)*dsin(ALPHACX2)*dsin(ALPHACX3)+
-     .           dsin(ALPHACX1)*dcos(ALPHACX3))
-            rescal(3) = -dcos(ALPHACX1)*dsin(ALPHACX2)*dcos(ALPHACX3)
-     .           + dsin(ALPHACX1)*dsin(ALPHACX3)
-         elseif(ICXSM.eq.4) then
-            rescal(1) = dcos(ALPHACX1)
-            rescal(2) = -dsin(ALPHACX1)
-            rescal(3) = 0.D0
-         endif
-      endif
-
-c      print*,'scaling factor, Higgs 1',rescal(1),1
-c      print*,'scaling factor, Higgs 2',rescal(2),2
-c      print*,'scaling factor, Higgs 3',rescal(3),3
-cc      rescal(1)=1.D0
-c ------------------------- The singlet extension ------------------------ c
-c end MMM changed 28/4/15
-
-c MMM changed 26/8/2022
-      if(ielwcxsm.eq.1) then
-         iwarn = 0
-         if(da1cx.ne.0.D0) then
-            print*,'Attention: You have to set a1=0 for the EW corrs.'
-            endif
-         ioelw = 0
-         call CxSMEWCorrections(ivsscheme,ipdprocess,iralph_mix,DeltaE,
-     .        DLambdaIR,iwarn)
-         write(*,*)dh1ll,dh1bb,dh1aa,dh2ll,dh2bb,dh2tt,
-     .     dh2aa,dh2zz,dh2ww,dh2h1h1,ielwcxsm
-     
-         if(iwarn.eq.1) then
-            print*,'The EW corrections to one or more decay widths 
-     .lead to a negative decay width and hence the correction is set 
-     .to 0.'
-         endif
-      endif
-c end MMM changed 26/8/2022
-
-
       
       IF(ICOUPVAR.EQ.0)THEN
        CPW    = 1
@@ -2014,6 +1601,433 @@ C--CHECK FERMIOPHOBIC
        IHIGGS = 0
       ENDIF
 
+c-----changed Felix 05/10/22
+
+c MMM changed 28/4/15
+c ------------------------- The singlet extension ------------------------ c
+      if(ISINGLET.eq.1) then
+
+         do i=1,3,1
+            rescal(i)=0.D0
+         end do
+         ism4 = 0
+         ihiggs = 0
+         icoupvar = 0
+         ifermphob = 0
+c-------Felix changed 15/12/2022
+c         ioelw = 0
+c-------end changed
+c         ionwz = 0 
+
+         vcx = 1.D0/dsqrt(dsqrt(2.D0)*gf)
+
+c real broken phase
+         if(ICXSM.eq.1) then
+            alphacx1 = sbalphacx1
+            am1cx = sbamh1
+            am2cx = sbamh2
+            vscx = sbvs
+
+            dc1 = dcos(alphacx1)
+            ds1 = dsin(alphacx1)
+
+            R1h = dc1
+            R1s = ds1
+            R2h = -ds1
+            R2s = dc1
+
+c            print*,'R1h,R1s,R2h,R2s',R1h,R1s,R2h,R2s
+
+            alambda = (2.D0*(am1cx**2 - am1cx**2*ds1**2 + am2cx**2*
+     .           ds1**2))/vcx**2
+            am2S=(-(am1cx**2*ds1*(dc1*vcx + ds1*vscx)) + am2cx**2*
+     .           (dc1*ds1*vcx + (-1.D0 + ds1**2)*vscx))/(2.D0*vscx)
+            alambdas = (3.D0*(am2cx**2 + (am1cx**2-am2cx**2)*ds1**2))
+     .           /vscx**2
+            amass2=(-3.D0*alambda*vcx**4 + 12.D0*am2S*vscx**2 + 
+     .           2.D0*alambdas*vscx**4)/(6.D0*vcx**2)
+            alambdahs=-(6.D0*am2S + alambdas*vscx**2)/(3.D0*vcx**2)
+
+            gg111=(3.D0*alambda*R1h**3*vcx)/2.D0 + 3.D0*alambdahs*
+     .           R1h*R1s**2*vcx + 3.D0*alambdahs*R1h**2*R1s*vscx + 
+     .           alambdas*R1s**3*vscx
+
+            gg112=2.D0*alambdahs*R1h*R1s*(R2s*vcx + R2h*vscx) + 
+     .           R1h**2*((3.D0*alambda*R2h*vcx)/2.D0+alambdahs*R2s*vscx) 
+     .           + R1s**2*(alambdahs*R2h*vcx + alambdas*R2s*vscx)
+
+            gg122=R1h*((3.D0*alambda*R2h**2*vcx)/2.D0
+     .           +alambdahs*R2s**2*vcx + 2.D0*alambdahs*R2h*R2s*vscx) 
+     .           + R1s*(2.D0*alambdahs*R2h*R2s*vcx + alambdahs*R2h**2*
+     .           vscx + alambdas*R2s**2*vscx)
+
+            gg222=(3.D0*alambda*R2h**3*vcx)/2.D0 + 3.D0*alambdahs*R2h*
+     .           R2s**2*vcx + 3.D0*alambdahs*R2h**2*R2s*vscx 
+     .           + alambdas*R2s**3*vscx
+
+
+            XNORMVAL = AMZ**2/VCX
+
+c            print*,'gg111,112',gg111,gg112
+c            print*,'gg122,222',gg122,gg222
+
+            gg111=gg111/XNORMVAL
+            gg112=gg112/XNORMVAL
+            gg122=gg122/XNORMVAL
+            gg222=gg222/XNORMVAL
+
+c            print*,'lambda,lambdaHs',alambda,alambdahs
+c            print*,'m2,m2S,lambdaS',amass2,am2S,alambdas
+c            print*,'gg111,112',gg111,gg112
+c            print*,'gg122,222',gg122,gg222
+c            print*,''
+
+c real dark phase
+         elseif(ICXSM.eq.2) then
+            am1cx = SDAMH1
+            amd = SDAMHD
+            am2cx = amd
+            am2s = SDAMH2S
+
+            amass2=-am1cx**2
+            alambda=(2.D0*am1cx**2)/vcx**2
+            alambdahs=(-2.D0*(am2s - amd**2))/vcx**2
+
+            gg111=(3.D0*alambda*vcx)/2.D0
+            gg112=0.D0
+            gg122=alambdahs*vcx
+            gg222=0.D0
+
+c            print*,'mH1,mD',am1cx,amd
+c            print*,'lambdaS,m2Sin',SDLAMBDAS,am2s
+c            print*,''
+c            print*,'lambda,lambdaHS,m2',alambda,alambdahs,amass2
+c            print*,''
+c            print*,'gg111/112',gg111,gg112
+c            print*,'gg122/222',gg122,gg222
+
+            XNORMVAL = AMZ**2/VCX
+
+            gg111=gg111/XNORMVAL
+            gg112=gg112/XNORMVAL
+            gg122=gg122/XNORMVAL
+            gg222=gg222/XNORMVAL
+
+c complex broken phase 
+         elseif(ICXSM.eq.3) then
+            ALPHACX1 = BALPHACX1
+            ALPHACX2 = BALPHACX2
+            ALPHACX3 = BALPHACX3
+            AM1CX = BAM1CX
+            AM3CX = BAM3CX
+            VSCX = BVSCX
+
+            dc1 = dcos(alphacx1)
+            ds1 = dsin(alphacx1)
+            dc2 = dcos(alphacx2)
+            ds2 = dsin(alphacx2)
+            dc3 = dcos(alphacx3)
+            ds3 = dsin(alphacx3)
+
+c            print*,'broken',alphacx1,alphacx2,alphacx3
+c            print*,'broken',am1cx,am3cx,vscx
+
+c Higg mixing matrix elements
+            R1h=dc1*dc2
+            R1s=dc2*ds1
+            R1a=ds2
+            R2h=-(dc3*ds1) - dc1*ds2*ds3
+            R2s=dc1*dc3 - ds1*ds2*ds3
+            R2a=dc2*ds3
+            R3h=-(dc1*dc3*ds2) + ds1*ds3
+            R3s=-(dc3*ds1*ds2) - dc1*ds3
+            R3a=dc2*dc3
+
+c            print*,'R1h,R1s,R1a',R1h,R1s,R1a
+c            print*,'R2h,R2s,R2a',R2h,R2s,R2a
+c            print*,'R3h,R3s,R3a',R3h,R3s,R3a
+
+c mass AM2CX
+            AM2CX=dsqrt(-((am1cx**2*am3cx**2*R2h*R2s)
+     .           /(am3cx**2*R1h*R1s + am1cx**2*R3h*R3s)))
+
+c some definitions
+            va=((dc3*ds1*(am3cx**2 + (am1cx**2 - am3cx**2)*ds2**2) 
+     .           + dc1*am1cx**2*ds2*ds3)*vscx)/(dc2*(am1cx**2 
+     .           - am3cx**2)*ds1*(dc3*ds1*ds2 + dc1*ds3))
+
+            alambda=(-2.D0*am3cx**2*(dc1*ds1*(-1.D0 + 2.D0*ds3**2)*
+     .           ((1.D0-2.D0*ds2**2)*va*vscx + dc2*ds1*ds2*(va - vscx)*
+     .           (va + vscx)) + dc3*ds3*(ds2*(ds1**2 + ds2**2 - 3.D0*
+     .           ds1**2*ds2**2)*va*vscx + dc2*ds1*(-1.D0 + ds1**2*
+     .           (1.D0 + ds2**2))*(va - vscx)*(va + vscx))))/((dc3*
+     .           ds1*ds2 + dc1*ds3)*vcx**2*(dc2*ds1*va - ds2*vscx)*
+     .           (dc1*dc3*va - ds3*(ds1*ds2*va + dc2*vscx)))
+
+            b2=(am3cx**2*vscx*((dc3*ds2*(-ds1**2 + (-1.D0 + 3.D0*
+     .           ds1**2)*ds2**2)*ds3 + dc1*ds1*(-1.D0 + 2.D0*ds2**2)*
+     .           (-1.D0+ 2.D0*ds3**2))*va**2 - 2.D0*dc3*ds2*(-1.D0 + 
+     .           ds2**2)*ds3*vscx**2 + dc2*va*((ds1*(-1.D0 + ds1**2)*ds2
+     .           + dc1*dc3*(ds1**2 + (-1.D0 + ds1**2)*ds2**2)*ds3 
+     .           - 2.D0*ds1*(-1.D0 + ds1**2)*ds2*ds3**2)*vcx + (dc3*
+     .           ds1*(-2.D0 +ds1**2 + (3.D0 + ds1**2)*ds2**2)*ds3 + 
+     .           dc1*(1.D0+ ds1**2)*ds2*(-1.D0 + 2.D0*ds3**2))*vscx)))
+     .           /((dc3*ds1*ds2 + dc1*ds3)*va*(dc2*ds1*va - ds2*vscx)*
+     .           (dc1*dc3*va- ds3*(ds1*ds2*va + dc2*vscx)))
+
+            d2=(-2.D0*am3cx**2*(dc2*ds1*(dc3*(-1.D0 + ds1**2*(1.D0 
+     .           + ds2**2))*ds3 + dc1*ds1*ds2*(-1.D0 + 2.D0*ds3**2))*va 
+     .           - dc3*ds2*(-1.D0 + ds2**2)*ds3*vscx))/((dc3*ds1*ds2 
+     .           + dc1*ds3)*va*(dc2*ds1*va - ds2*vscx)*(dc1*dc3*va 
+     .           - ds3*(ds1*ds2*va + dc2*vscx)))
+
+            a1=-((am3cx**2*vscx*(dc3*ds1*ds2*va + dc1*ds3*va + 
+     .           dc2*dc3*vscx))/(dsqrt(2.D0)*(dc3*ds1*ds2 + dc1*ds3)
+     .           *va))
+
+            amass2=(-(alambda*vcx**4*vscx) + (va**2 + vscx**2)*
+     .           (2.D0*b2*vscx + d2*vscx*(va**2 + vscx**2) + 2.D0*a1*
+     .           dsqrt(2.D0)))/(2.D0*vcx**2*vscx)
+
+            delta2=-((2.D0*b2*vscx + d2*vscx*(va**2 + vscx**2) + 
+     .           2.D0*a1*dsqrt(2.D0))/(vcx**2*vscx))
+
+            b1=-((a1*dsqrt(2.D0))/vscx)
+
+c            print*,'va,b2,d2',va,b2,d2
+c            print*,'b1,a1,m2',b1,a1,amass2
+c            print*,'delta2,lambda,mH2',delta2,alambda,am2cx
+c            print*,''
+
+c trilinear Higgs self-couplings
+            gg111=(3.D0*(alambda*R1h**3*vcx + delta2*R1h*(R1a**2 
+     .           + R1s**2)*vcx + delta2*R1h**2*(R1a*va + R1s*vscx) 
+     .           + d2*(R1a**2 + R1s**2)*(R1a*va + R1s*vscx)))/2.D0
+
+            gg112=(2.D0*d2*R1a*R1s*(R2s*va + R2a*vscx) + 2.D0*delta2*
+     .           R1h*(R1a*R2a*vcx + R1s*R2s*vcx + R1a*R2h*va + R1s*R2h*
+     .           vscx) + R1a**2*(delta2*R2h*vcx + 3.D0*d2*R2a*va + 
+     .           d2*R2s*vscx) + R1s**2*(delta2*R2h*vcx + d2*R2a*va 
+     .           + 3*d2*R2s*vscx) + R1h**2*(3.D0*alambda*R2h*vcx + 
+     .           delta2*(R2a*va + R2s*vscx)))/2.D0
+
+            gg113=(2.D0*d2*R1a*R1s*(R3s*va + R3a*vscx) + 2.D0*delta2*
+     .           R1h*(R1a*R3a*vcx + R1s*R3s*vcx + R1a*R3h*va + R1s*R3h*
+     .           vscx) + R1a**2*(delta2*R3h*vcx + 3.D0*d2*R3a*va + d2*
+     .           R3s*vscx) + R1s**2*(delta2*R3h*vcx + d2*R3a*va + 3.D0*
+     .           d2*R3s*vscx) + R1h**2*(3*alambda*R3h*vcx + delta2*(R3a*
+     .           va + R3s*vscx)))/2.D0
+
+            gg122=(R1a*(2.D0*delta2*R2a*R2h*vcx + 3.D0*d2*R2a**2*va + 
+     .           delta2*R2h**2*va + d2*R2s**2*va + 2.D0*d2*R2a*R2s*vscx) 
+     .           + R1h*(3.D0*alambda*R2h**2*vcx + delta2*(R2a**2 + 
+     .           R2s**2)*vcx + 2.D0*delta2*R2h*(R2a*va + R2s*vscx)) + 
+     .           R1s*(2.D0*delta2*R2h*R2s*vcx + delta2*R2h**2*vscx + 
+     .           d2*(2.D0*R2a*R2s*va + R2a**2*vscx + 3.D0*R2s**2*vscx)))
+     .           /2.D0
+
+            gg123=(R1a*(delta2*R2h*(R3a*vcx + R3h*va) + d2*R2s*(R3s*va 
+     .           + R3a*vscx) + R2a*(delta2*R3h*vcx + 3.D0*d2*R3a*va + 
+     .           d2*R3s*vscx)) + R1h*(delta2*(R2a*R3a*vcx + R2s*R3s*vcx 
+     .           + R2a*R3h*va + R2s*R3h*vscx) + R2h*(3.D0*alambda*R3h*
+     .           vcx + delta2*(R3a*va + R3s*vscx))) + R1s*(d2*R2a*(R3s*
+     .           va + R3a*vscx) + delta2*R2h*(R3s*vcx + R3h*vscx) + 
+     .           R2s*(delta2*R3h*vcx + d2*(R3a*va + 3.D0*R3s*vscx))))
+     .           /2.D0
+
+            gg133=(R1a*(2.D0*delta2*R3a*R3h*vcx + 3.D0*d2*R3a**2*va 
+     .           + delta2*R3h**2*va + d2*R3s**2*va + 2.D0*d2*R3a*R3s*
+     .           vscx) + R1h*(3.D0*alambda*R3h**2*vcx + delta2*(R3a**2 
+     .           + R3s**2)*vcx + 2.D0*delta2*R3h*(R3a*va + R3s*vscx)) 
+     .           + R1s*(2.D0*delta2*R3h*R3s*vcx + delta2*R3h**2*vscx + 
+     .           d2*(2.D0*R3a*R3s*va + R3a**2*vscx + 3.D0*R3s**2*vscx))
+     .           )/2.D0
+
+            gg222=(3.D0*(alambda*R2h**3*vcx + delta2*R2h*(R2a**2 
+     .           + R2s**2)*vcx + delta2*R2h**2*(R2a*va + R2s*vscx) 
+     .           + d2*(R2a**2 + R2s**2)*(R2a*va + R2s*vscx)))/2.D0
+
+            gg223=(2.D0*d2*R2a*R2s*(R3s*va + R3a*vscx) + 2.D0*delta2*
+     .           R2h*(R2a*R3a*vcx + R2s*R3s*vcx + R2a*R3h*va + R2s*R3h*
+     .           vscx) + R2a**2*(delta2*R3h*vcx + 3.D0*d2*R3a*va + 
+     .           d2*R3s*vscx) + R2s**2*(delta2*R3h*vcx + d2*R3a*va 
+     .           + 3*d2*R3s*vscx) + R2h**2*(3.D0*alambda*R3h*vcx + 
+     .           delta2*(R3a*va + R3s*vscx)))/2.D0
+
+            gg233=(R2a*(2.D0*delta2*R3a*R3h*vcx + 3.D0*d2*R3a**2*va + 
+     .           delta2*R3h**2*va + d2*R3s**2*va + 2.D0*d2*R3a*R3s*vscx) 
+     .           + R2h*(3.D0*alambda*R3h**2*vcx + delta2*(R3a**2 + 
+     .           R3s**2)*vcx + 2.D0*delta2*R3h*(R3a*va + R3s*vscx)) + 
+     .           R2s*(2.D0*delta2*R3h*R3s*vcx + delta2*R3h**2*vscx + 
+     .           d2*(2.D0*R3a*R3s*va + R3a**2*vscx + 3.D0*R3s**2*vscx)))
+     .           /2.D0
+
+            gg333=(3.D0*(alambda*R3h**3*vcx + delta2*R3h*(R3a**2 
+     .           + R3s**2)*vcx + delta2*R3h**2*(R3a*va + R3s*vscx) 
+     .           + d2*(R3a**2 + R3s**2)*(R3a*va + R3s*vscx)))/2.D0
+
+c            print*,'Trilinear couplings'
+c            print*,'111,112,113',gg111,gg112,gg113
+c            print*,'122,123,133',gg122,gg123,gg133
+c            print*,'222,223,233',gg222,gg223,gg233
+c            print*,'333',gg333
+c            print*,''
+
+            XNORMVAL = AMZ**2/VCX
+
+            gg111=gg111/XNORMVAL
+            gg112=gg112/XNORMVAL
+            gg113=gg113/XNORMVAL
+            gg122=gg122/XNORMVAL
+            gg123=gg123/XNORMVAL
+            gg133=gg133/XNORMVAL
+            gg222=gg222/XNORMVAL
+            gg223=gg223/XNORMVAL
+            gg233=gg233/XNORMVAL
+            gg333=gg333/XNORMVAL
+
+c complex dark phase
+         elseif(ICXSM.eq.4) then
+            ALPHACX1 = DALPHACX1
+            ALPHACX2 = 0.D0
+            ALPHACX3 = 0.D0
+            AM1CX = DAM1CX
+            AM2CX = DAM2CX
+            AM3CX = DAM3CX
+            VSCX = DVSCX
+            A1CX = DA1CX
+            dc1 = dcos(alphacx1)
+            ds1 = dsin(alphacx1)
+
+c some definitions
+c            amass2=(-(am2cx**2**2*ds1**2*vcx) + am1cx**2*(-1.D0 
+c     .           + ds1**2)*vcx + dc1*(-am1cx**2 + am2cx**2)*ds1*vscx)
+c     .           /vcx
+
+            amass2=(-(am2cx**2*ds1**2*vcx) + am1cx**2*(-1.D0 + ds1**2)
+     .           *vcx + dc1*(-am1cx**2 + am2cx**2)*ds1*vscx)/vcx
+
+            delta2=(2.D0*dc1*(am1cx**2 - am2cx**2)*ds1)/(vcx*vscx)
+
+            alambda=(2.D0*(am1cx**2 - am1cx**2*ds1**2+am2cx**2*ds1**2)
+     .           )/vcx**2
+
+            b2=(dc1*(-am1cx**2 + am2cx**2)*ds1*vcx+(am3cx**2-am2cx**2 
+     .           + (-am1cx**2 + am2cx**2)*ds1**2)*vscx - 2.D0*a1cx*
+     .           dsqrt(2.D0))/vscx
+            
+            d2=(2.D0*((am2cx**2 + (am1cx**2 - am2cx**2)*ds1**2)*vscx 
+     .           + a1cx*dsqrt(2.D0)))/vscx**3
+
+            b1=-((am3cx**2*vscx + a1cx*dsqrt(2.D0))/vscx)
+
+c            print*,'m2,delta2,lambda',amass2,delta2,alambda
+c            print*,'b2,d2,b1',b2,d2,b1
+
+c trilinear Higgs self-couplings
+            gg111=(3.D0*(dc1**3*alambda*vcx + dc1*delta2*ds1**2*vcx + 
+     .           dc1**2*delta2*ds1*vscx + d2*ds1**3*vscx))/2.D0
+
+            gg112=((dc1**2*(2.D0*delta2 - 3.D0*alambda)*ds1*vcx) 
+     .           - delta2*ds1**3*vcx + dc1**3*delta2*vscx + dc1*
+     .           (3.D0*d2 - 2.D0*delta2)*ds1**2*vscx)/2.D0
+
+            gg113=0.D0
+
+            gg122=(dc1**3*delta2*vcx + dc1*(-2.D0*delta2+3.D0*alambda)*
+     .           ds1**2*vcx + dc1**2*(3.D0*d2 - 2.D0*delta2)*ds1*vscx 
+     .           + delta2*ds1**3*vscx)/2.D0
+
+            gg123=0.D0
+
+            gg133=(dc1*delta2*vcx + d2*ds1*vscx)/2.D0
+
+            gg222=(3.D0*(-(dc1**2*delta2*ds1*vcx) - alambda*ds1**3*vcx 
+     .           + dc1**3*d2*vscx + dc1*delta2*ds1**2*vscx))/2.D0
+
+            gg223=0.D0
+
+            gg233=(-(delta2*ds1*vcx) + dc1*d2*vscx)/2.D0
+
+            gg333=0.D0
+            
+c            print*,'Trilinear couplings'
+c            print*,'111,112,113',gg111,gg112,gg113
+c            print*,'122,123,133',gg122,gg123,gg133
+c            print*,'222,223,233',gg222,gg223,gg233
+c            print*,'333',gg333
+c            print*,''
+
+            XNORMVAL = AMZ**2/VCX
+
+            gg111=gg111/XNORMVAL
+            gg112=gg112/XNORMVAL
+            gg113=gg113/XNORMVAL
+            gg122=gg122/XNORMVAL
+            gg123=gg123/XNORMVAL
+            gg133=gg133/XNORMVAL
+            gg222=gg222/XNORMVAL
+            gg223=gg223/XNORMVAL
+            gg233=gg233/XNORMVAL
+            gg333=gg333/XNORMVAL
+
+         endif
+
+         if(ICXSM.eq.1) then
+            rescal(1) = dcos(ALPHACX1)
+            rescal(2) = -dsin(ALPHACX1)
+         elseif(ICXSM.eq.2) then
+            rescal(1) = 1.D0
+         elseif(ICXSM.eq.3) then
+            rescal(1) = dcos(ALPHACX1)*dcos(ALPHACX2)
+            rescal(2) = -(dcos(ALPHACX1)*dsin(ALPHACX2)*dsin(ALPHACX3)+
+     .           dsin(ALPHACX1)*dcos(ALPHACX3))
+            rescal(3) = -dcos(ALPHACX1)*dsin(ALPHACX2)*dcos(ALPHACX3)
+     .           + dsin(ALPHACX1)*dsin(ALPHACX3)
+         elseif(ICXSM.eq.4) then
+            rescal(1) = dcos(ALPHACX1)
+            rescal(2) = -dsin(ALPHACX1)
+            rescal(3) = 0.D0
+         endif
+      endif
+
+c      print*,'scaling factor, Higgs 1',rescal(1),1
+c      print*,'scaling factor, Higgs 2',rescal(2),2
+c      print*,'scaling factor, Higgs 3',rescal(3),3
+cc      rescal(1)=1.D0
+c ------------------------- The singlet extension ------------------------ c
+c end MMM changed 28/4/15
+
+c MMM changed 26/8/2022
+      iwarn = 0
+      call CxSMEWCorrections(ivsscheme,ipdprocess,iralph_mix,DeltaE,
+     .        DLambdaIR,iwarn)
+      write(*,*)"EW corrections delta:"
+      write(*,*)"ielwcxsm: ", ielwcxsm
+      write(*,*)"dh1ll,dh1bb,dh1aa: "
+      write(*,*)dh1ll,dh1bb,dh1aa
+      write(*,*)"dh2ll,dh2bb,dh2tt,dh2aa,dh2zz,dh2ww,dh2h1h1: "
+      write(*,*)dh2ll,dh2bb,dh2tt,dh2aa,dh2zz,dh2ww,dh2h1h1
+      if(ielwcxsm.eq.1) then
+         if(da1cx.ne.0.D0) then
+            print*,'Attention: You have to set a1=0 for the EW corrs.'
+            endif
+         
+     
+         if(iwarn.eq.1) then
+            print*,'The EW corrections to one or more decay widths 
+     .lead to a negative decay width and hence the correction is set 
+     .to 0.'
+         endif
+      endif
+c end MMM changed 26/8/2022
+
+c-----end Felix changed
+      
+      
+      
+      
+      
 100   FORMAT(10X,G30.20)
 101   FORMAT(10X,I30)
 
@@ -5767,6 +5781,7 @@ C  H ---> TT
         CALL HTOTTS_HDEC(AMH,AMT,AMB,AMW,HTTS)
         HTT=FACTT*HTTS
        ELSEIF (AMH.LE.XM2) THEN
+        write(*,*)"Check XM2"
         XX(1) = XM1-1D0
         XX(2) = XM1
         XX(3) = XM2
@@ -5790,10 +5805,10 @@ C  H ---> TT
      .        +(1+ELW(XX(3),AMT,AMB,2/3.D0,1/2.D0))
      .          *HFFSELF(XX(3)) * SM4FACF)
 c MMM changed 26/8/22         
-         if(ielwcxsm.eq.1) then
-            XY2=3.D0*HFF(XX(3),(XMT/XX(3))**2)*
-     .      QCDH(XMT**2/XX(3)**2,5)*(1.D0+dcxsmtt)
-         endif
+c         if(ielwcxsm.eq.1) then
+c            XY2=3.D0*HFF(XX(3),(XMT/XX(3))**2)*
+c     .      QCDH(XMT**2/XX(3)**2,5)*(1.D0+dcxsmtt)
+c         endif
 c end MMM changed 26/8/22                  
         ENDIF
         IF(XY2.LT.0.D0) XY2 = 0
@@ -5809,10 +5824,10 @@ c end MMM changed 26/8/22
      .        +(1+ELW(XX(3),AMT,AMB,2/3.D0,1/2.D0))
      .          *HFFSELF(XX(3)) * SM4FACF)
 c MMM changed 26/8/22         
-         if(ielwcxsm.eq.1) then
-            XY1=3.D0*HFF(XX(3),(AMT/XX(3))**2)*
-     .           TQCDH(AMT**2/XX(3)**2)*(1.D0+dcxsmtt)
-         endif
+c         if(ielwcxsm.eq.1) then
+c            XY1=3.D0*HFF(XX(3),(AMT/XX(3))**2)*
+c     .           TQCDH(AMT**2/XX(3)**2)*(1.D0+dcxsmtt)
+c         endif
 c end MMM changed 26/8/22          
         ENDIF
         RAT = 2*AMT/XX(3)
@@ -5830,10 +5845,10 @@ c end MMM changed 26/8/22
      .         +(1+ELW(XX(4),AMT,AMB,2/3.D0,1/2.D0))
      .          *HFFSELF(XX(4)) * SM4FACF)
 c MMM changed 26/8/22         
-         if(ielwcxsm.eq.1) then
-            XY2=3.D0*HFF(XX(4),(XMT/XX(4))**2)
-     .      *QCDH(XMT**2/XX(4)**2,5)*(1.D0+dcxsmtt)
-         endif
+c         if(ielwcxsm.eq.1) then
+c            XY2=3.D0*HFF(XX(4),(XMT/XX(4))**2)
+c     .      *QCDH(XMT**2/XX(4)**2,5)*(1.D0+dcxsmtt)
+c         endif
 c end MMM changed 26/8/22         
         ENDIF
         IF(XY2.LT.0.D0) XY2 = 0
@@ -5849,10 +5864,10 @@ c end MMM changed 26/8/22
      .         +(1+ELW(XX(4),AMT,AMB,2/3.D0,1/2.D0))
      .          *HFFSELF(XX(4)) * SM4FACF)
 c MMM changed 26/8/22         
-         if(ielwcxsm.eq.1) then
-            XY1=3.D0*HFF(XX(4),(AMT/XX(4))**2)*
-     .           TQCDH(AMT**2/XX(4)**2)*(1.D0+dcxsmtt)
-         endif
+c         if(ielwcxsm.eq.1) then
+c            XY1=3.D0*HFF(XX(4),(AMT/XX(4))**2)*
+c     .           TQCDH(AMT**2/XX(4)**2)*(1.D0+dcxsmtt)
+c         endif
 c end MMM changed 26/8/22         
         ENDIF
         RAT = 2*AMT/XX(4)
@@ -6418,12 +6433,7 @@ C  H ---> W W
        IF(ICOUPELW.EQ.0)THEN
         HWW = 3D0/2D0*GF*AMW**4/DSQRT(2D0)/PI/AMH**3
      .         * CPW * (HTWW0*(CPW-1)+HTWW)       
-       ENDIF
-c MMM changed 26/8/22        
-        if(amh.ge.2.D0*amw.and.ielwcxsm.eq.1) then
-           HWW=HVV(AMH,AMW**2/AMH**2)*(1.D0+dcxsmww)
-        endif
-c end MMM changed 26/8/22       
+       ENDIF    
       ELSEIF(IONWZ.EQ.-1)THEN
        DLD=2D0
        DLU=2D0
@@ -6524,6 +6534,12 @@ c end MMM changed 26/8/22
       ENDIF
 c     HWW = HWW * SM4FACW
       
+c MMM changed 26/8/22        
+        if(amh.ge.(2.D0*amw+2).and.ielwcxsm.eq.1) then
+           HWW=HVV(AMH,AMW**2/AMH**2)*(1.D0+dcxsmww)
+        endif
+c end MMM changed 26/8/22   
+      
 C  H ---> Z Z
       IF(IONWZ.EQ.0)THEN
        IF(IFERMPHOB.NE.0)THEN
@@ -6540,11 +6556,7 @@ C  H ---> Z Z
         HZZ = 3D0/4D0*GF*AMZ**4/DSQRT(2D0)/PI/AMH**3
      .      * CPZ * (HTZZ0*(CPZ-1)+HTZZ)
       ENDIF
-c MMM changed 26/8/22        
-        if(amh.ge.2.D0*amz.and.ielwcxsm.eq.1) then
-           HZZ=HVV(AMH,AMZ**2/AMH**2)/2.D0*(1.D0+dcxsmzz)
-        endif
-c end MMM changed 26/8/22          
+          
       ELSEIF(IONWZ.EQ.-1)THEN
        DLD=2D0
        DLU=2D0
@@ -6645,6 +6657,13 @@ c end MMM changed 26/8/22
        ENDIF
        ENDIF
       ENDIF
+      
+c MMM changed 26/8/22        
+        if(amh.ge.(2.D0*amz+2).and.ielwcxsm.eq.1) then
+        HZZ=HVV(AMH,AMZ**2/AMH**2)/2.D0*(1.D0+dcxsmzz)
+        endif
+c end MMM changed 26/8/22
+      
 c     HZZ = HZZ * SM4FACZ
 c     write(62,*)AMH,1.D0+GF*AMH**2/16.D0/PI**2/DSQRT(2.D0)*2.800952D0,
 c    .               HVVSELF(AMH)
