@@ -5360,6 +5360,7 @@ C  H --> SS
       IRAT = 0
       RATCOUP = 1
       XQCD0 = QCDH(RMS**2/AMH**2,5)
+      write(*,*)"XQCD0: ",XQCD0
       IF(CPT.EQ.0.D0)THEN
        RATCOUP = 0
       ELSE
@@ -5371,6 +5372,7 @@ C  H --> SS
       ENDIF
       XQCD1= QCDH(RMS**2/AMH**2,5)
       XQCD = (XQCD0-XQCD1)/2/XQCD1
+      write(*,*)"XQCD: ",XQCD
       IF(AMH.LE.2*AMS) THEN
        HSS = 0
       ELSE
@@ -5406,6 +5408,8 @@ c    .         +(1+ELW0(AMH,RMS,-1.D0/3.D0,7.D0))
        RAT = 2*AMS/AMH
        HSS = QQINT_HDEC(RAT,HS1,HS2)
       ENDIF
+      write(*,*)"HS1,HS2:",HS1,HS2
+      write(*,*)"HSS end: ", HSS
 c     HSS = HSS * SM4FACF
       IF(IRAT.EQ.1)CPS = 0
 C  H --> CC
