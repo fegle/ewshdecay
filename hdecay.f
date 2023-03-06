@@ -6844,7 +6844,10 @@ C    ==========  TOTAL WIDTH AND BRANCHING RATIOS
 C
       WTOT=HLL+HMM+HSS+HCC+HBB+HTT+HGG+HGA+HZGA+HWW+HZZ
      .     +HNUPNUP+HEPEP+HBPBP+HTPTP
-
+      write(*,*)"HLL+HMM+HSS+HCC+HBB+HTT+HGG+HGA+HZGA+HWW+HZZ"
+      write(*,*)"+HNUPNUP+HEPEP+HBPBP+HTPTP"
+      write(*,*)HLL,HMM,HSS,HCC,HBB,HTT,HGG,HGA,HZGA,HWW,HZZ
+     .     ,HNUPNUP,HEPEP,HBPBP,HTPTP
 c MMM changed 8/12/15
       if(isinglet.eq.1) then
          wtotcx(i) = 0.D0
