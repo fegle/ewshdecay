@@ -2002,6 +2002,7 @@ c MMM changed 26/8/2022
       iwarn = 0
       call CxSMEWCorrections(ivsscheme,ipdprocess,iralph_mix,DeltaE,
      .        DLambdaIR,iwarn)
+      write(*,*)"AMT,AMB :", AMT,AMB
       write(*,*)"EW corrections delta:"
       write(*,*)"ielwcxsm: ", ielwcxsm
       write(*,*)"dh1ll,dh1bb,dh1aa: "
