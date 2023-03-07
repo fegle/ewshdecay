@@ -2002,7 +2002,6 @@ c MMM changed 26/8/2022
       iwarn = 0
       call CxSMEWCorrections(ivsscheme,ipdprocess,iralph_mix,DeltaE,
      .        DLambdaIR,iwarn)
-      write(*,*)"AMT,AMB :", AMT,AMB
       write(*,*)"EW corrections delta:"
       write(*,*)"ielwcxsm: ", ielwcxsm
       write(*,*)"dh1ll,dh1bb,dh1aa: "
@@ -5361,8 +5360,6 @@ C  H --> SS
       IRAT = 0
       RATCOUP = 1
       XQCD0 = QCDH(RMS**2/AMH**2,5)
-      write(*,*)"XQCD0: ",XQCD0
-      write(*,*)"RMS: ", rms
       IF(CPT.EQ.0.D0)THEN
        RATCOUP = 0
       ELSE
@@ -5374,7 +5371,6 @@ C  H --> SS
       ENDIF
       XQCD1= QCDH(RMS**2/AMH**2,5)
       XQCD = (XQCD0-XQCD1)/2/XQCD1
-      write(*,*)"XQCD: ",XQCD
       IF(AMH.LE.2*AMS) THEN
        HSS = 0
       ELSE
@@ -5410,8 +5406,6 @@ c    .         +(1+ELW0(AMH,RMS,-1.D0/3.D0,7.D0))
        RAT = 2*AMS/AMH
        HSS = QQINT_HDEC(RAT,HS1,HS2)
       ENDIF
-      write(*,*)"HS1,HS2:",HS1,HS2
-      write(*,*)"HSS end: ", HSS
 c     HSS = HSS * SM4FACF
       IF(IRAT.EQ.1)CPS = 0
 C  H --> CC
@@ -5787,7 +5781,6 @@ C  H ---> TT
         CALL HTOTTS_HDEC(AMH,AMT,AMB,AMW,HTTS)
         HTT=FACTT*HTTS
        ELSEIF (AMH.LE.XM2) THEN
-        write(*,*)"Check XM2"
         XX(1) = XM1-1D0
         XX(2) = XM1
         XX(3) = XM2
@@ -6850,10 +6843,6 @@ C    ==========  TOTAL WIDTH AND BRANCHING RATIOS
 C
       WTOT=HLL+HMM+HSS+HCC+HBB+HTT+HGG+HGA+HZGA+HWW+HZZ
      .     +HNUPNUP+HEPEP+HBPBP+HTPTP
-      write(*,*)"HLL+HMM+HSS+HCC+HBB+HTT+HGG+HGA+HZGA+HWW+HZZ"
-      write(*,*)"+HNUPNUP+HEPEP+HBPBP+HTPTP"
-      write(*,*)HLL,HMM,HSS,HCC,HBB,HTT,HGG,HGA,HZGA,HWW,HZZ
-     .     ,HNUPNUP,HEPEP,HBPBP,HTPTP
 c MMM changed 8/12/15
       if(isinglet.eq.1) then
          wtotcx(i) = 0.D0
