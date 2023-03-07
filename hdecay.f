@@ -5362,6 +5362,7 @@ C  H --> SS
       RATCOUP = 1
       XQCD0 = QCDH(RMS**2/AMH**2,5)
       write(*,*)"XQCD0: ",XQCD0
+      write(*,*)"RMS: ",
       IF(CPT.EQ.0.D0)THEN
        RATCOUP = 0
       ELSE
