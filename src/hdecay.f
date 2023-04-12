@@ -265,6 +265,8 @@ C =======================================================================
 C
       PROGRAM HDECAY
       IMPLICIT DOUBLE PRECISION (A-H,O-Z)
+      CHARACTER(100) :: filenamein,dirout,tempstr
+      INTEGER :: counter
       COMMON/HMASS_HDEC/AMSM,AMA,AML,AMH,AMCH,AMAR
       COMMON/FLAGS_HDEC/INDIDEC
       COMMON/SLHA_vals_HDEC/islhai,islhao
@@ -286,11 +288,38 @@ c>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
 c MMM changed 26/8/2022      
       common/DELEWCXSM/dh1ll,dh1bb,dh1aa,dh2ll,dh2bb,dh2tt,
      .     dh2aa,dh2zz,dh2ww,dh2h1h1,ielwcxsm
+      Common/Commandline/filenamein,dirout
 c MMM changed 26/8/2022        
       ioutput = 0
       imarcelvos = 0
       ifeynhiggs = 0
       itheta = 0
+
+c----read command line arguments
+      filenamein="hdecay.in"
+      dirout=""
+      if(COMMAND_ARGUMENT_COUNT().ne.0.and.Mod(COMMAND_ARGUMENT_COUNT(),2).eq.0)then
+       do counter=1,COMMAND_ARGUMENT_COUNT()/2
+       CALL GET_COMMAND_ARGUMENT(2*counter-1,tempstr)
+c       write(*,*)"tempstr: ",Trim(tempstr)
+       if(trim(tempstr).eq."-i")then
+       CALL GET_COMMAND_ARGUMENT(2*counter,filenamein)
+       write(*,*)"Read input parameters from file: ",filenamein
+       elseif(trim(tempstr).eq."-o")then
+       CALL GET_COMMAND_ARGUMENT(2*counter,dirout)
+       write(*,*)"Write output to: ", dirout
+       endif
+      enddo
+      else
+       WRITE(*,*)'No input file given, use standard input file hdecay.in'
+       write(*,*)"No output directory given, write in the current directory."
+      ENDIF
+
+c      CALL get_command(tempstr)
+c      WRITE (*,*)"Command: ", TRIM(tempstr)
+c      write(*,*)"Length: ",COMMAND_ARGUMENT_COUNT()
+c      stop
+c-----
 c>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
 
       CALL READ_HDEC(TGBET,AMABEG,AMAEND,NMA)
@@ -455,6 +484,10 @@ c MMM changed 8/12/15
       DIMENSION RESCAL(3)
 c end MMM changed 8/12/2015
       integer NNLOapprox
+      double precision deltaNNLO
+      CHARACTER(100) :: filenamein,dirout
+c-----CommandlineInput
+      Common/Commandline/filenamein,dirout
 c -------------- common block given by read_leshouches ------------ c
       COMMON/SLHA_leshouches1_HDEC/spinfo1,spinfo2,modselval,mincom,
      .                             extcom,softcom,hmixcom
@@ -554,7 +587,7 @@ c MMM changed 26/8/2022
       common/DELEWCXSM/dh1ll,dh1bb,dh1aa,dh2ll,dh2bb,dh2tt,
      .     dh2aa,dh2zz,dh2ww,dh2h1h1,ielwcxsm
       common/SINGLETPARS/DALPHACX1,DVSCX
-      Common/NNLO/NNLOapprox
+      Common/NNLO/deltaNNLO,NNLOapprox
 c MMM changed 26/8/2022      
       
       unlikely = -123456789D0
@@ -562,8 +595,11 @@ c     unlikely = 0.D0
 
       PI = 4*DATAN(1D0)
 
-      OPEN(NI,FILE='hdecay.in')
-      OPEN(NPAR,FILE='br.input')
+      write(*,*)"filenamein: ",filenamein
+      write(*,*)"dirout: ",dirout
+c      OPEN(NI,FILE='hdecay.in')
+      OPEN(NI,FILE=trim(filenamein))
+      OPEN(NPAR,FILE=trim(dirout) // 'br.input')
 
       read(ni,101)islhai
       read(ni,101)islhao
@@ -734,6 +770,7 @@ c MMM changed 26/8/2022
 c calculate the EW corrections and choose the renormalization scheme      
       READ(NI,*)
       READ(NI,*)
+      READ(NI,*)
       READ(NI,101) ielwcxsm
       READ(NI,*)      
       READ(NI,101) ivsscheme
@@ -742,7 +779,8 @@ c calculate the EW corrections and choose the renormalization scheme
       READ(NI,*)
       READ(NI,100) DeltaE
       READ(NI,*)
-      READ(NI,100) NNLOapprox
+      READ(NI,101) NNLOapprox
+      READ(NI,100) deltaNNLO
 c end MMM changed 26/8/2022            
 
 c MMM changed 8/12/15
@@ -765,7 +803,7 @@ c end MMM changed 8/12/15
       ENDIF
       IOELW = 1
       IF(IELW.NE.0) IOELW = 0
-      IF(IELW.NE.0) print*,'No electroweak corrections...'
+      IF(IELW.NE.0.and.ielwcxsm.eq.0) print*,'No electroweak corrections...'
 
       scals = amz
       IF(INPUT_SC.NE.0)THEN
@@ -874,7 +912,7 @@ c -- initialization of the check array --
       end do
 
       if(islhai.eq.1) then
-         open(ninlha,file='slha.in')
+         open(ninlha,file=trim(dirout) // 'slha.in')
          call SLHA_read_leshouches_HDEC(ninlha)
 
 c -- G_F --
@@ -2004,20 +2042,26 @@ c end MMM changed 28/4/15
 c MMM changed 26/8/2022
       iwarn = 0
       DLambdaIR=1
+c-----if a1!=0 do not calculate ELW corrections
+      if(ielwcxsm.eq.1) then
+         if(da1cx.ne.0.D0) then
+             write(*,*)"#####"
+             write(*,*)'Attention: You have to set a1=0 for the EW corrs.'
+             write(*,*)"#####"
+             ielwcxm=0
+            endif
+      endif
+
       call CxSMEWCorrections(ivsscheme,ipdprocess,iralph_mix,DeltaE,
      .        DLambdaIR,iwarn)
+      if(ielwcxsm.eq.1)then
+      write(*,*)"#####"
       write(*,*)"EW corrections delta:"
-      write(*,*)"ielwcxsm: ", ielwcxsm
       write(*,*)"dh1ll,dh1bb,dh1aa: "
       write(*,*)dh1ll,dh1bb,dh1aa
       write(*,*)"dh2ll,dh2bb,dh2tt,dh2aa,dh2zz,dh2ww,dh2h1h1: "
       write(*,*)dh2ll,dh2bb,dh2tt,dh2aa,dh2zz,dh2ww,dh2h1h1
-      if(ielwcxsm.eq.1) then
-         if(da1cx.ne.0.D0) then
-            print*,'Attention: You have to set a1=0 for the EW corrs.'
-            endif
-         
-     
+      write(*,*)"#####"
          if(iwarn.eq.1) then
             print*,'The EW corrections to one or more decay widths 
      .lead to a negative decay width and hence the correction is set 
@@ -2225,6 +2269,9 @@ C     WRITE(NPAR,9)'LAMBDA_5 = ',XLAMBDA
       DIMENSION AGDL(4),AGDA(4),AGDH(4),AGDC(2)
 c MMM changed 8/12/15
       DIMENSION RESCAL(3)
+      CHARACTER(100) :: filenamein,dirout
+c-----CommandlineInput
+      Common/Commandline/filenamein,dirout
 c end MMM changed 8/12/2015         
       COMMON/MASSES_HDEC/AMS,AMC,AMB,AMT
       COMMON/STRANGE_HDEC/AMSB
@@ -2292,133 +2339,133 @@ c end MMM changed 8/12/15
       PI = 4*DATAN(1D0)
 
       IF(IHIGGS.EQ.0) THEN
-       OPEN(NSA,FILE='br.sm1')
-       OPEN(NSB,FILE='br.sm2')
+       OPEN(NSA,FILE=trim(dirout) // 'br.sm1')
+       OPEN(NSB,FILE=trim(dirout) // 'br.sm2')
        IF(ISM4.NE.0)THEN
-        OPEN(NSC,FILE='br.sm3')
+        OPEN(NSC,FILE=trim(dirout) // 'br.sm3')
        ENDIF
       ENDIF
 c MMM changed 8/12/15
       if(icxsm.eq.1) then
-       OPEN(NCX1,FILE='br.rb11')
-       OPEN(NCX2,FILE='br.rb12')
-       OPEN(NCX3,FILE='br.rb13')
-       OPEN(NCX4,FILE='br.rb21')
-       OPEN(NCX5,FILE='br.rb22')
-       OPEN(NCX6,FILE='br.rb23')
+       OPEN(NCX1,FILE=trim(dirout) // 'br.rb11')
+       OPEN(NCX2,FILE=trim(dirout) // 'br.rb12')
+       OPEN(NCX3,FILE=trim(dirout) // 'br.rb13')
+       OPEN(NCX4,FILE=trim(dirout) // 'br.rb21')
+       OPEN(NCX5,FILE=trim(dirout) // 'br.rb22')
+       OPEN(NCX6,FILE=trim(dirout) // 'br.rb23')
       elseif(icxsm.eq.2) then
-       OPEN(NCX1,FILE='br.rd11')
-       OPEN(NCX2,FILE='br.rd12')
-       OPEN(NCX3,FILE='br.rd13')
+       OPEN(NCX1,FILE=trim(dirout) // 'br.rd11')
+       OPEN(NCX2,FILE=trim(dirout) // 'br.rd12')
+       OPEN(NCX3,FILE=trim(dirout) // 'br.rd13')
       elseif(icxsm.eq.3) then
-       OPEN(NCX1,FILE='br.cb11')
-       OPEN(NCX2,FILE='br.cb12')
-       OPEN(NCX3,FILE='br.cb13')
-       OPEN(NCX4,FILE='br.cb21')
-       OPEN(NCX5,FILE='br.cb22')
-       OPEN(NCX6,FILE='br.cb23')
-       OPEN(NCX7,FILE='br.cb31')
-       OPEN(NCX8,FILE='br.cb32')
-       OPEN(NCX9,FILE='br.cb33')
+       OPEN(NCX1,FILE=trim(dirout) // 'br.cb11')
+       OPEN(NCX2,FILE=trim(dirout) // 'br.cb12')
+       OPEN(NCX3,FILE=trim(dirout) // 'br.cb13')
+       OPEN(NCX4,FILE=trim(dirout) // 'br.cb21')
+       OPEN(NCX5,FILE=trim(dirout) // 'br.cb22')
+       OPEN(NCX6,FILE=trim(dirout) // 'br.cb23')
+       OPEN(NCX7,FILE=trim(dirout) // 'br.cb31')
+       OPEN(NCX8,FILE=trim(dirout) // 'br.cb32')
+       OPEN(NCX9,FILE=trim(dirout) // 'br.cb33')
       elseif(icxsm.eq.4) then
-       OPEN(NCX1,FILE='br.cd11')
-       OPEN(NCX2,FILE='br.cd12')
-       OPEN(NCX3,FILE='br.cd13')
-       OPEN(NCX4,FILE='br.cd21')
-       OPEN(NCX5,FILE='br.cd22')
-       OPEN(NCX6,FILE='br.cd23')
+       OPEN(NCX1,FILE=trim(dirout) // 'br.cd11')
+       OPEN(NCX2,FILE=trim(dirout) // 'br.cd12')
+       OPEN(NCX3,FILE=trim(dirout) // 'br.cd13')
+       OPEN(NCX4,FILE=trim(dirout) // 'br.cd21')
+       OPEN(NCX5,FILE=trim(dirout) // 'br.cd22')
+       OPEN(NCX6,FILE=trim(dirout) // 'br.cd23')
       endif
 c end MMM changed 8/12/15      
       IF(IHIGGS.NE.0) THEN
-       OPEN(NTA,FILE='br.top')
+       OPEN(NTA,FILE=trim(dirout) // 'br.top')
       ENDIF
       IF(IHIGGS.EQ.1.OR.IHIGGS.EQ.5) THEN
 c MMM changed 21/8/2013
        if(i2hdm.eq.0) then
-       OPEN(NLA,FILE='br.l1')
-       OPEN(NLB,FILE='br.l2')
+       OPEN(NLA,FILE=trim(dirout) // 'br.l1')
+       OPEN(NLB,FILE=trim(dirout) // 'br.l2')
        elseif(i2hdm.eq.1) then
-       OPEN(NLA,FILE='br.l1_2HDM')
-       OPEN(NLB,FILE='br.l2_2HDM')
-       OPEN(NLC,FILE='br.l3_2HDM')
+       OPEN(NLA,FILE=trim(dirout) // 'br.l1_2HDM')
+       OPEN(NLB,FILE=trim(dirout) // 'br.l2_2HDM')
+       OPEN(NLC,FILE=trim(dirout) // 'br.l3_2HDM')
        endif
 c end MMM changed 21/8/2013
       IF(IOFSUSY.EQ.0)THEN 
-       OPEN(NSUSYL,FILE='br.ls')
+       OPEN(NSUSYL,FILE=trim(dirout) // 'br.ls')
        IF(INDIDEC.NE.0)THEN 
-        OPEN(NSUSYLA,FILE='br.ls1')
-        OPEN(NSUSYLB,FILE='br.ls2')
-        OPEN(NSUSYLC,FILE='br.ls3')
-        OPEN(NSUSYLD,FILE='br.ls4')
-        OPEN(NSUSYLE,FILE='br.ls5')
-        OPEN(NSUSYLF,FILE='br.ls6')
+        OPEN(NSUSYLA,FILE=trim(dirout) // 'br.ls1')
+        OPEN(NSUSYLB,FILE=trim(dirout) // 'br.ls2')
+        OPEN(NSUSYLC,FILE=trim(dirout) // 'br.ls3')
+        OPEN(NSUSYLD,FILE=trim(dirout) // 'br.ls4')
+        OPEN(NSUSYLE,FILE=trim(dirout) // 'br.ls5')
+        OPEN(NSUSYLF,FILE=trim(dirout) // 'br.ls6')
        ENDIF
       ENDIF
       ENDIF
       IF(IHIGGS.EQ.2.OR.IHIGGS.EQ.5) THEN
 c MMM changed 21/8/2013
        if(i2hdm.eq.0) then
-       OPEN(NHA,FILE='br.h1')
-       OPEN(NHB,FILE='br.h2')
-       OPEN(NHC,FILE='br.h3')
+       OPEN(NHA,FILE=trim(dirout) // 'br.h1')
+       OPEN(NHB,FILE=trim(dirout) // 'br.h2')
+       OPEN(NHC,FILE=trim(dirout) // 'br.h3')
       elseif(i2hdm.eq.1) then
-       OPEN(NHA,FILE='br.h1_2HDM')
-       OPEN(NHB,FILE='br.h2_2HDM')
-       OPEN(NHC,FILE='br.h3_2HDM')
+       OPEN(NHA,FILE=trim(dirout) // 'br.h1_2HDM')
+       OPEN(NHB,FILE=trim(dirout) // 'br.h2_2HDM')
+       OPEN(NHC,FILE=trim(dirout) // 'br.h3_2HDM')
       endif
 c end MMM changed 21/8/2013
       IF(IOFSUSY.EQ.0)THEN 
-       OPEN(NSUSYH,FILE='br.hs')
+       OPEN(NSUSYH,FILE=trim(dirout) // 'br.hs')
        IF(INDIDEC.NE.0)THEN 
-        OPEN(NSUSYHA,FILE='br.hs1')
-        OPEN(NSUSYHB,FILE='br.hs2')
-        OPEN(NSUSYHC,FILE='br.hs3')
-        OPEN(NSUSYHD,FILE='br.hs4')
-        OPEN(NSUSYHE,FILE='br.hs5')
-        OPEN(NSUSYHF,FILE='br.hs6')
+        OPEN(NSUSYHA,FILE=trim(dirout) // 'br.hs1')
+        OPEN(NSUSYHB,FILE=trim(dirout) // 'br.hs2')
+        OPEN(NSUSYHC,FILE=trim(dirout) // 'br.hs3')
+        OPEN(NSUSYHD,FILE=trim(dirout) // 'br.hs4')
+        OPEN(NSUSYHE,FILE=trim(dirout) // 'br.hs5')
+        OPEN(NSUSYHF,FILE=trim(dirout) // 'br.hs6')
        ENDIF
       ENDIF
       ENDIF
       IF(IHIGGS.EQ.3.OR.IHIGGS.EQ.5) THEN
 c MMM changed 21/8/2013
        if(i2hdm.eq.0) then
-       OPEN(NAA,FILE='br.a1')
-       OPEN(NAB,FILE='br.a2')
+       OPEN(NAA,FILE=trim(dirout) // 'br.a1')
+       OPEN(NAB,FILE=trim(dirout) // 'br.a2')
       elseif(i2hdm.eq.1) then
-       OPEN(NAA,FILE='br.a1_2HDM')
-       OPEN(NAB,FILE='br.a2_2HDM')
-       OPEN(NAC,FILE='br.a3_2HDM')
+       OPEN(NAA,FILE=trim(dirout) // 'br.a1_2HDM')
+       OPEN(NAB,FILE=trim(dirout) // 'br.a2_2HDM')
+       OPEN(NAC,FILE=trim(dirout) // 'br.a3_2HDM')
       endif
 c end MMM changed 21/8/2013
       IF(IOFSUSY.EQ.0)THEN 
-       OPEN(NSUSYA,FILE='br.as')
+       OPEN(NSUSYA,FILE=trim(dirout) // 'br.as')
        IF(INDIDEC.NE.0)THEN 
-        OPEN(NSUSYAA,FILE='br.as1')
-        OPEN(NSUSYAB,FILE='br.as2')
-        OPEN(NSUSYAC,FILE='br.as3')
-        OPEN(NSUSYAD,FILE='br.as4')
+        OPEN(NSUSYAA,FILE=trim(dirout) // 'br.as1')
+        OPEN(NSUSYAB,FILE=trim(dirout) // 'br.as2')
+        OPEN(NSUSYAC,FILE=trim(dirout) // 'br.as3')
+        OPEN(NSUSYAD,FILE=trim(dirout) // 'br.as4')
        ENDIF
       ENDIF
       ENDIF
       IF(IHIGGS.EQ.4.OR.IHIGGS.EQ.5) THEN
 c MMM changed 21/8/2013
        if(i2hdm.eq.0) then
-       OPEN(NCA,FILE='br.c1')
-       OPEN(NCB,FILE='br.c2')
-       OPEN(NCC,FILE='br.c3')
+       OPEN(NCA,FILE=trim(dirout) // 'br.c1')
+       OPEN(NCB,FILE=trim(dirout) // 'br.c2')
+       OPEN(NCC,FILE=trim(dirout) // 'br.c3')
       elseif(i2hdm.eq.1) then
-       OPEN(NCA,FILE='br.c1_2HDM')
-       OPEN(NCB,FILE='br.c2_2HDM')
-       OPEN(NCC,FILE='br.c3_2HDM')
+       OPEN(NCA,FILE=trim(dirout) // 'br.c1_2HDM')
+       OPEN(NCB,FILE=trim(dirout) // 'br.c2_2HDM')
+       OPEN(NCC,FILE=trim(dirout) // 'br.c3_2HDM')
       endif
 c end MMM changed 21/8/2013
       IF(IOFSUSY.EQ.0)THEN 
-       OPEN(NSUSYC,FILE='br.cs')
+       OPEN(NSUSYC,FILE=trim(dirout) // 'br.cs')
        IF(INDIDEC.NE.0)THEN 
-        OPEN(NSUSYCA,FILE='br.cs1')
-        OPEN(NSUSYCB,FILE='br.cs2')
-        OPEN(NSUSYCC,FILE='br.cs3')
-        OPEN(NSUSYCD,FILE='br.cs4')
+        OPEN(NSUSYCA,FILE=trim(dirout) // 'br.cs1')
+        OPEN(NSUSYCB,FILE=trim(dirout) // 'br.cs2')
+        OPEN(NSUSYCC,FILE=trim(dirout) // 'br.cs3')
+        OPEN(NSUSYCD,FILE=trim(dirout) // 'br.cs4')
        ENDIF
       ENDIF
       ENDIF
@@ -2832,6 +2879,10 @@ c end MMM changed 8/12/15
       character spinfo1*100,spinfo2*100,modselval*100,mincom(1:20)*20,
      .          extcom(0:100)*20,softcom(1:100)*20,hmixcom(1:10)*20,
      .          m_softcom(1:100)*20
+      CHARACTER(100) :: filenamein,dirout
+c-----CommandlineInput
+      Common/Commandline/filenamein,dirout
+
       COMMON/MASSES_HDEC/AMS,AMC,AMB,AMT
       COMMON/STRANGE_HDEC/AMSB
       COMMON/PARAM_HDEC/GF,ALPH,AMTAU,AMMUON,AMZ,AMW
@@ -2930,7 +2981,7 @@ c MMM changed 26/8/2022
       PI = 4*DATAN(1D0)
 
       if(islhao.eq.1) then
-         open(nout,file='slha.out')
+         open(nout,file=trim(dirout) // 'slha.out')
 
          id =1
          idb=-1
@@ -4233,7 +4284,7 @@ c end MMM changed 23/8/2013
       ENDIF
 
 19    FORMAT(G12.6,7(1X,G10.4))
-20    FORMAT(G12.6,6(1X,G10.4))
+20    FORMAT(G12.6,6(1X,G13.6))
 21    FORMAT(G12.6,4(1X,G10.4))
 22    FORMAT(G12.6,5(1X,G10.4))
 23    FORMAT(G12.6,3(1X,G10.4))

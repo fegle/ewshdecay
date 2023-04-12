@@ -6,14 +6,14 @@
       double precision mW,mZ,mt,mb,mtau
       double precision myGF
       double precision mh1,mh2,mX,vS,Talpha
-      double precision DeltaE,LambdaIR
+      double precision DeltaE,LambdaIR,deltaNNLO
       double precision DWh1AA,DWh2AA,DWh1tautau,DWh2tautau,DWh1bb,
      .DWh2bb,DWh2ZZ,DWh2WW,DWh2tt,DWh2h1h1
 c MMM changed 8/12/15
       DIMENSION RESCAL(3)
 c end MMM changed 8/12/2015
       logical :: ChangeScheme
-      
+      double precision tempexpr
       COMMON/MODCXSM/ISINGLET,ICXSM,rescal,am1cx,am2cx,am3cx
       common/SINGLETPARS/DALPHACX1,DVSCX
       COMMON/PARAM_HDEC/GF,ALPH,AMTAU,AMMUON,AMZ,AMW
@@ -24,7 +24,7 @@ c end MMM changed 8/12/2015
       Common/SMValues/mW,mZ,mt,mb,mtau,myGF
       Common/CxSMValues/mh1,mh2,mX,vS,Talpha
       Common/IRValues/DeltaE,LambdaIR
-      Common/NNLO/NNLOapprox
+      Common/NNLO/deltaNNLO,NNLOapprox
 #include "looptools.h"      
       call ltini
       mW=AMW
@@ -43,7 +43,7 @@ c end MMM changed 8/12/2015
       vsscheme=iwhichvs
       pdprocess=iwhichpd
       alphascheme=iwhichalpha
-      
+
       
 c       write(*,*)"mW: ", mW
 c       write(*,*)"mZ: ", mZ
@@ -64,13 +64,34 @@ c       write(*,*)"DeltaE: ", DeltaE
 c------Change Scheme
       ChangeScheme=.TRUE.
       if(ChangeScheme.eqv..TRUE.)then
+      write(*,*)"#####"
+      write(*,*)"Parameter Conversion is activated."
+      write(*,*)"Parameters will be converted if chosen scheme is not the input scheme."
+      write(*,*)"#####"
       call ChangeRenScheme()
       Talpha=DTan(DALPHACX1)
       vS=DVSCX
       endif
 c------end change
 
-
+c-----include NLO^2 if abs(vs/v/Talpha -1)<=deltaNNLO
+      if(NNLOapprox.eq.1)then
+      write(*,*)"#####"
+      write(*,*)"NLO^2 is activated for the decay h2->h1h1."
+      write(*,*)"#####"
+      tempexpr=DAbs(vS*DSQRT(DSQRT(2.D0)*GF)/Talpha -1)
+      write(*,*)"tempexpr: ", tempexpr
+      if(tempexpr.le.deltaNNLO)then
+      NNLOapprox=1
+      else
+      write(*,*)"#####"
+      write(*,*)"|(vs/v)/Talpha -1|<=deltaNNLO is not fulfillled for the given parameters!"
+      write(*,*)"Set NNLOapprox=0, the NLO^2 contribution is deactivated."
+      write(*,*)"#####"
+      NNLOapprox=0
+      endif
+      endif
+c-----end
 
 
       dh1ll=0
@@ -85,14 +106,18 @@ c------end change
       dh2h1h1=0
       if(ielwcxsm.eq.1)then
       if(vsscheme.eq.1.and.pdprocess.eq.1.and.mh1/2.D0.le.mX)then
+      write(*,*)"#####"
       write(*,*) "h1 cannot decay into DM DM, kinematically not possible! Cannot use process dependent Scheme! Set EW corrections to zero."
+      write(*,*)"#####"
       elseif(vsscheme.eq.1.and.pdprocess.eq.2.and.mh2/2.D0.le.mX)then
+      write(*,*)"#####"
       write(*,*) "h2 cannot decay into DM DM, kinematically not possible! Cannot use process dependent Scheme! Set EW corrections to zero."
+      write(*,*)"#####"
       else
       
-      
+      write(*,*)"#####"
       write(*,*) "If decay is kinematically not allowed, EW correction will be set to zero."
-      
+      write(*,*)"#####"
       if(mh1/2.D0.gt.mtau) then
       dh1ll=DWh1tautau(2)/DWh1tautau(1) -1
       
@@ -206,7 +231,9 @@ c       write(*,*)"dh2h1h1 : ", dh2h1h1
       if(dh1ll.gt.1.or.dh1bb.gt.1.or.dh1aa.gt.1.or.dh2ll.gt.1.or.
      .dh2bb.gt.1.or.dh2tt.gt.1.or.dh2aa.gt.1.or.dh2zz.gt.1.or.
      .dh2ww.gt.1.or.dh2h1h1.gt.1)then
+      write(*,*)"#####"
       write(*,*)"Attention! 1 one of the ELW correction is bigger than 100%!"
+      write(*,*)"#####"
       endif
       endif
       
@@ -226,6 +253,11 @@ ccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc
       double precision ddalphastd,ddvSstd
       double precision ddalphanew,ddvSnew
       double precision DALPHACX1,DVSCX
+      Character(len = 20) :: outputscheme
+      character(len=4), dimension(2) :: vsname,processname,alphaname
+      CHARACTER(100) :: filenamein,dirout
+c-----CommandlineInput
+      Common/Commandline/filenamein,dirout
       Common/CxSMFlags/vsscheme,pdprocess,alphascheme
       common/SINGLETPARS/DALPHACX1,DVSCX
 c       if(DAbs(mh1-125.09).lt.0.1)then
@@ -234,12 +266,19 @@ c       else
 c       stdscheme=2
 c       endif
 c        stdscheme=1
+      vsname=(/"pd  ","ZEM "/)
+      processname=(/"h1AA","h2AA"/)
+      alphaname=(/"OS","p*"/)
       stdvsscheme=2
       stdpdprocess=1
       stdalphascheme=1
-      if(vsscheme.ne.stdvsscheme.OR.pdprocess.ne.stdpdprocess.OR.alphascheme.ne.stdalphascheme)then
-      write(*,*)"The chosen Renormalization scheme is not the following scheme: (",stdvsscheme,stdpdprocess,stdalphascheme, ") Thus, the input parameters have to be converted."
+      outputscheme=trim(processname(stdpdprocess)) // trim(vsname(stdvsscheme)) // trim(alphaname(stdalphascheme))
 
+      if(vsscheme.ne.stdvsscheme.OR.pdprocess.ne.stdpdprocess.OR.alphascheme.ne.stdalphascheme)then
+      write(*,*)"#####"
+      write(*,"(3A)")"The chosen Renormalization scheme is not the ",
+     .trim(outputscheme), " renormalization scheme. Thus, the input parameters have to be converted."
+      write(*,*)"#####"
       if(stdvsscheme.eq.1)then
         if(stdpdprocess.eq.1)then
             if(stdalphascheme.eq.1)then
@@ -319,12 +358,16 @@ c        stdscheme=1
 
       DALPHACX1= DALPHACX1 +ddalphastd - ddalphanew
       DVSCX= DVSCX +ddvSstd - ddvSnew
-
-      write(*,*)"New converted input values:"
+      write(*,*)"#####"
+      write(*,*)"New converted input values (see also Paramconversion.txt):"
       write(*,*)"alpha: ", DALPHACX1
       write(*,*)"vS: ", DVSCX
-
+      write(*,*)"#####"
       endif
+      OPEN(11,FILE=trim(dirout) // 'Paramconversion.txt')
+      write(11,*)"alpha     vs"
+      write(11,*)DALPHACX1,DVSCX
+      close(11)
       return
       end
 ccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc
@@ -621,7 +664,7 @@ ccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc
       double precision mW,mZ,mt,mb,mtau
       double precision GF
       double precision mh1,mh2,mX,vS,Talpha
-      double precision DeltaE,LambdaIR
+      double precision DeltaE,LambdaIR,deltaNNLO
       double precision DWNLOh2h1h1pd1OS,DWNLOh2h1h1pd1pstar,
      .DWNLOh2h1h1pd2OS,DWNLOh2h1h1pd2pstar,DWNLOh2h1h1ZEM1OS,
      .DWNLOh2h1h1ZEM1pstar,DWNLOh2h1h1ZEM2OS,DWNLOh2h1h1ZEM2pstar,
@@ -635,7 +678,7 @@ ccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc
       Common/SMValues/mW,mZ,mt,mb,mtau,GF
       Common/CxSMValues/mh1,mh2,mX,vS,Talpha
       Common/IRValues/DeltaE,LambdaIR
-      Common/NNLO/NNLOapprox
+      Common/NNLO/deltaNNLO,NNLOapprox
 c     go trough all combinations      
       If(order.eq.1)then
         DWh2h1h1=DWLOh2h1h1()

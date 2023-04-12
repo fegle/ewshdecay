@@ -1,0 +1,6 @@
+Remove br.sm output?
+Specify output directory/use flags (as in N2HDECAY?)?
+Include CMAKE package/doxygen documentation in cmake?
+make tests? GNU License?
+
+Paramconversion?

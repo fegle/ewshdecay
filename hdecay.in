@@ -155,12 +155,14 @@ vs       = 50.D0
 a1       = 0.0D0
 ******************** EW Corrections ********************
 ** Attention: This can only be used for the Dark Matter Phase of the CxSM with a1 = 0 **
+**** ielwcxsm = 0, LO, =1 include NLO corrections
 ielwcxsm = 1
 **** ren. scheme: vsscheme = 1 pd, = 2 ZEM, pdprocess = 1 h1->AA, =2 h2->AA, alpha_mix =1 OS, =2 pstar
 vsscheme = 2
 pdprocess= 2
 ralph_mix= 2
-**** IR parameter - DeltaE is the detector resolution;
+**** IR parameter - DeltaE is the detector resolution (in GeV);
 DeltaE   = 10.0D0
-**** NNLO approx: NNLOapprox=1, add NLO^2 term to h2h1h1 decay width
+**** NNLO approx: NNLOapprox=1, add NLO^2 term to h2h1h1 decay width if |(vs/v)/Tan(alpha)-1|<deltaNNLO
 NNLOapp  = 1
+deltaNNLO= 0.05D0
