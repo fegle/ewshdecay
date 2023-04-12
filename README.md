@@ -17,11 +17,11 @@ Alternatively, the code can be compiled using 'cmake'. LoopTools will then be do
 ### User Instructions
 After compiling, an executable called cxsmhdecay is generated. The input parameters are then specified in a separate input file, a test input file is given as *hdecay_test.in*, the input should always be given in this format.
 
-The standard input is expected to be './hdecay.in'. Otherwise, the input file can be specified as the first argument, e.g.
+The standard input is expected to be './hdecay.in'. Otherwise, the input file can be specified with the flag "-i" as a command line input. Also the output directory can be specified with the "-o" flag, so e.g.
 
-    ./cxsmhdecay myinput.in
+    ./cxsmhdecay -i myinput.in -o finaloutput/
 
-calls the program with the input parameters given in *myinput.in*.
+calls the program with the input parameters given in *myinput.in* and writes everything into the directory *finaloutput/*.
 
 To change the model and the model parameters, change the values in the section *real or complex singlet Model*.
 
