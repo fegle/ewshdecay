@@ -148,18 +148,21 @@ m3       = 500.705D0
 vs       = 510.922D0
 *** complex singlet dark matter phase ***
 alph1    = 0.2D0
-m1       = 125.D0
-m2       = 500.D0
-m3       = 40.D0
-vs       = 100.D0
-a1       = 0.D0
+m1       = 125.09D0
+m2       = 270.D0
+m3       = 60.D0
+vs       = 300.D0
+a1       = 0.0D0
 ******************** EW Corrections ********************
 ** Attention: This can only be used for the Dark Matter Phase of the CxSM with a1 = 0 **
-ielwcxsm = 0
+**** ielwcxsm = 0, LO, =1 include NLO corrections
+ielwcxsm = 1
 **** ren. scheme: vsscheme = 1 pd, = 2 ZEM, pdprocess = 1 h1->AA, =2 h2->AA, alpha_mix =1 OS, =2 pstar
-vsscheme = 1
+vsscheme = 2
 pdprocess= 1
 ralph_mix= 1
-**** IR parameter - DeltaE is the detector resolution; do not change LambdaIR
-DeltaE   = 1.D0
-LambdaIR = 1.D0
+**** IR parameter - DeltaE is the detector resolution (in GeV);
+DeltaE   = 10.0D0
+**** NNLO approx: NNLOapprox=1, add NLO^2 term to h2h1h1 decay width if |(vs/v)/Tan(alpha)-1|<deltaNNLO
+NNLOapp  = 1
+deltaNNLO= 0.05D0

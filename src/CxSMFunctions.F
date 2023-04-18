@@ -80,7 +80,7 @@ c-----include NLO^2 if abs(vs/v/Talpha -1)<=deltaNNLO
       write(*,*)"NLO^2 is activated for the decay h2->h1h1."
       write(*,*)"#####"
       tempexpr=DAbs(vS*DSQRT(DSQRT(2.D0)*GF)/Talpha -1)
-      write(*,*)"tempexpr: ", tempexpr
+c      write(*,*)"tempexpr: ", tempexpr
       if(tempexpr.le.deltaNNLO)then
       NNLOapprox=1
       else

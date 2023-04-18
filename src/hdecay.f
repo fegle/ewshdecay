@@ -595,11 +595,10 @@ c     unlikely = 0.D0
 
       PI = 4*DATAN(1D0)
 
-      write(*,*)"filenamein: ",filenamein
-      write(*,*)"dirout: ",dirout
 c      OPEN(NI,FILE='hdecay.in')
       OPEN(NI,FILE=trim(filenamein))
-      OPEN(NPAR,FILE=trim(dirout) // 'br.input')
+c-----take away br.input
+c      OPEN(NPAR,FILE=trim(dirout) // 'br.input')
 
       read(ni,101)islhai
       read(ni,101)islhao
@@ -2043,15 +2042,19 @@ c MMM changed 26/8/2022
       iwarn = 0
       DLambdaIR=1
 c-----if a1!=0 do not calculate ELW corrections
+      if(icxsm.eq.4)then
       if(ielwcxsm.eq.1) then
          if(da1cx.ne.0.D0) then
              write(*,*)"#####"
-             write(*,*)'Attention: You have to set a1=0 for the EW corrs.'
+             write(*,*)'Attention: You have to set a1=0 for the EW corrs!'
+             write(*,*)"ielwcxsm is set to 0."
              write(*,*)"#####"
-             ielwcxm=0
+             ielwcxsm=0
+             NNLOapprox=0
             endif
       endif
-
+c-----Call CxSMEWCorrections also at LO because it also does the parameter conversion
+c----- so that the parameters will be converted from one scheme into another
       call CxSMEWCorrections(ivsscheme,ipdprocess,iralph_mix,DeltaE,
      .        DLambdaIR,iwarn)
       if(ielwcxsm.eq.1)then
@@ -2068,6 +2071,19 @@ c-----if a1!=0 do not calculate ELW corrections
      .to 0.'
          endif
       endif
+      else
+c-----set all corrections to zero
+      dh1ll=0
+      dh1bb=0
+      dh1aa=0
+      dh2ll=0
+      dh2bb=0
+      dh2tt=0
+      dh2aa=0
+      dh2zz=0
+      dh2ww=0
+      dh2h1h1=0
+      endif
 c end MMM changed 26/8/2022
 
 c-----end Felix changed
@@ -2079,158 +2095,159 @@ c-----end Felix changed
 100   FORMAT(10X,G30.20)
 101   FORMAT(10X,I30)
 
-C--WRITE THE INPUT PARAMTERS TO A DATA-FILE
-
-      WRITE(NPAR,8)'SLHAIN   = ',ISLHAI
-      WRITE(NPAR,8)'SLHAOUT  = ',ISLHAO
-      WRITE(NPAR,8)'COUPVAR  = ',ICOUPVAR
-      WRITE(NPAR,8)'HIGGS    = ',IHIGGS
-      WRITE(NPAR,8)'OMIT ELW = ',IELW
-      WRITE(NPAR,8)'SM4      = ',ISM4
-      WRITE(NPAR,8)'FERMPHOB = ',IFERMPHOB
-c MMM changed 21/8/2013
-      WRITE(NPAR,8)'2HDM     = ',I2HDM
-c end MMM changed 21/8/2013
-      WRITE(NPAR,8)'MODEL    = ',IMODEL
-      WRITE(NPAR,9)'TGBET    = ',TGBET
-      WRITE(NPAR,9)'MABEG    = ',AMABEG
-      WRITE(NPAR,9)'MAEND    = ',AMAEND
-      WRITE(NPAR,7)'NMA      = ',NMA
-      WRITE(NPAR,9)'ALS(MZ)  = ',ALSMZ
-      WRITE(NPAR,9)'MSBAR(2) = ',AMS
-      WRITE(NPAR,9)'MCBAR(3) = ',AMCB
-      WRITE(NPAR,9)'MBBAR(MB)= ',AMBB
-      WRITE(NPAR,9)'MT       = ',AMT
-      WRITE(NPAR,9)'MTAU     = ',AMTAU
-      WRITE(NPAR,9)'MMUON    = ',AMMUON
-      WRITE(NPAR,9)'ALPH     = ',1.D0/ALPH
-      WRITE(NPAR,9)'GF       = ',GF
-      WRITE(NPAR,9)'GAMW     = ',GAMW
-      WRITE(NPAR,9)'GAMZ     = ',GAMZ
-      WRITE(NPAR,9)'MZ       = ',AMZ
-      WRITE(NPAR,9)'MW       = ',AMW
-      WRITE(NPAR,9)'VTB      = ',VTB
-      WRITE(NPAR,9)'VTS      = ',VTS
-      WRITE(NPAR,9)'VTD      = ',VTD
-      WRITE(NPAR,9)'VCB      = ',VCB
-      WRITE(NPAR,9)'VCS      = ',VCS
-      WRITE(NPAR,9)'VCD      = ',VCD
-      WRITE(NPAR,9)'VUB      = ',VUB
-      WRITE(NPAR,9)'VUS      = ',VUS
-      WRITE(NPAR,9)'VUD      = ',VUD
-      WRITE(NPAR,20)'********************* 4TH GENERATION **************
-     .************************'
-      WRITE(NPAR,*)'  SCENARIO FOR ELW. CORRECTIONS TO H -> GG',
-     .             ' (EVERYTHING IN GEV):'
-      WRITE(NPAR,*)'  GG_ELW = 1: MTP = 500    MBP = 450    ',
-     .             'MNUP = 375    MEP = 450'
-      WRITE(NPAR,*)'  GG_ELW = 2: MBP = MNUP = MEP = 600    ',
-     .             'MTP = MBP+50*(1+LOG(M_H/115)/5)'
-      WRITE(NPAR,*)
-      WRITE(NPAR,8)'GG_ELW   = ',IGGELW
-      WRITE(NPAR,9)'MTP      = ',AMTP
-      WRITE(NPAR,9)'MBP      = ',AMBP
-      WRITE(NPAR,9)'MNUP     = ',AMNUP
-      WRITE(NPAR,9)'MEP      = ',AMEP
-c MMM changed 21/8/2013
-      WRITE(NPAR,20)'************************** 2HDM *******************
-     .************************'
-      WRITE(NPAR,*)
-     .          'TYPE: 1 (I), 2 (II), 3 (Lepton-specific), 4 (flipped)'
-      WRITE(NPAR,8)'2HDM TYPE= ',ITYPE2HDM
-      WRITE(NPAR,9)'TANBETA  = ',TGBET2HDM
-      WRITE(NPAR,9)'ALPHA_H  = ',ALPH2HDM
-      WRITE(NPAR,9)'M_h      = ',AMHL2HDM
-      WRITE(NPAR,9)'M_H      = ',AMHH2HDM
-      WRITE(NPAR,9)'M_A      = ',AMHA2HDM
-      WRITE(NPAR,9)'M_H+     = ',AMHC2HDM
-      WRITE(NPAR,9)'M_12^2   = ',AM12SQ
-      WRITE(NPAR,20)'***************************************************
-     .************************'
-c end MMM changed 21/8/2013
-      WRITE(NPAR,9)'SUSYSCALE= ',SUSYSCALE
-      WRITE(NPAR,9)'MU       = ',AMU
-      WRITE(NPAR,9)'M2       = ',AM2
-      WRITE(NPAR,9)'MGLUINO  = ',AMGLUINO
-      WRITE(NPAR,9)'MSL1     = ',AMEL1
-      WRITE(NPAR,9)'MER1     = ',AMER1
-      WRITE(NPAR,9)'MQL1     = ',AMQL1
-      WRITE(NPAR,9)'MUR1     = ',AMUR1
-      WRITE(NPAR,9)'MDR1     = ',AMDR1
-      WRITE(NPAR,9)'MSL      = ',AMEL
-      WRITE(NPAR,9)'MER      = ',AMER
-      WRITE(NPAR,9)'MSQ      = ',AMSQ
-      WRITE(NPAR,9)'MUR      = ',AMUR
-      WRITE(NPAR,9)'MDR      = ',AMDR
-      WRITE(NPAR,9)'AL       = ',AL
-      WRITE(NPAR,9)'AU       = ',AU
-      WRITE(NPAR,9)'AD       = ',AD
-c     WRITE(NPAR,8)'NNLO (M) = ',NNLO
-      WRITE(NPAR,8)'ON-SHELL = ',IONSH
-      WRITE(NPAR,8)'ON-SH-WZ = ',IONWZ
-      WRITE(NPAR,8)'IPOLE    = ',IPOLE 
-      WRITE(NPAR,8)'OFF-SUSY = ',IOFSUSY
-      WRITE(NPAR,8)'INDIDEC  = ',INDIDEC
-      WRITE(NPAR,8)'NF-GG    = ',NFGG
-      WRITE(NPAR,8)'IGOLD    = ',IGOLD
-      WRITE(NPAR,9)'MPLANCK  = ',AXMPL
-      WRITE(NPAR,9)'MGOLD    = ',AXMGD
-      WRITE(NPAR,20)'******************* VARIATION OF HIGGS COUPLINGS *
-     .************************'
-      WRITE(NPAR,8)'ELWK     = ',ICOUPELW
-      WRITE(NPAR,9)'CW       = ',CPW
-      WRITE(NPAR,9)'CZ       = ',CPZ
-      WRITE(NPAR,9)'Ctau     = ',CPTAU
-      WRITE(NPAR,9)'Cmu      = ',CPMU
-      WRITE(NPAR,9)'Ct       = ',CPT
-      WRITE(NPAR,9)'Cb       = ',CPB
-      WRITE(NPAR,9)'Cc       = ',CPC
-      WRITE(NPAR,9)'Cs       = ',CPS
-      WRITE(NPAR,9)'Cgaga    = ',CPGAGA
-      WRITE(NPAR,9)'Cgg      = ',CPGG
-      WRITE(NPAR,9)'CZga     = ',CPZGA
-      WRITE(NPAR,20)'********************* 4TH GENERATION **************
-     .************************'
-      WRITE(NPAR,9)'Ctp      = ',CPTP
-      WRITE(NPAR,9)'Cbp      = ',CPBP
-      WRITE(NPAR,9)'Cnup     = ',CPNUP
-      WRITE(NPAR,9)'Cep      = ',CPEP
-c MMM changed 8/12/2015
-      WRITE(NPAR,20)'************************** cxSM *******************
-     .************************'
-      WRITE(NPAR,8)'ISINGLET = ',ISINGLET
-      WRITE(NPAR,8)'ICXSM    = ',ICXSM
-      WRITE(NPAR,20)'Real Broken Phase (icxsm=1)'
-      WRITE(NPAR,9)'ALPH1    = ',SBALPHACX1
-      WRITE(NPAR,9)'MH1      = ',SBAMH1
-      WRITE(NPAR,9)'MH2      = ',SBAMH2
-      WRITE(NPAR,9)'VS       = ',SBVS
-      WRITE(NPAR,20)'Real Dark Phase (icxsm=2)'
-      WRITE(NPAR,9)'MH1      = ',SDAMH1
-      WRITE(NPAR,9)'MHD      = ',SDAMHD
-      WRITE(NPAR,9)'M2S      = ',SDAMH2S
-      WRITE(NPAR,9)'LAMBDAS  = ',SDLAMBDAS
-      WRITE(NPAR,20)'Complex Broken Phase (icxsm=3)'
-      WRITE(NPAR,9)'ALPH1    = ',BALPHACX1
-      WRITE(NPAR,9)'ALPH2    = ',BALPHACX2
-      WRITE(NPAR,9)'ALPH3    = ',BALPHACX3
-      WRITE(NPAR,9)'MH1      = ',BAM1CX
-      WRITE(NPAR,9)'MH2      = ',AM2CX
-      WRITE(NPAR,9)'MH3      = ',BAM3CX
-      WRITE(NPAR,9)'VS       = ',BVSCX
-      WRITE(NPAR,20)'Complex Dark Phase (icxsm=4)'
-      WRITE(NPAR,9)'ALPH1    = ',DALPHACX1
-      WRITE(NPAR,9)'MH1      = ',DAM1CX
-      WRITE(NPAR,9)'MH2      = ',DAM2CX
-      WRITE(NPAR,9)'MHD      = ',DAM3CX
-      WRITE(NPAR,9)'VS       = ',DVSCX
-      WRITE(NPAR,9)'A1       = ',DA1CX
-c end MMM changed 8/12/2015
-
-C     WRITE(NPAR,9)'LAMBDA_5 = ',XLAMBDA
-
-      CLOSE(NPAR)
-
+c------Take out br.input 18/04/2023
+c C--WRITE THE INPUT PARAMTERS TO A DATA-FILE
+c
+c       WRITE(NPAR,8)'SLHAIN   = ',ISLHAI
+c       WRITE(NPAR,8)'SLHAOUT  = ',ISLHAO
+c       WRITE(NPAR,8)'COUPVAR  = ',ICOUPVAR
+c       WRITE(NPAR,8)'HIGGS    = ',IHIGGS
+c       WRITE(NPAR,8)'OMIT ELW = ',IELW
+c       WRITE(NPAR,8)'SM4      = ',ISM4
+c       WRITE(NPAR,8)'FERMPHOB = ',IFERMPHOB
+c c MMM changed 21/8/2013
+c       WRITE(NPAR,8)'2HDM     = ',I2HDM
+c c end MMM changed 21/8/2013
+c       WRITE(NPAR,8)'MODEL    = ',IMODEL
+c       WRITE(NPAR,9)'TGBET    = ',TGBET
+c       WRITE(NPAR,9)'MABEG    = ',AMABEG
+c       WRITE(NPAR,9)'MAEND    = ',AMAEND
+c       WRITE(NPAR,7)'NMA      = ',NMA
+c       WRITE(NPAR,9)'ALS(MZ)  = ',ALSMZ
+c       WRITE(NPAR,9)'MSBAR(2) = ',AMS
+c       WRITE(NPAR,9)'MCBAR(3) = ',AMCB
+c       WRITE(NPAR,9)'MBBAR(MB)= ',AMBB
+c       WRITE(NPAR,9)'MT       = ',AMT
+c       WRITE(NPAR,9)'MTAU     = ',AMTAU
+c       WRITE(NPAR,9)'MMUON    = ',AMMUON
+c       WRITE(NPAR,9)'ALPH     = ',1.D0/ALPH
+c       WRITE(NPAR,9)'GF       = ',GF
+c       WRITE(NPAR,9)'GAMW     = ',GAMW
+c       WRITE(NPAR,9)'GAMZ     = ',GAMZ
+c       WRITE(NPAR,9)'MZ       = ',AMZ
+c       WRITE(NPAR,9)'MW       = ',AMW
+c       WRITE(NPAR,9)'VTB      = ',VTB
+c       WRITE(NPAR,9)'VTS      = ',VTS
+c       WRITE(NPAR,9)'VTD      = ',VTD
+c       WRITE(NPAR,9)'VCB      = ',VCB
+c       WRITE(NPAR,9)'VCS      = ',VCS
+c       WRITE(NPAR,9)'VCD      = ',VCD
+c       WRITE(NPAR,9)'VUB      = ',VUB
+c       WRITE(NPAR,9)'VUS      = ',VUS
+c       WRITE(NPAR,9)'VUD      = ',VUD
+c       WRITE(NPAR,20)'********************* 4TH GENERATION **************
+c      .************************'
+c       WRITE(NPAR,*)'  SCENARIO FOR ELW. CORRECTIONS TO H -> GG',
+c      .             ' (EVERYTHING IN GEV):'
+c       WRITE(NPAR,*)'  GG_ELW = 1: MTP = 500    MBP = 450    ',
+c      .             'MNUP = 375    MEP = 450'
+c       WRITE(NPAR,*)'  GG_ELW = 2: MBP = MNUP = MEP = 600    ',
+c      .             'MTP = MBP+50*(1+LOG(M_H/115)/5)'
+c       WRITE(NPAR,*)
+c       WRITE(NPAR,8)'GG_ELW   = ',IGGELW
+c       WRITE(NPAR,9)'MTP      = ',AMTP
+c       WRITE(NPAR,9)'MBP      = ',AMBP
+c       WRITE(NPAR,9)'MNUP     = ',AMNUP
+c       WRITE(NPAR,9)'MEP      = ',AMEP
+c c MMM changed 21/8/2013
+c       WRITE(NPAR,20)'************************** 2HDM *******************
+c      .************************'
+c       WRITE(NPAR,*)
+c      .          'TYPE: 1 (I), 2 (II), 3 (Lepton-specific), 4 (flipped)'
+c       WRITE(NPAR,8)'2HDM TYPE= ',ITYPE2HDM
+c       WRITE(NPAR,9)'TANBETA  = ',TGBET2HDM
+c       WRITE(NPAR,9)'ALPHA_H  = ',ALPH2HDM
+c       WRITE(NPAR,9)'M_h      = ',AMHL2HDM
+c       WRITE(NPAR,9)'M_H      = ',AMHH2HDM
+c       WRITE(NPAR,9)'M_A      = ',AMHA2HDM
+c       WRITE(NPAR,9)'M_H+     = ',AMHC2HDM
+c       WRITE(NPAR,9)'M_12^2   = ',AM12SQ
+c       WRITE(NPAR,20)'***************************************************
+c      .************************'
+c c end MMM changed 21/8/2013
+c       WRITE(NPAR,9)'SUSYSCALE= ',SUSYSCALE
+c       WRITE(NPAR,9)'MU       = ',AMU
+c       WRITE(NPAR,9)'M2       = ',AM2
+c       WRITE(NPAR,9)'MGLUINO  = ',AMGLUINO
+c       WRITE(NPAR,9)'MSL1     = ',AMEL1
+c       WRITE(NPAR,9)'MER1     = ',AMER1
+c       WRITE(NPAR,9)'MQL1     = ',AMQL1
+c       WRITE(NPAR,9)'MUR1     = ',AMUR1
+c       WRITE(NPAR,9)'MDR1     = ',AMDR1
+c       WRITE(NPAR,9)'MSL      = ',AMEL
+c       WRITE(NPAR,9)'MER      = ',AMER
+c       WRITE(NPAR,9)'MSQ      = ',AMSQ
+c       WRITE(NPAR,9)'MUR      = ',AMUR
+c       WRITE(NPAR,9)'MDR      = ',AMDR
+c       WRITE(NPAR,9)'AL       = ',AL
+c       WRITE(NPAR,9)'AU       = ',AU
+c       WRITE(NPAR,9)'AD       = ',AD
+c c     WRITE(NPAR,8)'NNLO (M) = ',NNLO
+c       WRITE(NPAR,8)'ON-SHELL = ',IONSH
+c       WRITE(NPAR,8)'ON-SH-WZ = ',IONWZ
+c       WRITE(NPAR,8)'IPOLE    = ',IPOLE
+c       WRITE(NPAR,8)'OFF-SUSY = ',IOFSUSY
+c       WRITE(NPAR,8)'INDIDEC  = ',INDIDEC
+c       WRITE(NPAR,8)'NF-GG    = ',NFGG
+c       WRITE(NPAR,8)'IGOLD    = ',IGOLD
+c       WRITE(NPAR,9)'MPLANCK  = ',AXMPL
+c       WRITE(NPAR,9)'MGOLD    = ',AXMGD
+c       WRITE(NPAR,20)'******************* VARIATION OF HIGGS COUPLINGS *
+c      .************************'
+c       WRITE(NPAR,8)'ELWK     = ',ICOUPELW
+c       WRITE(NPAR,9)'CW       = ',CPW
+c       WRITE(NPAR,9)'CZ       = ',CPZ
+c       WRITE(NPAR,9)'Ctau     = ',CPTAU
+c       WRITE(NPAR,9)'Cmu      = ',CPMU
+c       WRITE(NPAR,9)'Ct       = ',CPT
+c       WRITE(NPAR,9)'Cb       = ',CPB
+c       WRITE(NPAR,9)'Cc       = ',CPC
+c       WRITE(NPAR,9)'Cs       = ',CPS
+c       WRITE(NPAR,9)'Cgaga    = ',CPGAGA
+c       WRITE(NPAR,9)'Cgg      = ',CPGG
+c       WRITE(NPAR,9)'CZga     = ',CPZGA
+c       WRITE(NPAR,20)'********************* 4TH GENERATION **************
+c      .************************'
+c       WRITE(NPAR,9)'Ctp      = ',CPTP
+c       WRITE(NPAR,9)'Cbp      = ',CPBP
+c       WRITE(NPAR,9)'Cnup     = ',CPNUP
+c       WRITE(NPAR,9)'Cep      = ',CPEP
+c c MMM changed 8/12/2015
+c       WRITE(NPAR,20)'************************** cxSM *******************
+c      .************************'
+c       WRITE(NPAR,8)'ISINGLET = ',ISINGLET
+c       WRITE(NPAR,8)'ICXSM    = ',ICXSM
+c       WRITE(NPAR,20)'Real Broken Phase (icxsm=1)'
+c       WRITE(NPAR,9)'ALPH1    = ',SBALPHACX1
+c       WRITE(NPAR,9)'MH1      = ',SBAMH1
+c       WRITE(NPAR,9)'MH2      = ',SBAMH2
+c       WRITE(NPAR,9)'VS       = ',SBVS
+c       WRITE(NPAR,20)'Real Dark Phase (icxsm=2)'
+c       WRITE(NPAR,9)'MH1      = ',SDAMH1
+c       WRITE(NPAR,9)'MHD      = ',SDAMHD
+c       WRITE(NPAR,9)'M2S      = ',SDAMH2S
+c       WRITE(NPAR,9)'LAMBDAS  = ',SDLAMBDAS
+c       WRITE(NPAR,20)'Complex Broken Phase (icxsm=3)'
+c       WRITE(NPAR,9)'ALPH1    = ',BALPHACX1
+c       WRITE(NPAR,9)'ALPH2    = ',BALPHACX2
+c       WRITE(NPAR,9)'ALPH3    = ',BALPHACX3
+c       WRITE(NPAR,9)'MH1      = ',BAM1CX
+c       WRITE(NPAR,9)'MH2      = ',AM2CX
+c       WRITE(NPAR,9)'MH3      = ',BAM3CX
+c       WRITE(NPAR,9)'VS       = ',BVSCX
+c       WRITE(NPAR,20)'Complex Dark Phase (icxsm=4)'
+c       WRITE(NPAR,9)'ALPH1    = ',DALPHACX1
+c       WRITE(NPAR,9)'MH1      = ',DAM1CX
+c       WRITE(NPAR,9)'MH2      = ',DAM2CX
+c       WRITE(NPAR,9)'MHD      = ',DAM3CX
+c       WRITE(NPAR,9)'VS       = ',DVSCX
+c       WRITE(NPAR,9)'A1       = ',DA1CX
+c c end MMM changed 8/12/2015
+c
+c C     WRITE(NPAR,9)'LAMBDA_5 = ',XLAMBDA
+c
+c       CLOSE(NPAR)
+c-----end takeout
 7     FORMAT(A11,I7)
 8     FORMAT(A11,I4)
 9     FORMAT(A11,G15.8)
@@ -2338,7 +2355,7 @@ c end MMM changed 8/12/15
       
       PI = 4*DATAN(1D0)
 
-      IF(IHIGGS.EQ.0) THEN
+      IF(IHIGGS.EQ.0.and.icxsm.eq.0) THEN
        OPEN(NSA,FILE=trim(dirout) // 'br.sm1')
        OPEN(NSB,FILE=trim(dirout) // 'br.sm2')
        IF(ISM4.NE.0)THEN
@@ -2472,7 +2489,7 @@ c end MMM changed 21/8/2013
 
 C--SETUP THE HEADS OF THE TABLES IN THE DATA-FILES
 
-      IF(IHIGGS.EQ.0) THEN
+      IF(IHIGGS.EQ.0.and.icxsm.eq.0) THEN
       WRITE(NSA,70)'MHSM  ','BB   ','TAU TAU','MU MU ','SS ','CC ','TT '
       WRITE(NSA,69)
       WRITE(NSA,*)
@@ -4122,7 +4139,7 @@ c ----------------------------- c
 
       else
 
-      IF(IHIGGS.EQ.0)THEN
+      IF(IHIGGS.EQ.0.and.icxsm.eq.0)THEN
       WRITE(NSA,20)AMSM,SMBRB,SMBRL,SMBRM,SMBRS,SMBRC,SMBRT
       WRITE(NSB,20)AMSM,SMBRG,SMBRGA,SMBRZGA,SMBRW,SMBRZ,SMWDTH
       IF(ISM4.NE.0)THEN
@@ -4316,6 +4333,11 @@ c end MMM changed 23/8/2013
       DIMENSION GLTT(2,2),GLBB(2,2),GHTT(2,2),GHBB(2,2),GCTB(2,2),
      .          GLEE(2,2),GHEE(2,2),GCEN(2,2)
       DIMENSION AGDL(4),AGDA(4),AGDH(4),AGDC(2)
+
+c MMM changed 8/12/15
+      DIMENSION RESCAL(3)
+c end MMM changed 8/12/2015
+
       COMMON/MASSES_HDEC/AMS,AMC,AMB,AMT
       COMMON/STRANGE_HDEC/AMSB
       COMMON/PARAM_HDEC/GF,ALPH,AMTAU,AMMUON,AMZ,AMW
@@ -4367,8 +4389,8 @@ c end MMM changed 23/8/2013
       COMMON/THDM_HDEC/TGBET2HDM,ALPH2HDM,AMHL2HDM,AMHH2HDM,
      .     AMHA2HDM,AMHC2HDM,AM12SQ,A1LAM2HDM,A2LAM2HDM,A3LAM2HDM,
      .     A4LAM2HDM,A5LAM2HDM,ITYPE2HDM,I2HDM,IPARAM2HDM
-
-      IF(IHIGGS.EQ.0) THEN
+      COMMON/MODCXSM/ISINGLET,ICXSM,rescal,am1cx,am2cx,am3cx
+      IF(IHIGGS.EQ.0.and.icxsm.eq.0) THEN
        CLOSE(NSA)
        CLOSE(NSB)
        IF(ISM4.NE.0)THEN

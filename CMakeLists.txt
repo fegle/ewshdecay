@@ -137,14 +137,17 @@ target_compile_options(cxsmhdecay PRIVATE -ffixed-line-length-none)
 
 target_link_libraries(cxsmhdecay LoopTools)
 
+include(CTest)
+
 # test script requires python>3.5
-#find_package(PythonInterp 3.5)
-#if(PYTHONINTERP_FOUND)
-	#add_test(NAME Broken_Phase COMMAND ${PYTHON_EXECUTABLE} ${CMAKE_SOURCE_DIR}/tests/testN2HDECAY.py ${CMAKE_BINARY_DIR}/n2hdecay 1 )
-	#add_test(NAME DarkSinglet_Phase COMMAND ${PYTHON_EXECUTABLE} ${CMAKE_SOURCE_DIR}/tests/testN2HDECAY.py ${CMAKE_BINARY_DIR}/n2hdecay 2 )
-  #add_test(NAME InertDoublet_Phase COMMAND ${PYTHON_EXECUTABLE} ${CMAKE_SOURCE_DIR}/tests/testN2HDECAY.py ${CMAKE_BINARY_DIR}/n2hdecay 3 )
-  #add_test(NAME DarkSingletDoublet_Phase COMMAND ${PYTHON_EXECUTABLE} ${CMAKE_SOURCE_DIR}/tests/testN2HDECAY.py ${CMAKE_BINARY_DIR}/n2hdecay 4 )
-#endif()
+find_package(PythonInterp 3.5)
+if(PYTHONINTERP_FOUND)
+    add_test(NAME real_broken_phase COMMAND ${PYTHON_EXECUTABLE} ${CMAKE_SOURCE_DIR}/tests/testCxSM.py ${CMAKE_BINARY_DIR}/cxsmhdecay 1 )
+    add_test(NAME real_DM_phase COMMAND ${PYTHON_EXECUTABLE} ${CMAKE_SOURCE_DIR}/tests/testCxSM.py ${CMAKE_BINARY_DIR}/cxsmhdecay 2 )
+    add_test(NAME complex_broken_phase COMMAND ${PYTHON_EXECUTABLE} ${CMAKE_SOURCE_DIR}/tests/testCxSM.py ${CMAKE_BINARY_DIR}/cxsmhdecay 3 )
+    add_test(NAME complex_DM_phase COMMAND ${PYTHON_EXECUTABLE} ${CMAKE_SOURCE_DIR}/tests/testCxSM.py ${CMAKE_BINARY_DIR}/cxsmhdecay 4 )
+	add_test(NAME complex_DM_phase_NLO COMMAND ${PYTHON_EXECUTABLE} ${CMAKE_SOURCE_DIR}/tests/testCxSM.py ${CMAKE_BINARY_DIR}/cxsmhdecay 5 )
+endif()
 
 # cpack configuration
 #set(CPACK_SOURCE_PACKAGE_FILE_NAME "CXSMHDECAY")

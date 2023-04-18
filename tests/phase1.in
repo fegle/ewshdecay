@@ -128,7 +128,7 @@ Singlet Extension: 1 - yes, 0 - no (based on SM w/o EW corrections)
 Model: 1 - real broken phase, 2 - real dark matter phase
        3 - complex broken phase, 4 - complex dark matter phase
 isinglet = 1
-icxSM    = 4
+icxSM    = 1
 *** real singlet broken phase ***
 alph1    = -0.118574
 mH1      = 125.1D0
@@ -152,10 +152,10 @@ m1       = 125.09D0
 m2       = 270.D0
 m3       = 60.D0
 vs       = 300.D0
-a1       = 1.0D0
+a1       = 0.0D0
 ******************** EW Corrections ********************
 ** Attention: This can only be used for the Dark Matter Phase of the CxSM with a1 = 0 **
-**** ielwcxsm = 0 LO, = 1 include NLO corrections
+**** ielwcxsm = 0, LO, =1 include NLO corrections
 ielwcxsm = 1
 **** ren. scheme: vsscheme = 1 pd, = 2 ZEM, pdprocess = 1 h1->AA, =2 h2->AA, alpha_mix =1 OS, =2 pstar
 vsscheme = 2

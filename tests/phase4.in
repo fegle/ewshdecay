@@ -147,15 +147,15 @@ m1       = 125.518D0
 m3       = 500.705D0
 vs       = 510.922D0
 *** complex singlet dark matter phase ***
-alph1    = 0.2D0
-m1       = 125.09D0
-m2       = 270.D0
-m3       = 60.D0
-vs       = 300.D0
-a1       = 1.0D0
+alph1    = -0.317120D0
+m1       = 125.3D0
+m2       = 400.D0
+m3       = 731.205D0
+vs       = 522.181D0
+a1       = -3.12115D07
 ******************** EW Corrections ********************
 ** Attention: This can only be used for the Dark Matter Phase of the CxSM with a1 = 0 **
-**** ielwcxsm = 0 LO, = 1 include NLO corrections
+**** ielwcxsm = 0, LO, =1 include NLO corrections
 ielwcxsm = 1
 **** ren. scheme: vsscheme = 1 pd, = 2 ZEM, pdprocess = 1 h1->AA, =2 h2->AA, alpha_mix =1 OS, =2 pstar
 vsscheme = 2
