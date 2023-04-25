@@ -132,8 +132,14 @@ add_executable( cxsmhdecay
 	src/decayCxSM.F src/dmb.f src/elw.f src/feynhiggs.f
 	src/h2hh.f src/haber.f src/hdecay.f src/hsqsq.f src/susylha.f src/hgaga.f src/hgg.f )
 
+file(COPY ${CMAKE_SOURCE_DIR}/hdecay.in DESTINATION ${CMAKE_BINARY_DIR})
+
 #target_include_directories(cxsmhdecay PUBLIC ${looptools_path}/include)
 target_compile_options(cxsmhdecay PRIVATE -ffixed-line-length-none)
+
+if(${CMAKE_Fortran_COMPILER_VERSION} GREATER_EQUAL 8)
+	target_compile_options(cxsmhdecay PRIVATE -ffixed-line-length-none -std=legacy)
+endif()
 
 target_link_libraries(cxsmhdecay LoopTools)
 
