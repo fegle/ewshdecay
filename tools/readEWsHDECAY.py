@@ -263,6 +263,7 @@ def read(brfolder, phase=None):
 
     def deduce_phase(files):
         filenames = sorted([os.path.basename(x) for x in files])
+        filenames.remove("br.input")
         for i in (1,2,3,4,5):
             if filenames == sorted(list(channels[i].keys())):
                 return i
@@ -286,6 +287,10 @@ def read(brfolder, phase=None):
 
     brdict = {}
     for infile in files:
+        print("infile: ",infile)
+        if ("br.input" in infile):
+            print("continue")
+            continue
         with open(infile, "r") as f:
             lines = f.readlines()
         brdict.update(
