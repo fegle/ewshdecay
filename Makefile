@@ -14,8 +14,8 @@ FFLAGS = -ffixed-line-length-none
 .F.o:
 	$(FC) -c $(FFLAGS) -I$(LOOPTOOLS)/include $*.F -o $*.o
 
-cxsmhdecay: $(OBJS)
-	$(FC) $(FFLAGS) $(OBJS) $(LIBS) -L$(LOOPTOOLS)/lib64 -looptools -o cxsmhdecay
+ewshdecay: $(OBJS)
+	$(FC) $(FFLAGS) $(OBJS) $(LIBS) -L$(LOOPTOOLS)/lib64 -looptools -o ewshdecay
 
 clean:
 	rm -f $(OBJS)

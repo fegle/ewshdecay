@@ -1,5 +1,5 @@
 cmake_minimum_required(VERSION 3.1)
-project(CXSMHDECAY VERSION 1.0.0 LANGUAGES C CXX Fortran)
+project(EWSHDECAY VERSION 1.0.0 LANGUAGES C CXX Fortran)
 
 
 if(NOT CMAKE_BUILD_TYPE AND NOT CMAKE_CONFIGURATION_TYPES)
@@ -127,36 +127,36 @@ target_compile_options(LoopTools PRIVATE $<$<COMPILE_LANGUAGE:C>:-DQUAD=0>)
 # -------------------------- executable --------------------------
 
 
-add_executable( cxsmhdecay
+add_executable( ewshdecay
 	src/ChangeScheme.F src/CxSMFunctions.F
 	src/decayCxSM.F src/dmb.f src/elw.f src/feynhiggs.f
 	src/h2hh.f src/haber.f src/hdecay.f src/hsqsq.f src/susylha.f src/hgaga.f src/hgg.f )
 
 file(COPY ${CMAKE_SOURCE_DIR}/hdecay.in DESTINATION ${CMAKE_BINARY_DIR})
 
-#target_include_directories(cxsmhdecay PUBLIC ${looptools_path}/include)
-target_compile_options(cxsmhdecay PRIVATE -ffixed-line-length-none)
+#target_include_directories(ewshdecay PUBLIC ${looptools_path}/include)
+target_compile_options(ewshdecay PRIVATE -ffixed-line-length-none)
 
 if(${CMAKE_Fortran_COMPILER_VERSION} GREATER_EQUAL 8)
-	target_compile_options(cxsmhdecay PRIVATE -ffixed-line-length-none -std=legacy)
+	target_compile_options(ewshdecay PRIVATE -ffixed-line-length-none -std=legacy)
 endif()
 
-target_link_libraries(cxsmhdecay LoopTools)
+target_link_libraries(ewshdecay LoopTools)
 
 include(CTest)
 
 # test script requires python>3.5
 find_package(PythonInterp 3.5)
 if(PYTHONINTERP_FOUND)
-    add_test(NAME real_broken_phase COMMAND ${PYTHON_EXECUTABLE} ${CMAKE_SOURCE_DIR}/tests/testCxSM.py ${CMAKE_BINARY_DIR}/cxsmhdecay 1 )
-    add_test(NAME real_DM_phase COMMAND ${PYTHON_EXECUTABLE} ${CMAKE_SOURCE_DIR}/tests/testCxSM.py ${CMAKE_BINARY_DIR}/cxsmhdecay 2 )
-    add_test(NAME complex_broken_phase COMMAND ${PYTHON_EXECUTABLE} ${CMAKE_SOURCE_DIR}/tests/testCxSM.py ${CMAKE_BINARY_DIR}/cxsmhdecay 3 )
-    add_test(NAME complex_DM_phase COMMAND ${PYTHON_EXECUTABLE} ${CMAKE_SOURCE_DIR}/tests/testCxSM.py ${CMAKE_BINARY_DIR}/cxsmhdecay 4 )
-	add_test(NAME complex_DM_phase_NLO COMMAND ${PYTHON_EXECUTABLE} ${CMAKE_SOURCE_DIR}/tests/testCxSM.py ${CMAKE_BINARY_DIR}/cxsmhdecay 5 )
+    add_test(NAME real_broken_phase COMMAND ${PYTHON_EXECUTABLE} ${CMAKE_SOURCE_DIR}/tests/testCxSM.py ${CMAKE_BINARY_DIR}/ewshdecay 1 )
+    add_test(NAME real_DM_phase COMMAND ${PYTHON_EXECUTABLE} ${CMAKE_SOURCE_DIR}/tests/testCxSM.py ${CMAKE_BINARY_DIR}/ewshdecay 2 )
+    add_test(NAME complex_broken_phase COMMAND ${PYTHON_EXECUTABLE} ${CMAKE_SOURCE_DIR}/tests/testCxSM.py ${CMAKE_BINARY_DIR}/ewshdecay 3 )
+    add_test(NAME complex_DM_phase COMMAND ${PYTHON_EXECUTABLE} ${CMAKE_SOURCE_DIR}/tests/testCxSM.py ${CMAKE_BINARY_DIR}/ewshdecay 4 )
+	add_test(NAME complex_DM_phase_NLO COMMAND ${PYTHON_EXECUTABLE} ${CMAKE_SOURCE_DIR}/tests/testCxSM.py ${CMAKE_BINARY_DIR}/ewshdecay 5 )
 endif()
 
 # cpack configuration
-#set(CPACK_SOURCE_PACKAGE_FILE_NAME "CXSMHDECAY")
+#set(CPACK_SOURCE_PACKAGE_FILE_NAME "EWSHDECAY")
 #list(APPEND CPACK_SOURCE_IGNORE_FILES "\.git" )
 #list(APPEND CPACK_SOURCE_IGNORE_FILES ".gitignore" )
 #list(APPEND CPACK_SOURCE_IGNORE_FILES ".gitlab-ci.yml" )
@@ -170,21 +170,21 @@ endif()
 #if(PROJECT_SOURCE_DIR STREQUAL CMAKE_SOURCE_DIR)
   #include(CMakePackageConfigHelpers)
   #write_basic_package_version_file(
-    #CXSMHDECAYConfigVersion.cmake
+    #EWSHDECAYConfigVersion.cmake
     #VERSION ${PACKAGE_VERSION}
     #COMPATIBILITY AnyNewerVersion)
 
-  #set(CXSMHDECAY LoopTools)
+  #set(EWSHDECAY LoopTools)
 
   #export(
     #TARGETS ${ExportList}
-    #NAMESPACE CXSMHDECAY::
-    #FILE CXSMHDECAYTargets.cmake
+    #NAMESPACE EWSHDECAY::
+    #FILE EWSHDECAYTargets.cmake
     #)
 
-  #configure_file(tools/cmake/CXSMHDECAYConfig.cmake.in CXSMHDECAYConfig.cmake @ONLY)
+  #configure_file(tools/cmake/EWSHDECAYConfig.cmake.in EWSHDECAYConfig.cmake @ONLY)
 
-  #export(PACKAGE CXSMHDECAY)
+  #export(PACKAGE EWSHDECAY)
 #endif()
 
 # ------------------------ Doxygen --------------------------------------------
@@ -194,7 +194,7 @@ if(DOXYGEN_FOUND AND CMAKE_PROJECT_NAME STREQUAL PROJECT_NAME)
 
   set(DOXYGEN_USE_MATHJAX YES)
   set(DOXYGEN_STRIP_FROM_INC_PATH "${CMAKE_CURRENT_SOURCE_DIR}/include")
-  set(DOXYGEN_PROJECT_BRIEF "CXSMHDECAY -- code to calculate Higgs Decays in the CxSM including ELW corrections")
+  set(DOXYGEN_PROJECT_BRIEF "EWSHDECAY -- code to calculate Higgs Decays in the RxSM and CxSM including ELW corrections")
   set(DOXYGEN_CALL_GRAPH YES)
   set(DOXYGEN_EXTRACT_ALL YES)
   set(DOXYGEN_EXTRACT_PRIVATE YES)

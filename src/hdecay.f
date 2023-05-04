@@ -1,12 +1,12 @@
 C     Last modification on August, 26, 2022 by MM
 C ==================================================================
-C     This code calculates the CxSM decay widths and BRs in the
-C     various phases of the CxSM as described in 
+C     This code calculates the RxSM and CxSM decay widths and BRs in the
+C     various phases as described in
 C     R. Costa, M. Mühlleitner, M. Sampaio, R. Santos,
 C     JHEP 06 (2016) 034, arXiv 1512.05355
 C     including the EW corrections for the DM phase with a1=0 as
 C     described in F.Egle, M.Mühlleitner, R.Santos, J.Viana
-C     arXiv:2202.0435 and ....
+C     arXiv:2202.0435.
 C     Cite the above publications when you use the code.
 C
 C     In case EW corrections for the DM phase are computed you have

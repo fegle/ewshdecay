@@ -270,7 +270,7 @@ c        stdscheme=1
       processname=(/"h1AA","h2AA"/)
       alphaname=(/"OS","p*"/)
       stdvsscheme=2
-      stdpdprocess=1
+      stdpdprocess=2
       stdalphascheme=1
       outputscheme=trim(processname(stdpdprocess)) // trim(vsname(stdvsscheme)) // trim(alphaname(stdalphascheme))
 
