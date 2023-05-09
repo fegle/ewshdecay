@@ -2,7 +2,8 @@ OBJS = src/hdecay.o src/haber.o src/feynhiggs.o src/hsqsq.o src/susylha.o src/hg
        src/elw.o src/hgg.o src/h2hh.o src/decayCxSM.o src/CxSMFunctions.o src/ChangeScheme.o
 
 #Set this LOOPTOOLS Flag to a path to a local LoopTools installation
-LOOPTOOLS=/path/to/LOOPTOOLS/
+#LOOPTOOLS=/path/to/LOOPTOOLS/
+LOOPTOOLS=/users/tp/egle/Desktop/programs/LoopTools-2.15/x86_64-Linux/
 
 FC=gfortran
 FFLAGS = -ffixed-line-length-none

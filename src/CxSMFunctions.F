@@ -3,6 +3,7 @@
       IMPLICIT DOUBLE PRECISION (A-H,O-Z)
       integer vsscheme,pdprocess,alphascheme,ielwcxsm,stdscheme
       integer NNLOapprox
+      integer stdvsscheme,stdpdprocess,stdalphascheme,ChangeScheme
       double precision mW,mZ,mt,mb,mtau
       double precision myGF
       double precision mh1,mh2,mX,vS,Talpha
@@ -12,7 +13,7 @@
 c MMM changed 8/12/15
       DIMENSION RESCAL(3)
 c end MMM changed 8/12/2015
-      logical :: ChangeScheme
+c      logical :: ChangeScheme
       double precision tempexpr
       COMMON/MODCXSM/ISINGLET,ICXSM,rescal,am1cx,am2cx,am3cx
       common/SINGLETPARS/DALPHACX1,DVSCX
@@ -25,6 +26,7 @@ c end MMM changed 8/12/2015
       Common/CxSMValues/mh1,mh2,mX,vS,Talpha
       Common/IRValues/DeltaE,LambdaIR
       Common/NNLO/deltaNNLO,NNLOapprox
+      Common/ParamConversion/ChangeScheme,stdvsscheme,stdpdprocess,stdalphascheme
 #include "looptools.h"      
       call ltini
       mW=AMW
@@ -62,10 +64,10 @@ c       write(*,*)"LambdaIR: ", LambdaIR
 c       write(*,*)"DeltaE: ", DeltaE
 
 c------Change Scheme
-      ChangeScheme=.TRUE.
-      if(ChangeScheme.eqv..TRUE.)then
+c      ChangeScheme=.TRUE.
+      if(ChangeScheme.eq.1)then
       write(*,*)"#####"
-      write(*,*)"Parameter Conversion is activated."
+      write(*,*)"Parameter conversion is activated."
       write(*,*)"Parameters will be converted if chosen scheme is not the input scheme."
       write(*,*)"#####"
       call ChangeRenScheme()
@@ -79,14 +81,16 @@ c-----include NLO^2 if abs(vs/v/Talpha -1)<=deltaNNLO
       write(*,*)"#####"
       write(*,*)"NLO^2 is activated for the decay h2->h1h1."
       write(*,*)"#####"
-      tempexpr=DAbs(vS*DSQRT(DSQRT(2.D0)*GF)/Talpha -1)
+c      tempexpr=DAbs(vS*DSQRT(DSQRT(2.D0)*GF)/Talpha -1)
+      tempexpr=DAbs(Talpha/(vS*DSQRT(DSQRT(2.D0)*GF)) -1)
 c      write(*,*)"tempexpr: ", tempexpr
+c      write(*,*)"v: ", 1/DSQRT(DSQRT(2.D0)*GF)
       if(tempexpr.le.deltaNNLO)then
       NNLOapprox=1
       else
       write(*,*)"#####"
-      write(*,*)"|(vs/v)/Talpha -1|<=deltaNNLO is not fulfillled for the given parameters!"
-      write(*,*)"Set NNLOapprox=0, the NLO^2 contribution is deactivated."
+      write(*,*)"|tan(alpha)*(v/vs) -1|<=deltaNNLO is not fulfillled for the given parameters!"
+      write(*,*)"NNLOapprox is set to 0, the NLO^2 contribution is deactivated."
       write(*,*)"#####"
       NNLOapprox=0
       endif
@@ -107,11 +111,11 @@ c-----end
       if(ielwcxsm.eq.1)then
       if(vsscheme.eq.1.and.pdprocess.eq.1.and.mh1/2.D0.le.mX)then
       write(*,*)"#####"
-      write(*,*) "h1 cannot decay into DM DM, kinematically not possible! Cannot use process dependent Scheme! Set EW corrections to zero."
+      write(*,*) "h1 cannot decay into DM DM, kinematically not possible! Cannot use process dependent Scheme! EW corrections are set to zero."
       write(*,*)"#####"
       elseif(vsscheme.eq.1.and.pdprocess.eq.2.and.mh2/2.D0.le.mX)then
       write(*,*)"#####"
-      write(*,*) "h2 cannot decay into DM DM, kinematically not possible! Cannot use process dependent Scheme! Set EW corrections to zero."
+      write(*,*) "h2 cannot decay into DM DM, kinematically not possible! Cannot use process dependent Scheme! EW corrections are set to zero."
       write(*,*)"#####"
       else
       
@@ -249,35 +253,36 @@ ccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc
      .ddvSh1AAZEMOS,ddvSh2AAZEMOS,ddvSh1AAZEMpstar,
      .ddvSh2AAZEMpstar
       integer vsscheme,pdprocess,alphascheme
-      integer stdvsscheme,stdpdprocess,stdalphascheme
+      integer stdvsscheme,stdpdprocess,stdalphascheme,ChangeScheme
       double precision ddalphastd,ddvSstd
       double precision ddalphanew,ddvSnew
       double precision DALPHACX1,DVSCX
-      Character(len = 20) :: outputscheme
-      character(len=4), dimension(2) :: vsname,processname,alphaname
+      Character(len = 20) :: outputscheme,chosenscheme
+      character(len=7), dimension(2) :: vsname,processname,alphaname
       CHARACTER(100) :: filenamein,dirout
 c-----CommandlineInput
       Common/Commandline/filenamein,dirout
       Common/CxSMFlags/vsscheme,pdprocess,alphascheme
       common/SINGLETPARS/DALPHACX1,DVSCX
+      Common/ParamConversion/ChangeScheme,stdvsscheme,stdpdprocess,stdalphascheme
 c       if(DAbs(mh1-125.09).lt.0.1)then
 c       stdscheme=1
 c       else
 c       stdscheme=2
 c       endif
 c        stdscheme=1
-      vsname=(/"pd  ","ZEM "/)
-      processname=(/"h1AA","h2AA"/)
+      vsname=(/"OSproc ","ZEMproc"/)
+      processname=(/"1-","2-"/)
       alphaname=(/"OS","p*"/)
-      stdvsscheme=2
-      stdpdprocess=2
-      stdalphascheme=1
-      outputscheme=trim(processname(stdpdprocess)) // trim(vsname(stdvsscheme)) // trim(alphaname(stdalphascheme))
-
+c      stdvsscheme=2
+c      stdpdprocess=2
+c     stdalphascheme=1
+      outputscheme=trim(vsname(stdvsscheme)) // trim(processname(stdpdprocess)) // trim(alphaname(stdalphascheme))
+      chosenscheme=trim(vsname(vsscheme)) // trim(processname(pdprocess)) // trim(alphaname(alphascheme))
       if(vsscheme.ne.stdvsscheme.OR.pdprocess.ne.stdpdprocess.OR.alphascheme.ne.stdalphascheme)then
       write(*,*)"#####"
-      write(*,"(3A)")"The chosen Renormalization scheme is not the ",
-     .trim(outputscheme), " renormalization scheme. Thus, the input parameters have to be converted."
+      write(*,"(3A)")"The chosen renormalization scheme (",trim(chosenscheme),") is not the input",
+     ."renormalization scheme (",trim(outputscheme),"). Thus, the input parameters have to be converted."
       write(*,*)"#####"
       if(stdvsscheme.eq.1)then
         if(stdpdprocess.eq.1)then

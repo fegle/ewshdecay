@@ -487,6 +487,7 @@ c end MMM changed 8/12/2015
       integer NNLOapprox
       double precision deltaNNLO
       CHARACTER(100) :: filenamein,dirout
+      integer stdvsscheme,stdpdprocess,stdalphascheme,ChangeScheme
 c-----CommandlineInput
       Common/Commandline/filenamein,dirout
 c -------------- common block given by read_leshouches ------------ c
@@ -589,6 +590,7 @@ c MMM changed 26/8/2022
      .     dh2aa,dh2zz,dh2ww,dh2h1h1,ielwcxsm
       common/SINGLETPARS/DALPHACX1,DVSCX
       Common/NNLO/deltaNNLO,NNLOapprox
+      Common/ParamConversion/ChangeScheme,stdvsscheme,stdpdprocess,stdalphascheme
 c MMM changed 26/8/2022      
       
       unlikely = -123456789D0
@@ -781,6 +783,13 @@ c calculate the EW corrections and choose the renormalization scheme
       READ(NI,*)
       READ(NI,101) NNLOapprox
       READ(NI,100) deltaNNLO
+      READ(NI,*)
+      READ(NI,*)
+      READ(NI,*)
+      READ(NI,101) ChangeScheme
+      READ(NI,101) stdvsscheme
+      READ(NI,101) stdpdprocess
+      READ(NI,101) stdalphascheme
 c end MMM changed 26/8/2022            
 
 c MMM changed 8/12/15
@@ -2059,13 +2068,13 @@ c----- so that the parameters will be converted from one scheme into another
       call CxSMEWCorrections(ivsscheme,ipdprocess,iralph_mix,DeltaE,
      .        DLambdaIR,iwarn)
       if(ielwcxsm.eq.1)then
-      write(*,*)"#####"
-      write(*,*)"EW corrections delta:"
-      write(*,*)"dh1ll,dh1bb,dh1aa: "
-      write(*,*)dh1ll,dh1bb,dh1aa
-      write(*,*)"dh2ll,dh2bb,dh2tt,dh2aa,dh2zz,dh2ww,dh2h1h1: "
-      write(*,*)dh2ll,dh2bb,dh2tt,dh2aa,dh2zz,dh2ww,dh2h1h1
-      write(*,*)"#####"
+c       write(*,*)"#####"
+c       write(*,*)"EW corrections delta:"
+c       write(*,*)"dh1ll,dh1bb,dh1aa: "
+c       write(*,*)dh1ll,dh1bb,dh1aa
+c       write(*,*)"dh2ll,dh2bb,dh2tt,dh2aa,dh2zz,dh2ww,dh2h1h1: "
+c       write(*,*)dh2ll,dh2bb,dh2tt,dh2aa,dh2zz,dh2ww,dh2h1h1
+c       write(*,*)"#####"
          if(iwarn.eq.1) then
             print*,'The EW corrections to one or more decay widths 
      .lead to a negative decay width and hence the correction is set 
