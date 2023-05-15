@@ -21,8 +21,8 @@ except OSError:
 
 subprocess.run(args=[args.exe, '-i', os.path.join(os.path.dirname(__file__),'phase{}.in'.format(args.phase)), '-o', checkpath])
 
-check = read(checkpath)
-reference = read(os.path.join(os.path.dirname(__file__),'out{}'.format(args.phase)))
+check = read(checkpath,args.phase)
+reference = read(os.path.join(os.path.dirname(__file__),'out{}'.format(args.phase)),args.phase)
 
 if not check == reference:
     for key in check.keys():

@@ -128,7 +128,7 @@ Singlet Extension: 1 - yes, 0 - no (based on SM w/o EW corrections)
 Model: 1 - real broken phase, 2 - real dark matter phase
        3 - complex broken phase, 4 - complex dark matter phase
 isinglet = 1
-icxSM    = 2
+icxSM    = 4
 *** real singlet broken phase ***
 alph1    = -0.118574
 mH1      = 125.1D0
@@ -156,20 +156,20 @@ a1       = 0.0D0
 ******************** EW Corrections ********************
 ** Attention: This can only be used the complex dark matter phase (icxSM=4) of the CxSM with a1=0 **
 **** ielwcxsm = 0 LO, = 1 include NLO corrections
-ielwcxsm = 0
+ielwcxsm = 1
 **** ren. scheme: vsscheme = 1 pd, = 2 ZEM, pdprocess = 1 h1->AA, =2 h2->AA, alpha_mix =1 OS, =2 pstar
-vsscheme = 1
-pdprocess= 1
-ralph_mix= 2
+vsscheme = 2
+pdprocess= 2
+ralph_mix= 1
 **** IR parameter - DeltaE is the detector resolution (in GeV);
 DeltaE   = 10.0D0
 **** NNLO approx: NNLOapprox=1, add NLO^2 term to h2h1h1 decay width if |tan(alpha)*(v/vs)-1|<=deltaNNLO
-NNLOapp  = 1
+NNLOapp  = 0
 deltaNNLO= 0.05D0
 **** Parameter conversion, change input parameters vS and alpha accordingly, if given scheme above is not the specified input scheme
 **** Paramcon = 0 no parameter conversion, =1 do parameter conversion
 **** Standard scheme: stdvs = 1 pd, = 2 ZEM, stdproc = 1 h1->AA, =2 h2->AA, stdalpha =1 OS, =2 pstar
-Paramcon = 0
+Paramcon = 1
 stdvs    = 1
-stdproc  = 2
+stdproc  = 1
 stdalpha = 1

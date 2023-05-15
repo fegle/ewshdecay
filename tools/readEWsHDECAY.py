@@ -1,6 +1,6 @@
 def read(brfolder, phase=None):
     """
-    Reads the N2HDECAY output in the brfolder and returns a dictionary containing all of the N2HDECAY results. If the phase is not specified it is deduced automatically based on the files present in brfolder. This only works if the folder only contains output files for one phase.
+    Reads the EWsHDECAY output in the brfolder and returns a dictionary containing all of the EWsHDECAY results. If the phase is not specified it is deduced automatically based on the files present in brfolder. This only works if the folder only contains output files for one phase.
     """
     import os.path
     import glob
@@ -252,6 +252,160 @@ def read(brfolder, phase=None):
             "b_H2_H1H1",
             "b_H2_H1HD",
             "b_H2_HDHD",
+        ],
+        }
+    CxSMdarkNNLOapprox_channels = {
+        "br.cd11": [
+            "m_H1",
+            "b_H1_bb",
+            "b_H1_tautau",
+            "b_H1_mumu",
+            "b_H1_ss",
+            "b_H1_cc",
+            "b_H1_tt",
+        ],
+        "br.cd12": [
+            "m_H1",
+            "b_H1_gg",
+            "b_H1_gamgam",
+            "b_H1_Zgam",
+            "b_H1_WW",
+            "b_H1_ZZ",
+            "w_H1",
+        ],
+        "br.cd13": [
+            "m_H1",
+            "b_H1_H2H2",
+            "b_H1_H2HD",
+            "b_H1_HDHD",
+        ],
+        "br.cd21": [
+            "m_H2",
+            "b_H2_bb",
+            "b_H2_tautau",
+            "b_H2_mumu",
+            "b_H2_ss",
+            "b_H2_cc",
+            "b_H2_tt",
+        ],
+        "br.cd22": [
+            "m_H2",
+            "b_H2_gg",
+            "b_H2_gamgam",
+            "b_H2_Zgam",
+            "b_H2_WW",
+            "b_H2_ZZ",
+            "w_H2",
+        ],
+        "br.cd23": [
+            "m_H2",
+            "b_H2_H1H1",
+            "b_H2_H1HD",
+            "b_H2_HDHD",
+        ],
+        }
+    CxSMdarkNNLOapprox_channels = {
+        "br.cd11": [
+            "m_H1",
+            "b_H1_bb",
+            "b_H1_tautau",
+            "b_H1_mumu",
+            "b_H1_ss",
+            "b_H1_cc",
+            "b_H1_tt",
+        ],
+        "br.cd12": [
+            "m_H1",
+            "b_H1_gg",
+            "b_H1_gamgam",
+            "b_H1_Zgam",
+            "b_H1_WW",
+            "b_H1_ZZ",
+            "w_H1",
+        ],
+        "br.cd13": [
+            "m_H1",
+            "b_H1_H2H2",
+            "b_H1_H2HD",
+            "b_H1_HDHD",
+        ],
+        "br.cd21": [
+            "m_H2",
+            "b_H2_bb",
+            "b_H2_tautau",
+            "b_H2_mumu",
+            "b_H2_ss",
+            "b_H2_cc",
+            "b_H2_tt",
+        ],
+        "br.cd22": [
+            "m_H2",
+            "b_H2_gg",
+            "b_H2_gamgam",
+            "b_H2_Zgam",
+            "b_H2_WW",
+            "b_H2_ZZ",
+            "w_H2",
+        ],
+        "br.cd23": [
+            "m_H2",
+            "b_H2_H1H1",
+            "b_H2_H1HD",
+            "b_H2_HDHD",
+        ]
+    }
+    CxSMdarkNLOparamconversion_channels = {
+        "br.cd11": [
+            "m_H1",
+            "b_H1_bb",
+            "b_H1_tautau",
+            "b_H1_mumu",
+            "b_H1_ss",
+            "b_H1_cc",
+            "b_H1_tt",
+        ],
+        "br.cd12": [
+            "m_H1",
+            "b_H1_gg",
+            "b_H1_gamgam",
+            "b_H1_Zgam",
+            "b_H1_WW",
+            "b_H1_ZZ",
+            "w_H1",
+        ],
+        "br.cd13": [
+            "m_H1",
+            "b_H1_H2H2",
+            "b_H1_H2HD",
+            "b_H1_HDHD",
+        ],
+        "br.cd21": [
+            "m_H2",
+            "b_H2_bb",
+            "b_H2_tautau",
+            "b_H2_mumu",
+            "b_H2_ss",
+            "b_H2_cc",
+            "b_H2_tt",
+        ],
+        "br.cd22": [
+            "m_H2",
+            "b_H2_gg",
+            "b_H2_gamgam",
+            "b_H2_Zgam",
+            "b_H2_WW",
+            "b_H2_ZZ",
+            "w_H2",
+        ],
+        "br.cd23": [
+            "m_H2",
+            "b_H2_H1H1",
+            "b_H2_H1HD",
+            "b_H2_HDHD",
+        ],
+        "Paramconversion.txt": [
+            "alpha",
+            "vs",
         ]
     }
 
@@ -259,7 +413,7 @@ def read(brfolder, phase=None):
 
 
 
-    channels = [{}, RxSMbroken_channels,RxSMdark_channels,CxSMbroken_channels,CxSMdark_channels,CxSMdarkNLO_channels]
+    channels = [{}, RxSMbroken_channels,RxSMdark_channels,CxSMbroken_channels,CxSMdark_channels,CxSMdarkNLO_channels,CxSMdarkNNLOapprox_channels,CxSMdarkNLOparamconversion_channels]
 
     def deduce_phase(files):
         filenames = sorted([os.path.basename(x) for x in files])

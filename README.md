@@ -38,6 +38,9 @@ Alternatively, the code can be compiled using 'cmake'. LoopTools will then be do
     mkdir build && cd build
     cmake ..
     make
+    make test
+
+The last command is optional and will do some automatic testing to see if everything was properly installed.
 
 ### User Instructions
 After compiling, an executable called ewshdecay is generated. The input parameters are then specified in a separate input file, a test input file is given as *hdecay_test.in*, the input should always be given in this format.

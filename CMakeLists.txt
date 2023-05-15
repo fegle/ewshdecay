@@ -153,6 +153,8 @@ if(PYTHONINTERP_FOUND)
     add_test(NAME complex_broken_phase COMMAND ${PYTHON_EXECUTABLE} ${CMAKE_SOURCE_DIR}/tests/testCxSM.py ${CMAKE_BINARY_DIR}/ewshdecay 3 )
     add_test(NAME complex_DM_phase COMMAND ${PYTHON_EXECUTABLE} ${CMAKE_SOURCE_DIR}/tests/testCxSM.py ${CMAKE_BINARY_DIR}/ewshdecay 4 )
 	add_test(NAME complex_DM_phase_NLO COMMAND ${PYTHON_EXECUTABLE} ${CMAKE_SOURCE_DIR}/tests/testCxSM.py ${CMAKE_BINARY_DIR}/ewshdecay 5 )
+	add_test(NAME complex_DM_phase_NNLO_approx COMMAND ${PYTHON_EXECUTABLE} ${CMAKE_SOURCE_DIR}/tests/testCxSM.py ${CMAKE_BINARY_DIR}/ewshdecay 6 )
+	add_test(NAME complex_DM_phase_NLO_paramconversion COMMAND ${PYTHON_EXECUTABLE} ${CMAKE_SOURCE_DIR}/tests/testCxSM.py ${CMAKE_BINARY_DIR}/ewshdecay 7 )
 endif()
 
 # cpack configuration
