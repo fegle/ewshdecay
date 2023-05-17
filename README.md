@@ -32,7 +32,7 @@ The code was written by Felix Egle, Margarete Mühlleitner, João Viana and Rui 
 
 
 ### Compilation
-In order to compile the code you can use the given Makefile. A Fortran compiler is needed for the compilation. Furthermore, the code uses the program package [LoopTools][] for the calculation of the one-loop integrals. Thus, if the given Makefile is used, the variable *LOOPTOOLS* has to be set to a local installation of LoopTools.
+In order to compile the code you can use the given Makefile. A fortran compiler is needed for the compilation. Furthermore, the code uses the program package [LoopTools][] for the calculation of the one-loop integrals. Thus, if the given Makefile is used, the variable *LOOPTOOLS* has to be set to a local installation of LoopTools.
 Alternatively, the code can be compiled using 'cmake'. LoopTools will then be downloaded and installed automatically. This can be achieved e.g. by the following commands:
 
     mkdir build && cd build
@@ -40,30 +40,12 @@ Alternatively, the code can be compiled using 'cmake'. LoopTools will then be do
     make
     make test
 
-### Tests
-With the last command above (make test) a series of tests are passed through to check if the program was properly installed. It uses the input files in tests/phase"i".in, where "i"=1..7. The different indizes have the following meaning:
-
-- i=1 Test input file for the real broken phase
-
-- i=2 Test input file for the real dark matter phase
-
-- i=3 Test input file for the complex broken phase
-
-- i=4 Test input file for the complex dark matter phase at LO
-
-- i=5 Test input file for the complex dark matter phase at NLO
-
-- i=6 Test input file for the complex dark matter phase at NLO including the NLO^2 for the h2->h1h1 decay
-
-- i=7 Test input file for the complex dark matter phase at NLO including a parameter conversion between two schemes.
-
-The output is automatically compared to already prepared output files in the /tests/out"i" directories.
-
+The last command is optional and will do some automatic testing to see if everything was properly installed.
 
 ### User Instructions
-After compiling, an executable called ewshdecay is generated. The input parameters are then specified in a separate input file, a test input file is given as *hdecay.in*, the input should always be given in this format.
+After compiling, an executable called ewshdecay is generated. The input parameters are then specified in a separate input file, a test input file is given as *hdecay_test.in*, the input should always be given in this format.
 
-The standard input is expected to be named 'hdecay.in' and in the same directory as the executable. Otherwise, the input file can be specified with the flag "-i" as a command line input. Also the output directory can be specified with the "-o" flag, so e.g.
+The standard input is expected to be './hdecay.in'. Otherwise, the input file can be specified with the flag "-i" as a command line input. Also the output directory can be specified with the "-o" flag, so e.g.
 
     ./ewshdecay -i myinput.in -o finaloutput/
 
