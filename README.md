@@ -1,7 +1,10 @@
 # EWsHDECAY
 
-EWsHDECAY is an extension of the code [sHDECAY][] (see *[JHEP06(2016)034]*) which itself is based on [HDECAY][] (see *[hep-ph/9704448]* and
-*[1801.09506]*) version 6.50. For this version of EWsHDECAY, the newest version of HDECAY (version 6.61) was used as a basis, the extension sHDECAY was then implemented into this new version and then the EWsHDECAY expansion was added. Similar to sHDecay, EWsHDECAY computes the Higgs boson decay widths and branching ratios in the RxSM and CxSM including the state-of-the-art QCD corrections and off-shell decays for massive gauge boson and top-pair final states. The new feature of EWsHDECAY is the possibility to additionally calculate for the complex Dark Matter phase of the CxSM the electroweak corrections to the Higgs decays into non-loop induced and on-shell final states.
+EWsHDECAY is an extension of the code [sHDECAY][] (see *[JHEP06(2016)034]*) which itself is based on [HDECAY][] (see *[Comput.Phys.Commun. 108 (1998) 56]* and
+*[Comput.Phys.Commun. 238 (2019) 214]*) version 6.50. For this version of EWsHDECAY, the newest version of HDECAY (version 6.61) was used as a basis, the extension sHDECAY was then implemented into this new version and then the EWsHDECAY expansion was added. Similar to the code sHDECAY, EWsHDECAY computes the Higgs boson decay widths and branching ratios in the RxSM and CxSM including the state-of-the-art QCD corrections and off-shell decays for massive gauge boson and top-pair final states. The new feature of EWsHDECAY is the possibility to additionally calculate for the complex Dark Matter phase of the CxSM the electroweak corrections to the Higgs decays into non-loop induced and on-shell final states.
+
+### Contributors and Citation Guide
+The code was written by Felix Egle, Margarete Mühlleitner, João Viana and Rui Santos. If you use EWsHDECAY please cite "Felix Egle, Margarete Mühlleitner, Rui Santos, Joao Viana, arXiv:xzy [hep-ph]."
 
 ### The CxSM
 
@@ -15,20 +18,17 @@ Caveats:
 
 - In case the NLO EW corrections are negative and beyond -100% the LO decay widths are given out and a warning is printed.
 
-- The NNLO corrections to h2->h1h1 are exact only for parameter configurations where the LO width vanishes. Otherwise they are only approximate to an extent which cannot be estimated without the full NNLO calculations.
+- The NNLO corrections to h2->h1h1 are exact only for parameter configurations where the LO width vanishes. Otherwise they are only approximate to an extent which cannot be estimated without the full NNLO calculation.
 
-- Be careful when interpreting and comparing the results of different renormalization scheme choices. A proper comparison requires the consistent conversion of the input parameters. This feature can be provided on demand.
+- Be careful when interpreting and comparing the results of different renormalization scheme choices. A proper comparison requires the consistent conversion of the input parameters. This feature can be chosen in the input file.
 
-A detailed description of the model is given in the manual. When the
+A detailed description of the model is given in *[]*. When the
 code is downloaded an up-to-date pdf version is included in the doc
 folder.
 
 ### Changes
 All changes in the code that affect the results are documented in the CHANGELOG.
 
-
-### Contributors and Citation Guide
-The code was written by Felix Egle, Margarete Mühlleitner, João Viana and Rui Santos. If you use EWsHDECAY please cite *[]*..
 
 
 ### Compilation
@@ -53,9 +53,9 @@ With the last command above (make test) a series of tests are passed through to 
 
 - i=5 Test input file for the complex dark matter phase at NLO
 
-- i=6 Test input file for the complex dark matter phase at NLO including the NLO^2 for the h2->h1h1 decay
+- i=6 Test input file for the complex dark matter phase at NLO including the approximate NNLO corrections to the h2->h1h1 decay
 
-- i=7 Test input file for the complex dark matter phase at NLO including a parameter conversion between two schemes.
+- i=7 Test input file for the complex dark matter phase at NLO including the parameter conversion between two schemes.
 
 The output is automatically compared to already prepared output files in the /tests/out"i" directories.
 
@@ -67,19 +67,18 @@ The standard input is expected to be named 'hdecay.in' and in the same directory
 
     ./ewshdecay -i myinput.in -o finaloutput/
 
-calls the program with the input parameters given in *myinput.in* and writes everything into the directory *finaloutput/*. The generated output files are called br.phxy. The phase name 'ph' is rb, rd, cb, cd for the real broken, the real dark matter, the complex broken and the complex dark matter phase, respectively. (Only for the latter the electroweak corrections are calculated for the parameter a1=0.) The index x refers to the Higgs boson Hx for which the results are given out. The index y refers to the decays which are given out: y=1 fermionic final states, y=2 gauge boson final states + total width, y=3 scalar boson final states.
+calls the program with the input parameters given in *myinput.in* and writes everything into the directory *finaloutput/*. The generated output files are called br.phxy. The phase name 'ph' is rb, rd, cb, cd for the real broken, the real dark matter, the complex broken and the complex dark matter phase, respectively. (Only for the latter the electroweak corrections are calculated provided the parameter a1 is set to 0.) The index x refers to the Higgs boson Hx for which the results are given out. The index y refers to the decays which are given out: y=1 fermionic final states, y=2 gauge boson final states + total width, y=3 scalar boson final states.
 
-To change the model and the model parameters, change the values in the section *real or complex singlet Model*.
+To change the model and the model parameters, change the values in the input file in the section *real or complex singlet model*.
 
-To change the settings for the elw corrections ,i.e. the scheme choice for renormalization and the detecor resolution (needed for IR renormalization), change the values in the section *EW Corrections*. Please keep in mind that the EW corrections can only be applied for the CxSM in the complex dark matter phase (icxSM=4) with the parameter a1=0.
+To change the settings for the electroweak corrections , i.e. the scheme choice for the renormalization and the detector resolution (needed for the regularization of the IR divergences), change the values in the section *EW Corrections*. Please keep in mind that the EW corrections can only be applied for the CxSM in the complex dark matter phase (icxSM=4) with the parameter a1=0.
 
-Additionally, the NLO^2 term can be included for the h2->h1h1 decay, since the trilinear h2h1h1 coupling vanishes for vs/v=tan(alpha). In a small interval around this point the NLO^2 contribution can then be turned on, the interval size is defined through the variable *deltaNNLO*.
+Additionally, by setting *NNLOapp=1*, the NLO^2 term can be included for the h2->h1h1 decay, since the trilinear h2h1h1 coupling vanishes for vs/v=tan(alpha). In a small interval around this point the NLO^2 contribution can then be turned on, the interval size is defined through the variable *deltaNNLO*.
 
+For a meaningful comparison of the renormalization scheme dependence of the results, the input parameters have to be converted consistently. The parameter conversion can be turned on by setting Paramcon=1 in the input file. The user also has the option then to define the schemes between which the parameters are to be converted. For details, see Ref.
 
 Please feel free to play around with the code and report any bugs or unusual behaviour.
 
-
-<!-- Below are the links referenced in the text (copied von NHDecay). -->
 
 <!--LoopTools reference  -->
 [LoopTools]: https://feynarts.de/looptools/
@@ -89,5 +88,5 @@ Please feel free to play around with the code and report any bugs or unusual beh
 [JHEP06(2016)034]: https://doi.org/10.1007/JHEP06(2016)034
 <!-- HDECAY references -->
 [HDECAY]:  http://tiger.web.psi.ch/proglist.html
-[hep-ph/9704448]: https://www.sciencedirect.com/science/article/pii/S0010465597001239?via%3Dihub
-[1801.09506]: https://www.sciencedirect.com/science/article/abs/pii/S0010465518304260?via%3Dihub
+[Comput.Phys.Commun. 108 (1998) 56]: https://doi.org/10.1016/S0010-4655(97)00123-9
+[Comput.Phys.Commun. 238 (2019) 214]: https://doi.org/10.1016/j.cpc.2018.12.010
