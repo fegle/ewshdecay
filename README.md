@@ -30,6 +30,9 @@ folder.
 All changes in the code that affect the results are documented in the CHANGELOG.
 
 
+### Contributors and Citation Guide
+The code was written by Felix Egle, Margarete Mühlleitner, João Viana and Rui Santos. If you use EWsHDECAY please cite *[]*..
+
 
 ### Compilation
 In order to compile the code you can use the given Makefile. A Fortran compiler is needed for the compilation. Furthermore, the code uses the program package [LoopTools][] for the calculation of the one-loop integrals. Thus, if the given Makefile is used, the variable *LOOPTOOLS* has to be set to a local installation of LoopTools.
