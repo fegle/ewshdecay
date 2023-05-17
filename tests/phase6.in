@@ -170,6 +170,6 @@ deltaNNLO= 0.05D0
 **** Paramcon = 0 no parameter conversion, =1 do parameter conversion
 **** Standard scheme: stdvs = 1 pd, = 2 ZEM, stdproc = 1 h1->AA, =2 h2->AA, stdalpha =1 OS, =2 pstar
 Paramcon = 0
-stdvs    = 1
+stdvs    = 2
 stdproc  = 2
 stdalpha = 1

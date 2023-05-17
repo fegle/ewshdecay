@@ -257,6 +257,7 @@ ccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc
       double precision ddalphastd,ddvSstd
       double precision ddalphanew,ddvSnew
       double precision DALPHACX1,DVSCX
+      double precision mh1,mh2,mX,vS,Talpha
       Character(len = 20) :: outputscheme,chosenscheme
       character(len=7), dimension(2) :: vsname,processname,alphaname
       CHARACTER(100) :: filenamein,dirout
@@ -265,6 +266,7 @@ c-----CommandlineInput
       Common/CxSMFlags/vsscheme,pdprocess,alphascheme
       common/SINGLETPARS/DALPHACX1,DVSCX
       Common/ParamConversion/ChangeScheme,stdvsscheme,stdpdprocess,stdalphascheme
+      Common/CxSMValues/mh1,mh2,mX,vS,Talpha
 c       if(DAbs(mh1-125.09).lt.0.1)then
 c       stdscheme=1
 c       else
@@ -284,6 +286,29 @@ c     stdalphascheme=1
       write(*,"(3A)")"The chosen renormalization scheme (",trim(chosenscheme),") is not the input",
      ."renormalization scheme (",trim(outputscheme),"). Thus, the input parameters have to be converted."
       write(*,*)"#####"
+
+      if(stdvsscheme.eq.1.and.stdpdprocess.eq.1.and.mh1.lt.2*mX)then
+            write(*,*)"#####"
+            write(*,*)"Cannot use the Standard input scheme!"
+            write(*,*)"The decay h1->AA ist not allowed, use another standard scheme."
+            write(*,*)"#####"
+      elseif(stdvsscheme.eq.1.and.stdpdprocess.eq.2.and.mh2.lt.2*mX)then
+            write(*,*)"#####"
+            write(*,*)"Cannot use the Standard input scheme!"
+            write(*,*)"The decay h2->AA ist not allowed, use another standard scheme."
+            write(*,*)"#####"
+      elseif(vsscheme.eq.1.and.pdprocess.eq.1.and.mh1.lt.2*mX)then
+            write(*,*)"#####"
+            write(*,*)"Cannot use the new input scheme!"
+            write(*,*)"The decay h1->AA ist not allowed, use another scheme to convert to."
+            write(*,*)"#####"
+      elseif(vsscheme.eq.1.and.pdprocess.eq.2.and.mh2.lt.2*mX)then
+            write(*,*)"#####"
+            write(*,*)"Cannot use the new input scheme!"
+            write(*,*)"The decay h2->AA ist not allowed, use another scheme to convert to."
+            write(*,*)"#####"
+      else
+
       if(stdvsscheme.eq.1)then
         if(stdpdprocess.eq.1)then
             if(stdalphascheme.eq.1)then
@@ -368,6 +393,7 @@ c     stdalphascheme=1
       write(*,*)"alpha: ", DALPHACX1
       write(*,*)"vS: ", DVSCX
       write(*,*)"#####"
+      endif
       endif
       OPEN(11,FILE=trim(dirout) // 'Paramconversion.txt')
       write(11,*)"alpha     vs"
