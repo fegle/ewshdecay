@@ -1,5 +1,5 @@
 cmake_minimum_required(VERSION 3.1)
-project(EWSHDECAY VERSION 1.0.0 LANGUAGES C CXX Fortran)
+project(EWsHDECAY VERSION 1.0.0 LANGUAGES C CXX Fortran)
 
 
 if(NOT CMAKE_BUILD_TYPE AND NOT CMAKE_CONFIGURATION_TYPES)
@@ -158,7 +158,7 @@ if(PYTHONINTERP_FOUND)
 endif()
 
 # cpack configuration
-#set(CPACK_SOURCE_PACKAGE_FILE_NAME "EWSHDECAY")
+#set(CPACK_SOURCE_PACKAGE_FILE_NAME "EWsHDECAY")
 #list(APPEND CPACK_SOURCE_IGNORE_FILES "\.git" )
 #list(APPEND CPACK_SOURCE_IGNORE_FILES ".gitignore" )
 #list(APPEND CPACK_SOURCE_IGNORE_FILES ".gitlab-ci.yml" )
@@ -172,21 +172,21 @@ endif()
 #if(PROJECT_SOURCE_DIR STREQUAL CMAKE_SOURCE_DIR)
   #include(CMakePackageConfigHelpers)
   #write_basic_package_version_file(
-    #EWSHDECAYConfigVersion.cmake
+    #EWsHDECAYConfigVersion.cmake
     #VERSION ${PACKAGE_VERSION}
     #COMPATIBILITY AnyNewerVersion)
 
-  #set(EWSHDECAY LoopTools)
+  #set(EWsHDECAY LoopTools)
 
   #export(
     #TARGETS ${ExportList}
-    #NAMESPACE EWSHDECAY::
-    #FILE EWSHDECAYTargets.cmake
+    #NAMESPACE EWsHDECAY::
+    #FILE EWsHDECAYTargets.cmake
     #)
 
-  #configure_file(tools/cmake/EWSHDECAYConfig.cmake.in EWSHDECAYConfig.cmake @ONLY)
+  #configure_file(tools/cmake/EWsHDECAYConfig.cmake.in EWsHDECAYConfig.cmake @ONLY)
 
-  #export(PACKAGE EWSHDECAY)
+  #export(PACKAGE EWsHDECAY)
 #endif()
 
 # ------------------------ Doxygen --------------------------------------------
@@ -196,7 +196,7 @@ if(DOXYGEN_FOUND AND CMAKE_PROJECT_NAME STREQUAL PROJECT_NAME)
 
   set(DOXYGEN_USE_MATHJAX YES)
   set(DOXYGEN_STRIP_FROM_INC_PATH "${CMAKE_CURRENT_SOURCE_DIR}/include")
-  set(DOXYGEN_PROJECT_BRIEF "EWSHDECAY -- code to calculate Higgs Decays in the RxSM and CxSM including ELW corrections")
+  set(DOXYGEN_PROJECT_BRIEF "EWsHDECAY -- code to calculate Higgs Decays in the RxSM and CxSM including ELW corrections")
   set(DOXYGEN_CALL_GRAPH YES)
   set(DOXYGEN_EXTRACT_ALL YES)
   set(DOXYGEN_EXTRACT_PRIVATE YES)
