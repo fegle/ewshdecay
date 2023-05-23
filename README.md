@@ -8,7 +8,7 @@ The code was written by Felix Egle, Margarete Mühlleitner, João Viana and Rui 
 
 ### The CxSM
 
-The CxSM extends the Standard Model (SM) Higgs sector by a complex singlet field and by adding two separate Z_2 symmetries on the Higgs potential. Depending on whether the Z_2 symmetries are broken we can have a DM particle or not in the spectrum. We consider the complex singlet dark matter phase and compute the next-to-leading order (NLO) electroweak (EW) corrections for all visible Higgs decays into final states that are on-shell and not loop-induced. The user can choose between two different renormalization schemes for the mixing angle alpha of the two visible Higgs bosons and between four different renormalization schemes for the renormalization of the vacuum expectation value vS of the singlet field. We also provide the option to compute next-to-next-to-leading order correction (NNLO) to the heavy visible Higgs boson h2 decay into a lighter h1 Higgs pair for the parameter configuration with vanishing leading-order (LO) width.
+The CxSM extends the Standard Model (SM) Higgs sector by a complex singlet field and by adding two separate Z_2 symmetries on the Higgs potential. Depending on whether the Z_2 symmetries are broken we can have a DM particle or not in the spectrum. We consider the complex singlet dark matter phase and compute the next-to-leading order (NLO) electroweak (EW) corrections for all visible Higgs decays into final states that are on-shell and not loop-induced. The user can choose between two different renormalization schemes for the mixing angle alpha of the two visible Higgs bosons and between four different renormalization schemes for the renormalization of the vacuum expectation value vS of the singlet field. We also provide the option to compute the next-to-next-to-leading order correction (NNLO) to the heavy visible Higgs boson h2 decay into a lighter h1 Higgs pair for the parameter configuration with vanishing leading-order (LO) width.
 
 Caveats:
 
@@ -74,7 +74,7 @@ calls the program with the input parameters given in *myinput.in* and writes eve
 
 To change the model and the model parameters, change the values in the input file in the section *real or complex singlet model*.
 
-To change the settings for the electroweak corrections , i.e. the scheme choice for the renormalization and the detector resolution (needed for the regularization of the IR divergences), change the values in the section *EW Corrections*. Please keep in mind that the EW corrections can only be applied for the CxSM in the complex dark matter phase (icxSM=4) with the parameter a1=0.
+To change the settings for the electroweak corrections, i.e. the scheme choice for the renormalization and the detector resolution (needed for the regularization of the IR divergences), change the values in the section *EW Corrections*. Please keep in mind that the EW corrections can only be applied for the CxSM in the complex dark matter phase (icxSM=4) with the parameter a1=0.
 
 Additionally, by setting *NNLOapp=1*, the NLO^2 term can be included for the h2->h1h1 decay, since the trilinear h2h1h1 coupling vanishes for vs/v=tan(alpha). In a small interval around this point the NLO^2 contribution can then be turned on, the interval size is defined through the variable *deltaNNLO*.
 
