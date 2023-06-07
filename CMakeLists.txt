@@ -12,7 +12,7 @@ endif()
 #include(CTest)
 
 # -------------------------------- LoopTools --------------------------------
-#Shamelessly copied from Lisa Biermann
+# Special Thanks to Lisa Biermann
 set(LT_URL "https://feynarts.de/looptools/LoopTools-2.15.tar.gz")
 set(LT_DOWNLOAD_TARGET "${CMAKE_BINARY_DIR}/LoopTools-2.15.tar.gz")
 set(LT_EXTRACT_TARGET "${CMAKE_BINARY_DIR}/LoopTools-2.15")
