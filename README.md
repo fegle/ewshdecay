@@ -22,9 +22,7 @@ Caveats:
 
 - Be careful when interpreting and comparing the results of different renormalization scheme choices. A proper comparison requires the consistent conversion of the input parameters. This feature can be chosen in the input file.
 
-A detailed description of the model is given in *[arXiv:2306.04127]*. When the
-code is downloaded an up-to-date pdf version is included in the doc
-folder.
+A detailed description of the model is given in *[arXiv:2306.04127]*.
 
 ### Changes
 All changes in the code that affect the results are documented in the CHANGELOG.
