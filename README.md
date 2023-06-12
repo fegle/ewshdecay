@@ -4,7 +4,7 @@ EWsHDECAY is an extension of the code [sHDECAY][] (see *[JHEP06(2016)034]*) whic
 *[Comput.Phys.Commun. 238 (2019) 214]*) version 6.50. For this version of EWsHDECAY, the newest version of HDECAY (version 6.61) was used as a basis, the extension sHDECAY was then implemented into this new version and then the EWsHDECAY expansion was added. Similar to the code sHDECAY, EWsHDECAY computes the Higgs boson decay widths and branching ratios in the RxSM and CxSM including the state-of-the-art QCD corrections and off-shell decays for massive gauge boson and top-pair final states. The new feature of EWsHDECAY is the possibility to additionally calculate for the complex Dark Matter phase of the CxSM the electroweak corrections to the Higgs decays into non-loop induced and on-shell final states.
 
 ### Contributors and Citation Guide
-The code was written by Felix Egle, Margarete Mühlleitner, Rui Santos and João Viana. If you use EWsHDECAY please cite "Felix Egle, Margarete Mühlleitner, Rui Santos, Joao Viana, arXiv:xzy [hep-ph]."
+The code was written by Felix Egle, Margarete Mühlleitner, Rui Santos and João Viana. If you use EWsHDECAY please cite "Felix Egle, Margarete Mühlleitner, Rui Santos, Joao Viana, *[arXiv:2306.04127]* [hep-ph]."
 
 ### The CxSM
 
@@ -93,3 +93,4 @@ Please feel free to play around with the code and report any bugs or unusual beh
 [HDECAY]:  http://tiger.web.psi.ch/proglist.html
 [Comput.Phys.Commun. 108 (1998) 56]: https://doi.org/10.1016/S0010-4655(97)00123-9
 [Comput.Phys.Commun. 238 (2019) 214]: https://doi.org/10.1016/j.cpc.2018.12.010
+[arXiv:2306.04127]: https://arxiv.org/abs/2306.04127
