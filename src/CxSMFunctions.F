@@ -4,7 +4,7 @@
       integer vsscheme,pdprocess,alphascheme,ielwcxsm,stdscheme
       integer NNLOapprox
       integer stdvsscheme,stdpdprocess,stdalphascheme,ChangeScheme
-      double precision mW,mZ,mt,mb,mtau
+      double precision mW,mZ,mt,mb,mc,mtau
       double precision myGF
       double precision mh1,mh2,mX,vS,Talpha
       double precision DeltaE,LambdaIR,deltaNNLO
@@ -19,10 +19,10 @@ c      logical :: ChangeScheme
       common/SINGLETPARS/DALPHACX1,DVSCX
       COMMON/PARAM_HDEC/GF,ALPH,AMTAU,AMMUON,AMZ,AMW
       COMMON/MASSES_HDEC/AMS,AMC,AMB,AMT
-      COMMON/DELEWCXSM/dh1ll,dh1bb,dh1aa,dh2ll,dh2bb,dh2tt,
+      COMMON/DELEWCXSM/dh1ll,dh1bb,dh1cc,dh1aa,dh2ll,dh2bb,dh2cc,dh2tt,
      .     dh2aa,dh2zz,dh2ww,dh2h1h1,ielwcxsm
       Common/CxSMFlags/vsscheme,pdprocess,alphascheme
-      Common/SMValues/mW,mZ,mt,mb,mtau,myGF
+      Common/SMValues/mW,mZ,mt,mb,mc,mtau,myGF
       Common/CxSMValues/mh1,mh2,mX,vS,Talpha
       Common/IRValues/DeltaE,LambdaIR
       Common/NNLO/deltaNNLO,NNLOapprox
@@ -33,6 +33,7 @@ c      logical :: ChangeScheme
       mZ=AMZ
       mt=AMT
       mb=AMB
+      mc=AMC
       mtau=AMTAU
       mh1=am1cx
       mh2=am2cx
@@ -141,6 +142,15 @@ c-----end
       
       endif
       
+      if(mh1/2.D0.gt.mc) then
+      dh1cc=DWh1cc(2)/DWh1cc(1) -1
+      if(dh1cc.le.-1)then
+      dh1cc=0
+      iwarn=1
+      endif
+
+      endif
+
       if(mh1/2.D0.gt.mX) then
       dh1aa=DWh1AA(2)/DWh1AA(1) -1
       if(dh1aa.le.-1)then
@@ -168,6 +178,15 @@ c-----end
       iwarn=1
       endif
       
+      endif
+
+      if(mh2/2.D0.gt.mc) then
+      dh2cc=DWh2cc(2)/DWh2cc(1) -1
+      if(dh2cc.le.-1)then
+      dh2cc=0
+      iwarn=1
+      endif
+
       endif
       
       if(mh2/2.D0.gt.mt) then
@@ -405,7 +424,7 @@ ccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc
       double precision function DWh1AA(order)
       implicit none
       integer order,vsscheme,pdprocess,alphascheme
-      double precision mW,mZ,mt,mb,mtau
+      double precision mW,mZ,mt,mb,mc,mtau
       double precision GF
       double precision mh1,mh2,mX,vS,Talpha
       double precision DeltaE,LambdaIR
@@ -413,7 +432,7 @@ ccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc
      .DWNLOh1AApd2pstar,DWNLOh1AAZEM1OS,DWNLOh1AAZEM1pstar,
      .DWNLOh1AAZEM2OS,DWNLOh1AAZEM2pstar,DWLOh1AA
       Common/CxSMFlags/vsscheme,pdprocess,alphascheme
-      Common/SMValues/mW,mZ,mt,mb,mtau,GF
+      Common/SMValues/mW,mZ,mt,mb,mc,mtau,GF
       Common/CxSMValues/mh1,mh2,mX,vS,Talpha
       Common/IRValues/DeltaE,LambdaIR      
 c     go trough all combinations
@@ -457,7 +476,7 @@ ccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc
       double precision function DWh2AA(order)
       implicit none
       integer order,vsscheme,pdprocess,alphascheme
-      double precision mW,mZ,mt,mb,mtau
+      double precision mW,mZ,mt,mb,mc,mtau
       double precision GF
       double precision mh1,mh2,mX,vS,Talpha
       double precision DeltaE,LambdaIR
@@ -465,7 +484,7 @@ ccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc
      .DWNLOh2AApd2pstar,DWNLOh2AAZEM1OS,DWNLOh2AAZEM1pstar,
      .DWNLOh2AAZEM2OS,DWNLOh2AAZEM2pstar,DWLOh2AA
       Common/CxSMFlags/vsscheme,pdprocess,alphascheme
-      Common/SMValues/mW,mZ,mt,mb,mtau,GF
+      Common/SMValues/mW,mZ,mt,mb,mc,mtau,GF
       Common/CxSMValues/mh1,mh2,mX,vS,Talpha
       Common/IRValues/DeltaE,LambdaIR      
 c     go trough all combinations      
@@ -509,13 +528,13 @@ ccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc
       double precision function DWh1tautau(order)
       implicit none
       integer order,vsscheme,pdprocess,alphascheme
-      double precision mW,mZ,mt,mb,mtau
+      double precision mW,mZ,mt,mb,mc,mtau
       double precision GF
       double precision mh1,mh2,mX,vS,Talpha
       double precision DeltaE,LambdaIR
       double precision DWNLOh1tautauOS,DWNLOh1tautaupstar,DWLOh1tautau
       Common/CxSMFlags/vsscheme,pdprocess,alphascheme
-      Common/SMValues/mW,mZ,mt,mb,mtau,GF
+      Common/SMValues/mW,mZ,mt,mb,mc,mtau,GF
       Common/CxSMValues/mh1,mh2,mX,vS,Talpha
       Common/IRValues/DeltaE,LambdaIR      
 c     go trough all combinations      
@@ -535,13 +554,13 @@ ccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc
       double precision function DWh2tautau(order)
       implicit none
       integer order,vsscheme,pdprocess,alphascheme
-      double precision mW,mZ,mt,mb,mtau
+      double precision mW,mZ,mt,mb,mc,mtau
       double precision GF
       double precision mh1,mh2,mX,vS,Talpha
       double precision DeltaE,LambdaIR
       double precision DWNLOh2tautauOS,DWNLOh2tautaupstar,DWLOh2tautau
       Common/CxSMFlags/vsscheme,pdprocess,alphascheme
-      Common/SMValues/mW,mZ,mt,mb,mtau,GF
+      Common/SMValues/mW,mZ,mt,mb,mc,mtau,GF
       Common/CxSMValues/mh1,mh2,mX,vS,Talpha
       Common/IRValues/DeltaE,LambdaIR      
 c     go trough all combinations      
@@ -561,13 +580,13 @@ ccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc
       double precision function DWh1bb(order)
       implicit none
       integer order,vsscheme,pdprocess,alphascheme
-      double precision mW,mZ,mt,mb,mtau
+      double precision mW,mZ,mt,mb,mc,mtau
       double precision GF
       double precision mh1,mh2,mX,vS,Talpha
       double precision DeltaE,LambdaIR
       double precision DWNLOh1bbOS,DWNLOh1bbpstar,DWLOh1bb
       Common/CxSMFlags/vsscheme,pdprocess,alphascheme
-      Common/SMValues/mW,mZ,mt,mb,mtau,GF
+      Common/SMValues/mW,mZ,mt,mb,mc,mtau,GF
       Common/CxSMValues/mh1,mh2,mX,vS,Talpha
       Common/IRValues/DeltaE,LambdaIR      
 c     go trough all combinations      
@@ -587,13 +606,13 @@ ccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc
       double precision function DWh2bb(order)
       implicit none
       integer order,vsscheme,pdprocess,alphascheme
-      double precision mW,mZ,mt,mb,mtau
+      double precision mW,mZ,mt,mb,mc,mtau
       double precision GF
       double precision mh1,mh2,mX,vS,Talpha
       double precision DeltaE,LambdaIR
       double precision DWNLOh2bbOS,DWNLOh2bbpstar,DWLOh2bb
       Common/CxSMFlags/vsscheme,pdprocess,alphascheme
-      Common/SMValues/mW,mZ,mt,mb,mtau,GF
+      Common/SMValues/mW,mZ,mt,mb,mc,mtau,GF
       Common/CxSMValues/mh1,mh2,mX,vS,Talpha
       Common/IRValues/DeltaE,LambdaIR      
 c     go trough all combinations      
@@ -610,16 +629,68 @@ c     go trough all combinations
       end
 ccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc
 ccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc
+      double precision function DWh1cc(order)
+      implicit none
+      integer order,vsscheme,pdprocess,alphascheme
+      double precision mW,mZ,mt,mb,mc,mtau
+      double precision GF
+      double precision mh1,mh2,mX,vS,Talpha
+      double precision DeltaE,LambdaIR
+      double precision DWNLOh1ccOS,DWNLOh1ccpstar,DWLOh1cc
+      Common/CxSMFlags/vsscheme,pdprocess,alphascheme
+      Common/SMValues/mW,mZ,mt,mb,mc,mtau,GF
+      Common/CxSMValues/mh1,mh2,mX,vS,Talpha
+      Common/IRValues/DeltaE,LambdaIR
+c     go trough all combinations
+      If(order.eq.1)then
+        DWh1cc=DWLOh1cc()
+      elseif(order.eq.2)then
+                if(alphascheme.eq.1)then
+                    DWh1cc=DWNLOh1ccOS()
+                elseif(alphascheme.eq.2)then
+                    DWh1cc=DWNLOh1ccpstar()
+                endif
+      endif
+      return
+      end
+ccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc
+ccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc
+      double precision function DWh2cc(order)
+      implicit none
+      integer order,vsscheme,pdprocess,alphascheme
+      double precision mW,mZ,mt,mb,mc,mtau
+      double precision GF
+      double precision mh1,mh2,mX,vS,Talpha
+      double precision DeltaE,LambdaIR
+      double precision DWNLOh2ccOS,DWNLOh2ccpstar,DWLOh2cc
+      Common/CxSMFlags/vsscheme,pdprocess,alphascheme
+      Common/SMValues/mW,mZ,mt,mb,mc,mtau,GF
+      Common/CxSMValues/mh1,mh2,mX,vS,Talpha
+      Common/IRValues/DeltaE,LambdaIR
+c     go trough all combinations
+      If(order.eq.1)then
+        DWh2cc=DWLOh2cc()
+      elseif(order.eq.2)then
+                if(alphascheme.eq.1)then
+                    DWh2cc=DWNLOh2ccOS()
+                elseif(alphascheme.eq.2)then
+                    DWh2cc=DWNLOh2ccpstar()
+                endif
+      endif
+      return
+      end
+ccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc
+ccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc
       double precision function DWh2ZZ(order)
       implicit none
       integer order,vsscheme,pdprocess,alphascheme
-      double precision mW,mZ,mt,mb,mtau
+      double precision mW,mZ,mt,mb,mc,mtau
       double precision GF
       double precision mh1,mh2,mX,vS,Talpha
       double precision DeltaE,LambdaIR
       double precision DWNLOh2ZZOS,DWNLOh2ZZpstar,DWLOh2ZZ
       Common/CxSMFlags/vsscheme,pdprocess,alphascheme
-      Common/SMValues/mW,mZ,mt,mb,mtau,GF
+      Common/SMValues/mW,mZ,mt,mb,mc,mtau,GF
       Common/CxSMValues/mh1,mh2,mX,vS,Talpha
       Common/IRValues/DeltaE,LambdaIR      
 c     go trough all combinations      
@@ -639,13 +710,13 @@ ccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc
       double precision function DWh2WW(order)
       implicit none
       integer order,vsscheme,pdprocess,alphascheme
-      double precision mW,mZ,mt,mb,mtau
+      double precision mW,mZ,mt,mb,mc,mtau
       double precision GF
       double precision mh1,mh2,mX,vS,Talpha
       double precision DeltaE,LambdaIR
       double precision DWNLOh2WWOS,DWNLOh2WWpstar,DWLOh2WW
       Common/CxSMFlags/vsscheme,pdprocess,alphascheme
-      Common/SMValues/mW,mZ,mt,mb,mtau,GF
+      Common/SMValues/mW,mZ,mt,mb,mc,mtau,GF
       Common/CxSMValues/mh1,mh2,mX,vS,Talpha
       Common/IRValues/DeltaE,LambdaIR      
 c     go trough all combinations      
@@ -665,13 +736,13 @@ ccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc
       double precision function DWh2tt(order)
       implicit none
       integer order,vsscheme,pdprocess,alphascheme
-      double precision mW,mZ,mt,mb,mtau
+      double precision mW,mZ,mt,mb,mc,mtau
       double precision GF
       double precision mh1,mh2,mX,vS,Talpha
       double precision DeltaE,LambdaIR
       double precision DWNLOh2ttOS,DWNLOh2ttpstar,DWLOh2tt
       Common/CxSMFlags/vsscheme,pdprocess,alphascheme
-      Common/SMValues/mW,mZ,mt,mb,mtau,GF
+      Common/SMValues/mW,mZ,mt,mb,mc,mtau,GF
       Common/CxSMValues/mh1,mh2,mX,vS,Talpha
       Common/IRValues/DeltaE,LambdaIR      
 c     go trough all combinations      
@@ -692,7 +763,7 @@ ccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc
       implicit none
       integer order,vsscheme,pdprocess,alphascheme
       integer NNLOapprox
-      double precision mW,mZ,mt,mb,mtau
+      double precision mW,mZ,mt,mb,mc,mtau
       double precision GF
       double precision mh1,mh2,mX,vS,Talpha
       double precision DeltaE,LambdaIR,deltaNNLO
@@ -706,7 +777,7 @@ ccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc
      .DWNNLOapproxh2h1h1ZEM1pstar,DWNNLOapproxh2h1h1ZEM2OS,
      .DWNNLOapproxh2h1h1ZEM2pstar
       Common/CxSMFlags/vsscheme,pdprocess,alphascheme
-      Common/SMValues/mW,mZ,mt,mb,mtau,GF
+      Common/SMValues/mW,mZ,mt,mb,mc,mtau,GF
       Common/CxSMValues/mh1,mh2,mX,vS,Talpha
       Common/IRValues/DeltaE,LambdaIR
       Common/NNLO/deltaNNLO,NNLOapprox

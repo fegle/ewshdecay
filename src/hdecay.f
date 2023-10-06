@@ -286,7 +286,7 @@ c>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
       COMMON/PARAM_HDEC/GF,ALPH,AMTAU,AMMUON,AMZ,AMW
       COMMON/BREAKSCALE_HDEC/SUSYSCALE
 c MMM changed 26/8/2022      
-      common/DELEWCXSM/dh1ll,dh1bb,dh1aa,dh2ll,dh2bb,dh2tt,
+      COMMON/DELEWCXSM/dh1ll,dh1bb,dh1cc,dh1aa,dh2ll,dh2bb,dh2cc,dh2tt,
      .     dh2aa,dh2zz,dh2ww,dh2h1h1,ielwcxsm
       Common/Commandline/filenamein,dirout
 c MMM changed 26/8/2022        
@@ -586,7 +586,7 @@ c-- FeynHiggs
       common/feynhiggs0_hdec/ifeynhiggs,itheta
       common/marcelvos_hdec/scalmq,imarcelvos,ioutput
 c MMM changed 26/8/2022      
-      common/DELEWCXSM/dh1ll,dh1bb,dh1aa,dh2ll,dh2bb,dh2tt,
+      COMMON/DELEWCXSM/dh1ll,dh1bb,dh1cc,dh1aa,dh2ll,dh2bb,dh2cc,dh2tt,
      .     dh2aa,dh2zz,dh2ww,dh2h1h1,ielwcxsm
       common/SINGLETPARS/DALPHACX1,DVSCX
       Common/NNLO/deltaNNLO,NNLOapprox
@@ -2085,9 +2085,11 @@ c       write(*,*)"#####"
 c-----set all corrections to zero
       dh1ll=0
       dh1bb=0
+      dh1cc=0
       dh1aa=0
       dh2ll=0
       dh2bb=0
+      dh2cc=0
       dh2tt=0
       dh2aa=0
       dh2zz=0
@@ -3001,7 +3003,7 @@ c MMM changed 8/12/15
      .     SCXBRH3H1H2
 c end MMM changed 8/12/15      
 c MMM changed 26/8/2022      
-      common/DELEWCXSM/dh1ll,dh1bb,dh1aa,dh2ll,dh2bb,dh2tt,
+      COMMON/DELEWCXSM/dh1ll,dh1bb,dh1cc,dh1aa,dh2ll,dh2bb,dh2cc,dh2tt,
      .     dh2aa,dh2zz,dh2ww,dh2h1h1,ielwcxsm
 c MMM changed 26/8/2022
       
@@ -4584,7 +4586,7 @@ c MMM changed 28/4/15
      .     SCXBRH3H1H2
 c end MMM changed 28/4/15      
 c MMM changed 26/8/2022      
-      common/DELEWCXSM/dh1ll,dh1bb,dh1aa,dh2ll,dh2bb,dh2tt,
+      COMMON/DELEWCXSM/dh1ll,dh1bb,dh1cc,dh1aa,dh2ll,dh2bb,dh2cc,dh2tt,
      .     dh2aa,dh2zz,dh2ww,dh2h1h1,ielwcxsm
 c MMM changed 26/8/2022  
       common/marcelvos_hdec/scalmq,imarcelvos,ioutput
@@ -4966,6 +4968,7 @@ c MMM changed 26/8/22
                   if(ielwcxsm.eq.1) then
                      dcxsmll = dh1ll
                      dcxsmbb = dh1bb
+                     dcxsmcc = dh1cc
                      dcxsmaa = dh1aa
                      dcxsmzz = 0.D0
                      dcxsmww = 0.D0
@@ -4981,6 +4984,7 @@ c MMM changed 26/8/22
                   if(ielwcxsm.eq.1) then
                      dcxsmll = dh2ll
                      dcxsmbb = dh2bb
+                     dcxsmcc = dh2cc
                      dcxsmaa = dh2aa
                      dcxsmzz = dh2zz
                      dcxsmww = dh2ww
@@ -5529,6 +5533,13 @@ c    .       +(1+ELW0(AMH,RMC,2.D0/3.D0,7.D0)*(1+XQCD))
      .       +(1+ELW(AMH,AMC,AMS,2/3.D0,1/2.D0)*(1+XQCD))
      .       *HFFSELF(AMH) * SM4FACF)
      .   + DCC
+c MMM changed 26/2022
+       if(ielwcxsm.eq.1) then
+          HC2= 3.D0*HFF(AMH,(RMC/AMH)**2)*
+     .     QCDH(RMC**2/AMH**2,5)*(1+dcxsmcc)
+     .         + DCC
+       endif
+c end MMM changed 26/2022
       ENDIF
 c      IF(HC2.LT.0.D0) HC2 = 0
        HC1=3.D0*HFF(AMH,(AMC/AMH)**2)
@@ -5546,6 +5557,13 @@ c    .       +(1+ELW0(AMH,AMC,2.D0/3.D0,7.D0))
      .       +(1+ELW(AMH,AMC,AMS,2/3.D0,1/2.D0))
      .       *HFFSELF(AMH) * SM4FACF)
      .   + DCC
+c MMM changed 26/2022
+       if(ielwcxsm.eq.1) then
+          HC1=3.D0*HFF(AMH,(AMC/AMH)**2)*
+     .    TQCDH(AMC**2/AMH**2)*(1.D0+dcxsmcc)
+     .   + DCC
+       endif
+c end MMM changed 26/2022
       ENDIF
        RAT = 2*AMC/AMH
        HCC = QQINT_HDEC(RAT,HC1,HC2)
