@@ -280,6 +280,8 @@ ccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc
       Character(len = 20) :: outputscheme,chosenscheme
       character(len=7), dimension(2) :: vsname,processname,alphaname
       CHARACTER(100) :: filenamein,dirout
+      logical DEBUGOUTPUT
+      COMMON/DEBUG/DEBUGOUTPUT
 c-----CommandlineInput
       Common/Commandline/filenamein,dirout
       Common/CxSMFlags/vsscheme,pdprocess,alphascheme
@@ -412,7 +414,18 @@ c     stdalphascheme=1
       write(*,*)"alpha: ", DALPHACX1
       write(*,*)"vS: ", DVSCX
       write(*,*)"#####"
+
       endif
+      endif
+      if(DEBUGOUTPUT)then
+      OPEN(11,FILE=trim(dirout) // 'TestChangeScheme.txt')
+      write(11,*)"ddalphaOS     ddalphapstar     ddvSh1AApdOS     ddvSh1AApdpstar     ",
+     ."ddvSh2AApdOS     ddvSh2AApdpstar     ddvSh1AAZEMOS     ddvSh1AAZEMpstar     ",
+     ."ddvSh2AAZEMOS     ddvSh2AAZEMpstar"
+      write(11,*)ddalphaOS(),ddalphapstar(),ddvSh1AApdOS(),ddvSh1AApdpstar(),
+     .ddvSh2AApdOS(),ddvSh2AApdpstar(),ddvSh1AAZEMOS(),ddvSh1AAZEMpstar(),
+     .ddvSh2AAZEMOS(),ddvSh2AAZEMpstar()
+      close(11)
       endif
       OPEN(11,FILE=trim(dirout) // 'Paramconversion.txt')
       write(11,*)"alpha     vs"

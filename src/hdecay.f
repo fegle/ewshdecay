@@ -267,6 +267,8 @@ C
       IMPLICIT DOUBLE PRECISION (A-H,O-Z)
       CHARACTER(100) :: filenamein,dirout,tempstr
       INTEGER :: counter
+      logical DEBUGOUTPUT
+      COMMON/DEBUG/DEBUGOUTPUT
       COMMON/HMASS_HDEC/AMSM,AMA,AML,AMH,AMCH,AMAR
       COMMON/FLAGS_HDEC/INDIDEC
       COMMON/SLHA_vals_HDEC/islhai,islhao
@@ -294,7 +296,8 @@ c MMM changed 26/8/2022
       imarcelvos = 0
       ifeynhiggs = 0
       itheta = 0
-
+c----activate debugoutput
+      DEBUGOUTPUT=.False.
 c----read command line arguments
       filenamein="hdecay.in"
       dirout=""
@@ -488,6 +491,8 @@ c end MMM changed 8/12/2015
       double precision deltaNNLO
       CHARACTER(100) :: filenamein,dirout
       integer stdvsscheme,stdpdprocess,stdalphascheme,ChangeScheme
+      logical DEBUGOUTPUT
+      COMMON/DEBUG/DEBUGOUTPUT
 c-----CommandlineInput
       Common/Commandline/filenamein,dirout
 c -------------- common block given by read_leshouches ------------ c
@@ -2068,13 +2073,21 @@ c----- so that the parameters will be converted from one scheme into another
       call CxSMEWCorrections(ivsscheme,ipdprocess,iralph_mix,DeltaE,
      .        DLambdaIR,iwarn)
       if(ielwcxsm.eq.1)then
-c       write(*,*)"#####"
-c       write(*,*)"EW corrections delta:"
-c       write(*,*)"dh1ll,dh1bb,dh1aa: "
-c       write(*,*)dh1ll,dh1bb,dh1aa
-c       write(*,*)"dh2ll,dh2bb,dh2tt,dh2aa,dh2zz,dh2ww,dh2h1h1: "
-c       write(*,*)dh2ll,dh2bb,dh2tt,dh2aa,dh2zz,dh2ww,dh2h1h1
-c       write(*,*)"#####"
+      if(DEBUGOUTPUT)then
+      write(*,*)"#####"
+      write(*,*)"AMT,AMB,AMC: "
+      write(*,*)AMT,AMB,AMC
+      write(*,*)"EW corrections delta:"
+      write(*,*)"dh1ll,dh1bb,dh1cc,dh1aa: "
+      write(*,*)dh1ll,dh1bb,dh1cc,dh1aa
+      write(*,*)"dh2ll,dh2bb,dh2cc,dh2tt,dh2aa,dh2zz,dh2ww,dh2h1h1: "
+      write(*,*)dh2ll,dh2bb,dh2cc,dh2tt,dh2aa,dh2zz,dh2ww,dh2h1h1
+      write(*,*)"#####"
+      OPEN(11,FILE=trim(dirout) // 'NLOCorrections.txt')
+      write(11,*)"dh1ll dh1bb   dh1cc   dh1aa   dh2ll   dh2bb   dh2cc   dh2tt   dh2aa   dh2zz   dh2ww   dh2h1h1"
+      write(11,*)dh1ll,dh1bb,dh1cc,dh1aa,dh2ll,dh2bb,dh2cc,dh2tt,dh2aa,dh2zz,dh2ww,dh2h1h1
+      close(11)
+      endif
          if(iwarn.eq.1) then
             print*,'The EW corrections to one or more decay widths 
      .lead to a negative decay width and hence the correction is set 
